@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="company.tap.google.pay">
-
+    <meta-data
+        android:name="com.google.android.gsm.wallet.api.enabled"
+        android:value="true"
+        />
 </manifest>

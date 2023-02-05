@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.2864583333333333" />
         <entry key="tapgooglepaylib/src/main/res/layout/activity_main.xml" value="0.2708333333333333" />
       </map>
     </option>
