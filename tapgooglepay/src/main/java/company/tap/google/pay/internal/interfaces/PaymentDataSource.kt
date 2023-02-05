@@ -1,7 +1,7 @@
 package company.tap.google.pay.internal.interfaces
 
 import company.tap.google.pay.open.enums.AllowedMethods
-import company.tap.google.pay.open.enums.GPayWalletMode
+import company.tap.google.pay.open.enums.SDKMode
 import java.math.BigDecimal
 
 interface PaymentDataSource {
@@ -12,7 +12,7 @@ interface PaymentDataSource {
 
     fun getAmount(): BigDecimal?
 
-    fun getEnvironment(): GPayWalletMode?
+    fun getEnvironment(): SDKMode?
 
     fun getAllowedCardMethod(): AllowedMethods
 

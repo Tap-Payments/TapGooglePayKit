@@ -1,7 +1,7 @@
 package company.tap.google.pay.internal
 
 import company.tap.google.pay.open.enums.AllowedMethods
-import company.tap.google.pay.open.enums.GPayWalletMode
+import company.tap.google.pay.open.enums.SDKMode
 import java.math.BigDecimal
 
 object PaymentDataSource : company.tap.google.pay.internal.interfaces.PaymentDataSource {
@@ -9,7 +9,7 @@ object PaymentDataSource : company.tap.google.pay.internal.interfaces.PaymentDat
     private var amount: BigDecimal? = null
     private lateinit var gatewayMerchantId: String
     private lateinit var gatewayId: String
-    private lateinit var gPayMode: GPayWalletMode
+    private lateinit var sdkMode: SDKMode
     private lateinit var allowedMethods: AllowedMethods
     private lateinit var allowedCardNetworks: List<String>
     private lateinit var countryCode: String
@@ -29,8 +29,8 @@ object PaymentDataSource : company.tap.google.pay.internal.interfaces.PaymentDat
     fun setAmount(amount: BigDecimal?) {
         this.amount = amount
     }
-    fun setEnvironmentMode(gPayMode: GPayWalletMode) {
-        this.gPayMode = gPayMode
+    fun setEnvironmentMode(sdkMode: SDKMode) {
+        this.sdkMode = sdkMode
     }
 
     fun setGatewayId(gatewayId: String) {
@@ -59,8 +59,8 @@ object PaymentDataSource : company.tap.google.pay.internal.interfaces.PaymentDat
         return amount
     }
 
-    override fun getEnvironment(): GPayWalletMode? {
-       return gPayMode
+    override fun getEnvironment(): SDKMode? {
+       return sdkMode
     }
 
     override fun getAllowedCardMethod(): AllowedMethods {

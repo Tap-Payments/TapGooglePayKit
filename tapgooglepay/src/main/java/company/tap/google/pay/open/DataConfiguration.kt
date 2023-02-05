@@ -1,17 +1,25 @@
 package company.tap.google.pay.open
 
+import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
+import android.os.Build
+import androidx.annotation.RequiresApi
+import com.google.android.gms.wallet.PaymentsClient
+import company.tap.google.pay.internal.GooglePayAPI
 import company.tap.google.pay.internal.PaymentDataSource
+import company.tap.google.pay.internal.PaymentsUtil
 import company.tap.google.pay.internal.api.ApiService
 import company.tap.google.pay.internal.interfaces.SDKDelegate
 import company.tap.google.pay.open.enums.AllowedMethods
-import company.tap.google.pay.open.enums.GPayWalletMode
+import company.tap.google.pay.open.enums.SDKMode
 import company.tap.tapnetworkkit.connection.NetworkApp
 import java.math.BigDecimal
 
 object  DataConfiguration {
     private var sdkDelegate: SDKDelegate? = null
     private var paymentDataSource: PaymentDataSource? = null
+
     init {
         initPaymentDataSource()
 
@@ -36,7 +44,7 @@ object  DataConfiguration {
         return sdkDelegate
     }
     /**
-     * set amount
+     * set amount  The total amount you want to collect
      */
     fun setAmount(amount: BigDecimal) {
         println("amount ... $amount")
@@ -51,9 +59,9 @@ object  DataConfiguration {
     fun setTransactionCurrency(transactionCurrency: String) {
         paymentDataSource?.setTransactionCurrency(transactionCurrency)
     }
-
-    fun setEnvironmentMode(gPayMode: GPayWalletMode) {
-        paymentDataSource?.setEnvironmentMode(gPayMode)
+    /// Indicates the mode the merchant wants to run the sdk with. Default is sandbox mode
+    fun setEnvironmentMode(sdkMode: SDKMode) {
+        paymentDataSource?.setEnvironmentMode(sdkMode)
     }
     /**
      * set gatewayId
@@ -71,18 +79,19 @@ object  DataConfiguration {
     fun setGatewayMerchantID(gatewayMerchantId: String) {
         paymentDataSource?.setGatewayMerchantId(gatewayMerchantId)
     }
-
+   /// The payment networks you  want to limit the payment to default [.Amex,.Visa,.Mada,.MasterCard]
     fun setAllowedCardNetworks(allowedCardNetworks:List<String>) {
         paymentDataSource?.setAllowedCardNetworks(allowedCardNetworks)
     }
+   // Defines type of authentication you want PAN_ONLY, CRYPTOGRAM_3DS, ALL
     fun setAllowedCardAuthMethods(allowedMethods: AllowedMethods) {
         paymentDataSource?.setAllowedCardAuthMethods(allowedMethods)
     }
-
+/// - Parameter countryCode: The country code where the user transacts default .AED
     fun setCountryCode(countryCode: String) {
         paymentDataSource?.setCountryCode(countryCode)
     }
-
+    /// Inidcates the tap provided keys for this merchant to use for his transactions. If not set, any transaction will fail. Please if you didn't get a tap key yet, refer to https://www.tap.company/en/sell
     fun initSDK(context:Context,secretKeys :String , packageID: String){
         initNetworkCallOfKit(context,secretKeys,packageID)
     }
@@ -96,4 +105,10 @@ object  DataConfiguration {
             //   sdkIdentifier,BuildConfig.EncryptAPIKEY)
             "NATIVE",true)
     }
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    fun checkGooglePayStatus(activity:Activity){
+        GooglePayAPI.possiblyShowGooglePayButton(activity)
+    }
 }
+

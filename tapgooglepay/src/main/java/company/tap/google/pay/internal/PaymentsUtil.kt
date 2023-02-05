@@ -4,7 +4,7 @@ import android.app.Activity
 import com.google.android.gms.wallet.PaymentsClient
 import com.google.android.gms.wallet.Wallet
 import com.google.android.gms.wallet.WalletConstants
-import company.tap.google.pay.open.enums.GPayWalletMode
+import company.tap.google.pay.open.enums.SDKMode
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -84,10 +84,10 @@ object PaymentsUtil {
     fun createPaymentsClient(activity: Activity): PaymentsClient {
         var walletOptions: Wallet.WalletOptions? = null
         if (PaymentDataSource.getEnvironment() != null) {
-            if (PaymentDataSource.getEnvironment() == GPayWalletMode.ENVIRONMENT_TEST) {
+            if (PaymentDataSource.getEnvironment() == SDKMode.ENVIRONMENT_TEST) {
                 walletOptions =
                     Wallet.WalletOptions.Builder().setEnvironment(WalletConstants.ENVIRONMENT_TEST).build()
-            } else if (PaymentDataSource.getEnvironment() == GPayWalletMode.ENVIRONMENT_PRODUCTION
+            } else if (PaymentDataSource.getEnvironment() == SDKMode.ENVIRONMENT_PRODUCTION
             ) {
                 walletOptions =
                     Wallet.WalletOptions.Builder().setEnvironment(WalletConstants.ENVIRONMENT_PRODUCTION)

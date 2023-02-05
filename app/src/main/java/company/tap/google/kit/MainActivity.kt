@@ -3,17 +3,23 @@ package company.tap.google.kit
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import company.tap.google.pay.internal.interfaces.SDKDelegate
 import company.tap.google.pay.open.DataConfiguration
 import company.tap.google.pay.open.enums.AllowedMethods
-import company.tap.google.pay.open.enums.GPayWalletMode
+import company.tap.google.pay.open.enums.SDKMode
 import java.math.BigDecimal
 
 class MainActivity : AppCompatActivity() , SDKDelegate {
     var dataConfig: DataConfiguration = DataConfiguration
+    lateinit var checkGPay:Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        checkGPay = findViewById(R.id.checkGPay)
+        checkGPay.setOnClickListener {
+            dataConfig.checkGooglePayStatus(activity = this)
+        }
         initializeSDK()
         configureSDKData()
     }
@@ -22,7 +28,7 @@ class MainActivity : AppCompatActivity() , SDKDelegate {
         // pass your activity as a session delegate to listen to SDK internal payment process follow
         dataConfig.addSDKDelegate(this) //** Required **
 
-        dataConfig.setEnvironmentMode(GPayWalletMode.ENVIRONMENT_TEST)
+        dataConfig.setEnvironmentMode(SDKMode.ENVIRONMENT_TEST)
 
         dataConfig.setGatewayId("tappayments")
 
@@ -30,7 +36,7 @@ class MainActivity : AppCompatActivity() , SDKDelegate {
 
         dataConfig.setAmount(BigDecimal.valueOf(23))
 
-        dataConfig.setAllowedCardAuthMethods(AllowedMethods.PAN_ONLY)
+        dataConfig.setAllowedCardAuthMethods(AllowedMethods.CRYPTOGRAM_3DS)
 
         dataConfig.setTransactionCurrency("AED")
 
@@ -58,4 +64,6 @@ class MainActivity : AppCompatActivity() , SDKDelegate {
 
     override fun onFailed() {
     }
+
+
 }
