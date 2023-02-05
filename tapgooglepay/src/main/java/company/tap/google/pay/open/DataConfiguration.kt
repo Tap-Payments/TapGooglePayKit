@@ -1,9 +1,12 @@
 package company.tap.google.pay.open
 
+import android.content.Context
 import company.tap.google.pay.internal.PaymentDataSource
+import company.tap.google.pay.internal.api.ApiService
 import company.tap.google.pay.internal.interfaces.SDKDelegate
 import company.tap.google.pay.open.enums.AllowedMethods
 import company.tap.google.pay.open.enums.GPayWalletMode
+import company.tap.tapnetworkkit.connection.NetworkApp
 import java.math.BigDecimal
 
 object  DataConfiguration {
@@ -80,7 +83,17 @@ object  DataConfiguration {
         paymentDataSource?.setCountryCode(countryCode)
     }
 
-    fun initSDK(secretKeys :String , packageID: String){
+    fun initSDK(context:Context,secretKeys :String , packageID: String){
+        initNetworkCallOfKit(context,secretKeys,packageID)
+    }
 
+    private fun initNetworkCallOfKit(context: Context,secretKeys: String,packageID: String) {
+        NetworkApp.initNetwork(
+            context,
+            secretKeys,
+            packageID,
+            ApiService.BASE_URL,
+            //   sdkIdentifier,BuildConfig.EncryptAPIKEY)
+            "NATIVE",true)
     }
 }

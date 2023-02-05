@@ -1,5 +1,6 @@
 package company.tap.google.kit
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import company.tap.google.pay.internal.interfaces.SDKDelegate
@@ -32,6 +33,9 @@ class MainActivity : AppCompatActivity() , SDKDelegate {
         dataConfig.setAllowedCardAuthMethods(AllowedMethods.PAN_ONLY)
 
         dataConfig.setTransactionCurrency("AED")
+
+        dataConfig.setCountryCode("AED")
+
         val SUPPORTED_NETWORKS = listOf(
             "AMEX",
             "DISCOVER",
@@ -42,7 +46,7 @@ class MainActivity : AppCompatActivity() , SDKDelegate {
     }
 
     private fun initializeSDK() {
-        dataConfig.initSDK("sk_test_kovrMB0mupFJXfNZWx6Etg5y","company.tap.goSellSDKExample")
+        dataConfig.initSDK(this@MainActivity as Context,"sk_test_kovrMB0mupFJXfNZWx6Etg5y","company.tap.goSellSDKExample")
 
     }
 

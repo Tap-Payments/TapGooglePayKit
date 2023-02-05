@@ -78,4 +78,8 @@ object PaymentDataSource : company.tap.google.pay.internal.interfaces.PaymentDat
     override fun getGatewayMerchantId(): String {
        return gatewayMerchantId
     }
+
+    override fun getCountryCode(): String {
+       return countryCode
+    }
 }
