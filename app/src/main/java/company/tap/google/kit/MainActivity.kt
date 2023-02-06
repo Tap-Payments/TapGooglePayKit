@@ -66,10 +66,10 @@ class MainActivity : AppCompatActivity() , SDKDelegate {
 
         println("settings are"+settingsManager?.getSet("key_payment_networks"))
 
-       /* val SUPPORTED_NETWORKS = mutableListOf<String>(
-            "AMEX",
-            "MASTERCARD",
-            "VISA")*/
+//        val SUPPORTED_NETWORKS = mutableListOf<String>(
+//            "AMEX",
+//            "MASTERCARD",
+//            "VISA")
 
         dataConfig.setAllowedCardNetworks(settingsManager?.getSet("key_payment_networks")?.toMutableList())
     }

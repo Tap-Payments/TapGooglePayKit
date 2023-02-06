@@ -15,6 +15,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.wallet.IsReadyToPayRequest
 import com.google.android.gms.wallet.PaymentsClient
 import company.tap.google.pay.R
+import company.tap.google.pay.databinding.ActivityGoogleApiBinding.inflate
 import company.tap.google.pay.internal.GoogleApiActivity
 import company.tap.google.pay.internal.PaymentsUtil
 
@@ -25,7 +26,7 @@ import company.tap.google.pay.internal.PaymentsUtil
     private lateinit var paymentsClient: PaymentsClient
     lateinit var _activity: Activity
     lateinit var mainLL: LinearLayout
-     //var googlePayButton :View
+     lateinit var googlePayButton :View
 
     /**
      * Simple constructor to use when creating a TapPayCardSwitch from code.
@@ -44,8 +45,16 @@ import company.tap.google.pay.internal.PaymentsUtil
 
     init {
 
-        View.inflate(context, R.layout.google_pay_layout,this)
+      val view=  View.inflate(context, R.layout.google_pay_layout,this)
+      /*  mainLL = view.findViewById(R.id.mainLL)
 
+
+        // assuming your Wizard content is in content_wizard.xml
+        val wizardView: View = LayoutInflater.from(context).inflate(R.layout.buy_with_google_pay, mainLL, false)
+
+
+// add the inflated View to the layout
+        mainLL.addView(wizardView)*/
         // googlePayButton = findViewById(R.id.gPay)
   }
 
@@ -58,10 +67,10 @@ import company.tap.google.pay.internal.PaymentsUtil
     ) */
     @RequiresApi(api = Build.VERSION_CODES.N)
     fun possiblyShowGooglePayButton(activity: Activity, _googlePayButton: View) {
-      /*  googlePayButton = _googlePayButton
+        googlePayButton = _googlePayButton
         googlePayButton.isEnabled= true
         googlePayButton.isFocusable= true
-        googlePayButton.isClickable= true*/
+        googlePayButton.isClickable= true
         _activity = activity
         paymentsClient = PaymentsUtil.createPaymentsClient(activity)
         val isReadyToPayJson = PaymentsUtil.isReadyToPayRequest() ?: return

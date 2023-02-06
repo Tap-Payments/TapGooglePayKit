@@ -19,8 +19,9 @@
 
 <company.tap.google.pay.open.GooglePayButton
     android:layout_width="match_parent"
-    android:layout_height="48dp"
-    android:id="@+id/googlePayView"/>
+    android:layout_height="wrap_content"
+    android:id="@+id/googlePayView"
+    android:focusable="true" />
 
 
 
