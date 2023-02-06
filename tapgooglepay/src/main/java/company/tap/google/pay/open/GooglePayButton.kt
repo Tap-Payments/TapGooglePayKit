@@ -7,21 +7,24 @@ import android.content.Intent
 import android.os.Build
 import android.util.AttributeSet
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
 import androidx.annotation.RequiresApi
 import com.google.android.gms.common.api.ApiException
-import com.google.android.gms.wallet.*
+import com.google.android.gms.wallet.IsReadyToPayRequest
+import com.google.android.gms.wallet.PaymentsClient
 import company.tap.google.pay.R
 import company.tap.google.pay.internal.GoogleApiActivity
-import company.tap.google.pay.internal.PaymentDataSource
 import company.tap.google.pay.internal.PaymentsUtil
-import org.json.JSONObject
+
+
 @SuppressLint("ViewConstructor")
  class GooglePayButton: LinearLayout{
     @SuppressLint("StaticFieldLeak")
     private lateinit var paymentsClient: PaymentsClient
     lateinit var _activity: Activity
+    lateinit var mainLL: LinearLayout
      //var googlePayButton :View
 
     /**
@@ -41,8 +44,9 @@ import org.json.JSONObject
 
     init {
 
-       View.inflate(context, R.layout.google_pay_layout,this)
-       // googlePayButton = findViewById(R.id.gPay)
+        View.inflate(context, R.layout.google_pay_layout,this)
+
+        // googlePayButton = findViewById(R.id.gPay)
   }
 
     /**

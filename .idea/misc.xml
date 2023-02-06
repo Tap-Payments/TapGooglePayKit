@@ -8,7 +8,10 @@
         <entry key="app/src/main/res/layout/settings_activity.xml" value="0.159375" />
         <entry key="app/src/main/res/menu/menumain.xml" value="0.159375" />
         <entry key="app/src/main/res/xml/root_preferences.xml" value="0.16847826086956522" />
+        <entry key="tapgooglepay/src/main/res/drawable/buy_with_googlepay_button_content.xml" value="0.1955" />
+        <entry key="tapgooglepay/src/main/res/drawable/googlepay_button_background_shape.xml" value="0.1955" />
         <entry key="tapgooglepay/src/main/res/drawable/googlepay_button_content.xml" value="0.212" />
+        <entry key="tapgooglepay/src/main/res/layout/buy_with_google_pay.xml" value="0.18333333333333332" />
         <entry key="tapgooglepay/src/main/res/layout/google_pay_layout.xml" value="0.16770833333333332" />
         <entry key="tapgooglepay/src/main/res/layout/googlepay_button.xml" value="0.21354166666666666" />
         <entry key="tapgooglepaylib/src/main/res/layout/activity_main.xml" value="0.2708333333333333" />

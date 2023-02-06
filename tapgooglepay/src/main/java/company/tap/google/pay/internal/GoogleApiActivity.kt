@@ -133,6 +133,7 @@ class GoogleApiActivity : Activity() {
                     }
                     RESULT_CANCELED -> {
                         DataConfiguration.getListener()?.onFailed("RESULT_CANCELED")
+                        finish()
                         // isGooglePayClicked = false
 
                     }
@@ -174,7 +175,7 @@ class GoogleApiActivity : Activity() {
              * At this stage, Passing the googlePaylaod to Tap Backend TokenAPI call followed by chargeAPI.
              */
             val createTokenGPayRequest = CreateTokenGPayRequest("googlepay", jsonToken)
-            ApiCallsKitRepository().getGPayTokenRequest(this as Context,createTokenGPayRequest)
+            ApiCallsKitRepository().getGPayTokenRequest(this,createTokenGPayRequest)
         } catch (e: JSONException) {
             e.printStackTrace()
         }

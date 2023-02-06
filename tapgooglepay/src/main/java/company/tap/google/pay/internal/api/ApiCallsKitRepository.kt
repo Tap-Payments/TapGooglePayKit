@@ -1,5 +1,6 @@
 package company.tap.google.pay.internal.api
 
+import android.app.Activity
 import android.content.Context
 import android.os.Build
 import androidx.annotation.RequiresApi
@@ -14,11 +15,13 @@ import retrofit2.Response
 
 class ApiCallsKitRepository : APIRequestCallback{
     lateinit var tokenResponse: Token
+    lateinit var activity: Activity
     @RequiresApi(Build.VERSION_CODES.N)
     fun getGPayTokenRequest(
-        _context: Context,
+        _activity: Activity,
        createTokenGPayRequest: CreateTokenGPayRequest
     ) {
+        activity =_activity
         val jsonString = Gson().toJson(createTokenGPayRequest)
         NetworkController.getInstance().processRequest(
             TapMethodType.POST, ApiService.TOKEN, jsonString,
@@ -31,12 +34,19 @@ class ApiCallsKitRepository : APIRequestCallback{
                 println("response is"+response)
                 tokenResponse = Gson().fromJson(it, Token::class.java)
               DataConfiguration.getListener()?.onTapToken(tokenResponse)
+                activity.finish()
             }
         }
     }
 
     override fun onFailure(requestCode: Int, errorDetails: GoSellError?) {
-        TODO("Not yet implemented")
+        if (requestCode == CREATE_GPAY_TOKEN_CODE) {
+            errorDetails?.errorBody.let {
+
+                errorDetails?.errorBody?.let { it1 -> DataConfiguration.getListener()?.onFailed(it1) }
+                activity.finish()
+            }
+        }
     }
 
     companion object {
