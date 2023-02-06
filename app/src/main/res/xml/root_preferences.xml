@@ -23,6 +23,14 @@
             android:summary="Select Currency Code"
             android:title="Currency prefered" />
 
+        <ListPreference
+            android:defaultValue="ALL"
+            android:dialogTitle="Select AllowedCardAuthMethods"
+            android:entries="@array/pref_array_auth_value"
+            android:entryValues="@array/pref_auth_entries"
+            android:key="allowed_card_auth_key"
+            android:summary="Choose your preferred AuthMethod"
+            android:title="AuthMethod Prefered"/>
 
         <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
             android:dialogTitle="Payment Networks"

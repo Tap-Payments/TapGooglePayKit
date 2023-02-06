@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string-array name="pref_array_sdk_language_entries">
-        <item>en</item>
-        <item>ar</item>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string-array name="pref_array_country_code_value" tools:ignore="ExtraTranslation">
+        <item>US</item>
+        <item>AE</item>
     </string-array>
-    <string-array name="pref_array_sdk_language_values">
-        <item>English</item>
-        <item>Arabic</item>
+    <string-array name="pref_array_country_code_entries">
+        <item>US</item>
+        <item>AE</item>
 
-    </string-array>
-
-
-    <string-array name="pref_array_sdk_mode_entries">
-        <item>SANDBOX</item>
-        <item>PRODUCTION</item>
     </string-array>
 
-    <string-array name="pref_array_sdk_mode_values">
-        <item>sandbox</item>
-        <item>production</item>
+
+    <string-array name="pref_array_currency_code_entries">
+        <item>USD</item>
+        <item>AED</item>
     </string-array>
 
-    <string-array name="pref_array_sdk_transactions_mode_entries">
-        <item>Payment</item>
+    <string-array name="pref_array_currency_code_values">
+        <item>USD</item>
+        <item>AED</item>
+    </string-array>
+
+    <string-array name="pref_array_sdk_payment_network_entries">
+        <item>AMEX,VISA, MASTER CARD</item>
         <item>Authorize</item>
         <item>SaveCards</item>
         <item>TokenizeCards</item>
     </string-array>
 
-    <string-array name="pref_array_sdk_transaction_mode_values">
+    <string-array name="pref_array_sdk_payment_network_values">
         <item>PURCHASE</item>
         <item>AUTHORIZE_CAPTURE</item>
         <item>SAVE_CARD</item>
@@ -86,4 +86,17 @@
         <item>CREDIT</item>
         <item>DEBIT</item>
     </string-array>
+
+    <string-array name="pref_auth_entries">
+        <item>ALL</item>
+        <item>PAN_ONLY</item>
+        <item>CRYPTOGRAM_3DS</item>
+    </string-array>
+
+    <string-array name="pref_array_auth_value">
+        <item>ALL</item>
+        <item>PAN_ONLY</item>
+        <item>CRYPTOGRAM_3DS</item>
+    </string-array>
+
 </resources>

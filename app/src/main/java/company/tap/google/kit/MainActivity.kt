@@ -60,12 +60,14 @@ class MainActivity : AppCompatActivity() , SDKDelegate {
 
         dataConfig.setAmount(BigDecimal.valueOf(23))
 
-        dataConfig.setAllowedCardAuthMethods(AllowedMethods.ALL)
+        settingsManager?.getAllowedMethods("allowed_card_auth_key")
+            ?.let { dataConfig.setAllowedCardAuthMethods(it) }
 
-        settingsManager?.getString("country_code_key","USD")
+
+        settingsManager?.getString("key_currency_code","USD")
             ?.let { dataConfig.setTransactionCurrency(it) }
 
-        settingsManager?.getString("key_currency_code","US")?.let { dataConfig.setCountryCode(it) }
+        settingsManager?.getString("country_code_key","US")?.let { dataConfig.setCountryCode(it) }
 
 
         val SUPPORTED_NETWORKS = mutableListOf<String>(

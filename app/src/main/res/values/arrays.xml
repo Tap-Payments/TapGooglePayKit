@@ -5,8 +5,8 @@
         <item>AE</item>
     </string-array>
     <string-array name="pref_array_country_code_entries">
-        <item>USA</item>
-        <item>UAE</item>
+        <item>US</item>
+        <item>AE</item>
 
     </string-array>
 
@@ -86,4 +86,17 @@
         <item>CREDIT</item>
         <item>DEBIT</item>
     </string-array>
+
+    <string-array name="pref_auth_entries">
+        <item>ALL</item>
+        <item>PAN_ONLY</item>
+        <item>CRYPTOGRAM_3DS</item>
+    </string-array>
+
+    <string-array name="pref_array_auth_value">
+        <item>ALL</item>
+        <item>PAN_ONLY</item>
+        <item>CRYPTOGRAM_3DS</item>
+    </string-array>
+
 </resources>
