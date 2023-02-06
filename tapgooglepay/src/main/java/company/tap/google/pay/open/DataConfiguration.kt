@@ -80,7 +80,7 @@ object  DataConfiguration {
         paymentDataSource?.setGatewayMerchantId(gatewayMerchantId)
     }
    /// The payment networks you  want to limit the payment to default [.Amex,.Visa,.Mada,.MasterCard]
-    fun setAllowedCardNetworks(allowedCardNetworks:MutableList<String>) {
+    fun setAllowedCardNetworks(allowedCardNetworks: MutableList<String>?) {
         paymentDataSource?.setAllowedCardNetworks(allowedCardNetworks)
     }
    // Defines type of authentication you want PAN_ONLY, CRYPTOGRAM_3DS, ALL

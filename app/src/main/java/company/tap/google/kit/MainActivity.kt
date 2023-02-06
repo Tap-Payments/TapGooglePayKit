@@ -8,17 +8,12 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Button
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
-import com.google.android.gms.wallet.PaymentData
 import company.tap.google.pay.internal.api.Token
 import company.tap.google.pay.internal.interfaces.SDKDelegate
 import company.tap.google.pay.open.DataConfiguration
-import company.tap.google.pay.open.GooglePayButton
-import company.tap.google.pay.open.enums.AllowedMethods
 import company.tap.google.pay.open.enums.SDKMode
 import java.math.BigDecimal
 
@@ -69,13 +64,14 @@ class MainActivity : AppCompatActivity() , SDKDelegate {
 
         settingsManager?.getString("country_code_key","US")?.let { dataConfig.setCountryCode(it) }
 
+        println("settings are"+settingsManager?.getSet("key_payment_networks"))
 
-        val SUPPORTED_NETWORKS = mutableListOf<String>(
+       /* val SUPPORTED_NETWORKS = mutableListOf<String>(
             "AMEX",
             "MASTERCARD",
-            "VISA")
+            "VISA")*/
 
-        dataConfig.setAllowedCardNetworks(SUPPORTED_NETWORKS)
+        dataConfig.setAllowedCardNetworks(settingsManager?.getSet("key_payment_networks")?.toMutableList())
     }
 
     private fun initializeSDK() {

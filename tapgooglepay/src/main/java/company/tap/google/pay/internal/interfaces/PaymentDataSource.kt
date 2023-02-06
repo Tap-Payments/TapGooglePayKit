@@ -16,7 +16,7 @@ interface PaymentDataSource {
 
     fun getAllowedCardMethod(): AllowedMethods
 
-    fun getAllowedNetworks(): MutableList<String>
+    fun getAllowedNetworks(): MutableList<String>?
 
     fun getGatewayId(): String
 

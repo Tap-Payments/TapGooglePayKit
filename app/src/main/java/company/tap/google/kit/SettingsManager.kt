@@ -35,6 +35,18 @@ object SettingsManager {
         return pref?.getString(key, defaultValue)
     }
 
+    /**
+     *
+     * @param key
+     * @param defaultValue
+     * @return
+     */
+    @SuppressLint("StaticFieldLeak")
+    fun getSet(key: String): MutableSet<String>? {
+        return pref?.getStringSet("key_payment_networks", null)
+      //  return pref?.getString(key, defaultValue)
+    }
+
     fun getAllowedMethods(key: String): AllowedMethods {
         val trx_mode = pref?.getString(key, AllowedMethods.ALL.name)
         println("trx_mode are" + trx_mode)

@@ -45,10 +45,9 @@ class SettingsActivity : AppCompatActivity() {
             bindPreferenceSummaryToValue(findPreference("key_sdk_payment_network"))
             bindPreferenceSummaryToValue(findPreference("key_amount_name"))
             bindPreferenceSummaryToValue(findPreference("allowed_card_auth_key"))
+            bindPreferenceSummaryToValue(findPreference("key_payment_networks"))
 
 
-
-            bindPreferenceSummaryToValue(findPreference("key_default_holder_name"))
             bindPreferenceSummaryToValue(findPreference("key_package_name"))
             bindPreferenceSummaryToValue(findPreference("key_test_name"))
             bindPreferenceSummaryToValue(findPreference("key_live_name"))
@@ -144,6 +143,12 @@ class SettingsActivity : AppCompatActivity() {
 
                 }
             }
+            else if(preference is MultiSelectListPreference){
+                if (preference.getKey().equals("key_payment_networks")) {
+                    // update the changed gallery name to summary filed
+
+                }
+            }
             else {
                 // For all other preferences, set the summary to the value's
                 // simple string representation.
@@ -165,7 +170,15 @@ class SettingsActivity : AppCompatActivity() {
                         .getDefaultSharedPreferences(preference.context)
                         .getBoolean(preference.key, false)
                 )
-            }else{
+            } else if (preference != null && preference is MultiSelectListPreference) {
+                sBindPreferenceSummaryToValueListener.onPreferenceChange(
+                    preference,
+                    PreferenceManager
+                        .getDefaultSharedPreferences(preference.context)
+                        .getStringSet(preference.key,mutableSetOf<String>())
+                )
+            }
+            else{
                 if(preference!=null)
                     sBindPreferenceSummaryToValueListener.onPreferenceChange(
                         preference,

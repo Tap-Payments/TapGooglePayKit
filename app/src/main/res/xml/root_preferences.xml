@@ -35,11 +35,11 @@
         <MultiSelectListPreference
             android:dialogTitle="Select Payment Networks"
             android:key="key_payment_networks"
-            android:summary=""
+            android:summary="Select Your card networks"
             android:title="Payment Networks"
-            android:entries="@array/pref_array_sdk_cardTypes"
-            android:entryValues="@array/pref_array_sdk_cardType_values"
-          
+            android:entries="@array/pref_array_sdk_networks"
+            android:entryValues="@array/pref_array_sdk_networks_values"
+
             />
     </PreferenceCategory>
     <EditTextPreference

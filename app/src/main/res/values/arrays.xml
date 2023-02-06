@@ -75,16 +75,20 @@
         <item>CARD</item>
     </string-array>
 
-    <string-array name="pref_array_sdk_cardTypes">
-        <item>ALL</item>
-        <item>CREDIT</item>
-        <item>DEBIT</item>
+    <string-array name="pref_array_sdk_networks">
+        <item>AMEX</item>
+        <item>VISA</item>
+        <item>MASTERCARD</item>
+        <item>JCB</item>
+        <item>DISCOVER</item>
     </string-array>
 
-    <string-array name="pref_array_sdk_cardType_values">
-        <item>ALL</item>
-        <item>CREDIT</item>
-        <item>DEBIT</item>
+    <string-array name="pref_array_sdk_networks_values">
+        <item>AMEX</item>
+        <item>VISA</item>
+        <item>MASTERCARD</item>
+        <item>JCB</item>
+        <item>DISCOVER</item>
     </string-array>
 
     <string-array name="pref_auth_entries">
