@@ -6,6 +6,14 @@
     <PreferenceCategory android:title="Transaction Data Attributes">
 
         <ListPreference
+            android:defaultValue="TEST ENVIRONMENT"
+            android:dialogTitle="Select sdk mode"
+            android:entries="@array/pref_array_sdk_mode_entries"
+            android:entryValues="@array/pref_array_sdk_mode_values"
+            android:key="key_sdkmode"
+            android:summary="Select SDK Mode"
+            android:title="SDK Mode" />
+        <ListPreference
             android:defaultValue="US"
             android:dialogTitle="Select Country Code"
             android:entries="@array/pref_array_country_code_value"

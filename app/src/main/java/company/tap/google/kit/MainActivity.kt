@@ -47,7 +47,8 @@ class MainActivity : AppCompatActivity() , SDKDelegate {
         // pass your activity as a session delegate to listen to SDK internal payment process follow
         dataConfig.addSDKDelegate(this) //** Required **
 
-        dataConfig.setEnvironmentMode(SDKMode.ENVIRONMENT_TEST)
+      //  dataConfig.setEnvironmentMode(SDKMode.ENVIRONMENT_TEST)
+        settingsManager?.getSDKMode("key_sdkmode")?.let { dataConfig.setEnvironmentMode(it) }
 
         dataConfig.setGatewayId("tappayments")
 

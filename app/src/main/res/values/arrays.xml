@@ -102,5 +102,13 @@
         <item>PAN_ONLY</item>
         <item>CRYPTOGRAM_3DS</item>
     </string-array>
+    <string-array name="pref_array_sdk_mode_entries">
+        <item>TEST ENVIRONMENT</item>
+        <item>PRODUCTION ENVIRONMENT</item>
+    </string-array>
 
+    <string-array name="pref_array_sdk_mode_values">
+        <item>TEST ENVIRONMENT</item>
+        <item>PRODUCTION ENVIRONMENT</item>
+    </string-array>
 </resources>

@@ -102,5 +102,14 @@
         <item>PAN_ONLY</item>
         <item>CRYPTOGRAM_3DS</item>
     </string-array>
+    <string-array name="pref_array_sdk_mode_entries">
+        <item>SANDBOX</item>
+        <item>PRODUCTION</item>
+    </string-array>
+
+    <string-array name="pref_array_sdk_mode_values">
+        <item>sandbox</item>
+        <item>production</item>
+    </string-array>
 
 </resources>

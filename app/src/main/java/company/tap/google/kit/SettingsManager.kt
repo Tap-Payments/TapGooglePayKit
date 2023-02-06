@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import company.tap.google.pay.open.enums.AllowedMethods
+import company.tap.google.pay.open.enums.SDKMode
 
 @SuppressLint("StaticFieldLeak")
 object SettingsManager {
@@ -70,5 +71,19 @@ object SettingsManager {
 
     fun getInt(key: String?, defaultValue: Int): Int? {
         return pref?.getInt(key, defaultValue)
+    }
+    fun getSDKMode(key: String): SDKMode {
+        val trx_mode = pref?.getString(key, SDKMode.ENVIRONMENT_TEST.name)
+        if (trx_mode.equals(
+                SDKMode.ENVIRONMENT_TEST.name,
+                ignoreCase = true
+            )
+        ) return  SDKMode.ENVIRONMENT_TEST
+        return if (trx_mode.equals(
+                SDKMode.ENVIRONMENT_PRODUCTION.name,
+                ignoreCase = true
+            )
+        ) return SDKMode.ENVIRONMENT_PRODUCTION
+        else SDKMode.ENVIRONMENT_TEST
     }
 }
