@@ -44,8 +44,10 @@ class SettingsActivity : AppCompatActivity() {
             bindPreferenceSummaryToValue(findPreference("key_currency_code"))
             bindPreferenceSummaryToValue(findPreference("key_sdk_payment_network"))
             bindPreferenceSummaryToValue(findPreference("key_amount_name"))
+            bindPreferenceSummaryToValue(findPreference("allowed_card_auth_key"))
 
-            bindPreferenceSummaryToValue(findPreference("key_amount_name"))
+
+
             bindPreferenceSummaryToValue(findPreference("key_default_holder_name"))
             bindPreferenceSummaryToValue(findPreference("key_package_name"))
             bindPreferenceSummaryToValue(findPreference("key_test_name"))

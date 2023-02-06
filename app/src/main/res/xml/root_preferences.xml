@@ -32,35 +32,15 @@
             android:summary="Choose your preferred AuthMethod"
             android:title="AuthMethod Prefered"/>
 
-        <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-            android:dialogTitle="Payment Networks"
-            android:entries="@array/pref_array_sdk_payment_network_entries"
-            android:entryValues="@array/pref_array_sdk_payment_network_values"
-            android:key="key_sdk_payment_network"
-            android:summary="Select Payment Networks"
-            android:title="Payment Networks">
-            <CheckBoxPreference
-                android:key="enable_status_messages"
-                android:summary="Enable or disable status messages"
-                android:title="Send status messages"
-                android:defaultValue="true"
-                />
-
-            <CheckBoxPreference
-                android:key="enable_event_messages"
-                android:summary="Enable or disable event messages"
-                android:title="Send event messages"
-                android:defaultValue="true"
-                />
-
-            <CheckBoxPreference
-                android:key="enable_critical_messages"
-                android:summary="Enable or  disable critical messages"
-                android:title="Send critical messages"
-                android:defaultValue="true"
-                />
-
-        </PreferenceScreen>
+        <MultiSelectListPreference
+            android:dialogTitle="Select Payment Networks"
+            android:key="key_payment_networks"
+            android:summary=""
+            android:title="Payment Networks"
+            android:entries="@array/pref_array_sdk_cardTypes"
+            android:entryValues="@array/pref_array_sdk_cardType_values"
+          
+            />
     </PreferenceCategory>
     <EditTextPreference
         android:defaultValue="1.00"
