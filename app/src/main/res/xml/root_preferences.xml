@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:ignore="MissingDefaultResource">
+    <PreferenceCategory android:title="Transaction Data Attributes">
+
+        <ListPreference
+            android:defaultValue="US"
+            android:dialogTitle="Select Country Code"
+            android:entries="@array/pref_array_country_code_value"
+            android:entryValues="@array/pref_array_country_code_entries"
+            android:key="country_code_key"
+            android:summary="Choose your preferred country"
+            android:title="Country Prefered"/>
+
+        <ListPreference
+            android:defaultValue="USD"
+            android:dialogTitle="Select Currency Code"
+            android:entries="@array/pref_array_currency_code_entries"
+            android:entryValues="@array/pref_array_currency_code_values"
+            android:key="key_currency_code"
+            android:summary="Select Currency Code"
+            android:title="Currency prefered" />
+
+
+        <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+            android:dialogTitle="Payment Networks"
+            android:entries="@array/pref_array_sdk_payment_network_entries"
+            android:entryValues="@array/pref_array_sdk_payment_network_values"
+            android:key="key_sdk_payment_network"
+            android:summary="Select Payment Networks"
+            android:title="Payment Networks">
+            <CheckBoxPreference
+                android:key="enable_status_messages"
+                android:summary="Enable or disable status messages"
+                android:title="Send status messages"
+                android:defaultValue="true"
+                />
+
+            <CheckBoxPreference
+                android:key="enable_event_messages"
+                android:summary="Enable or disable event messages"
+                android:title="Send event messages"
+                android:defaultValue="true"
+                />
+
+            <CheckBoxPreference
+                android:key="enable_critical_messages"
+                android:summary="Enable or  disable critical messages"
+                android:title="Send critical messages"
+                android:defaultValue="true"
+                />
+
+        </PreferenceScreen>
+    </PreferenceCategory>
+    <EditTextPreference
+        android:defaultValue="1.00"
+        android:inputType="numberDecimal"
+        android:digits="0123456789."
+        android:key="key_amount_name"
+        android:summary="key_amount_value"
+        android:title="Enter the amount" />
+</PreferenceScreen>

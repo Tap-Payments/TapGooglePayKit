@@ -3,7 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../.gradle/caches/transforms-3/a4287dd2187858a8f6c9cbe2d541e412/transformed/play-services-wallet-18.1.3/res/layout/wallet_test_layout.xml" value="0.11770833333333333" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout/settings_activity.xml" value="0.159375" />
+        <entry key="app/src/main/res/menu/menumain.xml" value="0.159375" />
+        <entry key="app/src/main/res/xml/root_preferences.xml" value="0.16847826086956522" />
+        <entry key="tapgooglepay/src/main/res/drawable/googlepay_button_content.xml" value="0.212" />
+        <entry key="tapgooglepay/src/main/res/layout/google_pay_layout.xml" value="0.16770833333333332" />
+        <entry key="tapgooglepay/src/main/res/layout/googlepay_button.xml" value="0.21354166666666666" />
         <entry key="tapgooglepaylib/src/main/res/layout/activity_main.xml" value="0.2708333333333333" />
       </map>
     </option>

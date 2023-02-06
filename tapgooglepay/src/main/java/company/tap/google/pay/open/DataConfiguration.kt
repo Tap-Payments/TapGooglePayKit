@@ -1,20 +1,20 @@
 package company.tap.google.pay.open
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.os.Build
+import android.view.View
 import androidx.annotation.RequiresApi
-import com.google.android.gms.wallet.PaymentsClient
-import company.tap.google.pay.internal.GooglePayAPI
+import company.tap.google.pay.internal.GoogleApiActivity
 import company.tap.google.pay.internal.PaymentDataSource
-import company.tap.google.pay.internal.PaymentsUtil
 import company.tap.google.pay.internal.api.ApiService
 import company.tap.google.pay.internal.interfaces.SDKDelegate
 import company.tap.google.pay.open.enums.AllowedMethods
 import company.tap.google.pay.open.enums.SDKMode
 import company.tap.tapnetworkkit.connection.NetworkApp
 import java.math.BigDecimal
+
 
 object  DataConfiguration {
     private var sdkDelegate: SDKDelegate? = null
@@ -80,7 +80,7 @@ object  DataConfiguration {
         paymentDataSource?.setGatewayMerchantId(gatewayMerchantId)
     }
    /// The payment networks you  want to limit the payment to default [.Amex,.Visa,.Mada,.MasterCard]
-    fun setAllowedCardNetworks(allowedCardNetworks:List<String>) {
+    fun setAllowedCardNetworks(allowedCardNetworks:MutableList<String>) {
         paymentDataSource?.setAllowedCardNetworks(allowedCardNetworks)
     }
    // Defines type of authentication you want PAN_ONLY, CRYPTOGRAM_3DS, ALL
@@ -107,8 +107,14 @@ object  DataConfiguration {
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
-    fun checkGooglePayStatus(activity:Activity){
-        GooglePayAPI.possiblyShowGooglePayButton(activity)
+    fun startGooglePay(activity: Activity, googlePayButton: View){
+        GooglePayButton(activity as Context).possiblyShowGooglePayButton(activity,googlePayButton)
+
+    }
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    fun getGooglePayToken(activity: Activity,googlePayButton: GooglePayButton){
+        GooglePayButton(activity as Context).possiblyShowGooglePayButton(activity,googlePayButton)
     }
 }
 

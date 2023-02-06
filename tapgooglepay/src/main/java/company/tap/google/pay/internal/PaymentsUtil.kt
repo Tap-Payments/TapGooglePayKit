@@ -4,10 +4,12 @@ import android.app.Activity
 import com.google.android.gms.wallet.PaymentsClient
 import com.google.android.gms.wallet.Wallet
 import com.google.android.gms.wallet.WalletConstants
+import company.tap.google.pay.open.enums.AllowedMethods
 import company.tap.google.pay.open.enums.SDKMode
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
+import java.util.*
 
 object PaymentsUtil {
     /**
@@ -45,11 +47,22 @@ object PaymentsUtil {
     }
 
     private fun baseCardPaymentMethod(): JSONObject {
+        var  jsonArray :JSONArray ?= null
         return JSONObject().apply {
+            if(PaymentDataSource.getAllowedCardMethod().toString()==AllowedMethods.ALL.name){
+              jsonArray = JSONArray  (Arrays.asList("PAN_ONLY", "CRYPTOGRAM_3DS"))
+            }else {
+                jsonArray = JSONArray  (Arrays.asList(PaymentDataSource.getAllowedCardMethod().name))
+            }
+            val capCardBrandList: MutableList<String?> = ArrayList()
+            capCardBrandList.add("VISA")
+            capCardBrandList.add("MASTERCARD")
 
+            println("PaymentDataSource.getAllowedCardMethod()"+jsonArray)
             val parameters = JSONObject().apply {
-                put("allowedAuthMethods", PaymentDataSource.getAllowedCardMethod())
-                put("allowedCardNetworks", PaymentDataSource.getAllowedNetworks())
+                put("allowedAuthMethods", jsonArray)
+               // put("allowedCardNetworks", JSONArray(PaymentDataSource.getAllowedNetworks()))
+                put("allowedCardNetworks", JSONArray(capCardBrandList))
 
             }
 
@@ -155,6 +168,6 @@ object PaymentsUtil {
      * @see [MerchantInfo](https://developers.google.com/pay/api/android/reference/object.MerchantInfo)
      */
     private val merchantInfo: JSONObject =
-        JSONObject().put("merchantName", "Example Merchant")
+        JSONObject().put("merchantName", PaymentDataSource?.getGatewayMerchantId())
 
 }

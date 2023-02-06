@@ -11,7 +11,8 @@ object PaymentDataSource : company.tap.google.pay.internal.interfaces.PaymentDat
     private lateinit var gatewayId: String
     private lateinit var sdkMode: SDKMode
     private lateinit var allowedMethods: AllowedMethods
-    private lateinit var allowedCardNetworks: List<String>
+   // private lateinit var allowedCardNetworks: ArrayList<String>
+    private var allowedCardNetworks: MutableList<String> = java.util.ArrayList()
     private lateinit var countryCode: String
     /**
      * Set transaction currency.
@@ -39,7 +40,7 @@ object PaymentDataSource : company.tap.google.pay.internal.interfaces.PaymentDat
     fun setGatewayMerchantId(gatewayMerchantId: String) {
         this.gatewayMerchantId = gatewayMerchantId
     }
-    fun setAllowedCardNetworks(allowedCardNetworks: List<String>) {
+    fun setAllowedCardNetworks(allowedCardNetworks: MutableList<String>) {
         this.allowedCardNetworks = allowedCardNetworks
     }
 
@@ -67,7 +68,7 @@ object PaymentDataSource : company.tap.google.pay.internal.interfaces.PaymentDat
       return allowedMethods
     }
 
-    override fun getAllowedNetworks(): List<String> {
+    override fun getAllowedNetworks(): MutableList<String> {
         return allowedCardNetworks
     }
 

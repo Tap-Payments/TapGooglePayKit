@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="pref_array_sdk_language_entries">
+        <item>en</item>
+        <item>ar</item>
+    </string-array>
+    <string-array name="pref_array_sdk_language_values">
+        <item>English</item>
+        <item>Arabic</item>
+
+    </string-array>
+
+
+    <string-array name="pref_array_sdk_mode_entries">
+        <item>SANDBOX</item>
+        <item>PRODUCTION</item>
+    </string-array>
+
+    <string-array name="pref_array_sdk_mode_values">
+        <item>sandbox</item>
+        <item>production</item>
+    </string-array>
+
+    <string-array name="pref_array_sdk_transactions_mode_entries">
+        <item>Payment</item>
+        <item>Authorize</item>
+        <item>SaveCards</item>
+        <item>TokenizeCards</item>
+    </string-array>
+
+    <string-array name="pref_array_sdk_transaction_mode_values">
+        <item>PURCHASE</item>
+        <item>AUTHORIZE_CAPTURE</item>
+        <item>SAVE_CARD</item>
+        <item>TOKENIZE_CARD</item>
+    </string-array>
+
+
+    <string-array name="pref_array_sdk_transactions_currency_entries">
+        <item>AED</item>
+        <item>BHD</item>
+        <item>EGP</item>
+        <item>EUR</item>
+        <item>GBP</item>
+        <item>KWD</item>
+        <item>OMR</item>
+        <item>QR</item>
+        <item>SR</item>
+        <item>USD</item>
+    </string-array>
+
+    <string-array name="pref_array_sdk_transaction_currency_values">
+        <item>aed</item>
+        <item>bhd</item>
+        <item>egp</item>
+        <item>eur</item>
+        <item>gbp</item>
+        <item>kwd</item>
+        <item>omr</item>
+        <item>qar</item>
+        <item>sar</item>
+        <item>usd</item>
+    </string-array>
+
+
+    <string-array name="pref_array_sdk_paymentTypes">
+        <item>ALL</item>
+        <item>WEB</item>
+        <item>CARD</item>
+    </string-array>
+
+    <string-array name="pref_array_sdk_paymentTypes_values">
+        <item>ALL</item>
+        <item>WEB</item>
+        <item>CARD</item>
+    </string-array>
+
+    <string-array name="pref_array_sdk_cardTypes">
+        <item>ALL</item>
+        <item>CREDIT</item>
+        <item>DEBIT</item>
+    </string-array>
+
+    <string-array name="pref_array_sdk_cardType_values">
+        <item>ALL</item>
+        <item>CREDIT</item>
+        <item>DEBIT</item>
+    </string-array>
+</resources>
