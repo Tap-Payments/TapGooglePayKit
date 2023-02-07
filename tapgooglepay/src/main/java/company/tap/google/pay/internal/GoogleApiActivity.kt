@@ -94,7 +94,6 @@ class GoogleApiActivity : Activity() {
 
         val request = PaymentDataRequest.fromJson(paymentDataRequestJson.toString())
         println("request value is>>>" + request.toJson())
-        // println("Activity is>>>" + this as Activity)
 
         // Since loadPaymentData may show the UI asking the user to select a payment method, we use
         // AutoResolveHelper to wait for the user interacting with it. Once completed,

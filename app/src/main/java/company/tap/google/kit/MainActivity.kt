@@ -49,35 +49,35 @@ class MainActivity : AppCompatActivity() , SDKDelegate {
         dataConfig.addSDKDelegate(this) //** Required **
 
       //  dataConfig.setEnvironmentMode(SDKMode.ENVIRONMENT_TEST)
-        settingsManager?.getSDKMode("key_sdkmode")?.let { dataConfig.setEnvironmentMode(it) }
+        settingsManager?.getSDKMode("key_sdkmode")?.let { dataConfig.setEnvironmentMode(it) } //**Required SDK MODE**/
 
-        dataConfig.setGatewayId("tappayments")
+        dataConfig.setGatewayId("tappayments")  //**Required GATEWAY ID**/
 
-        dataConfig.setGatewayMerchantID("1124340")
+        dataConfig.setGatewayMerchantID("1124340") //**Required GATEWAY Merchant ID**/
         settingsManager?.getString("key_amount_name", "23")?.let { BigDecimal(it) }?.let {
             dataConfig.setAmount(
                       it
                 )
-             }
+             } //**Required Amount**/
        // dataConfig.setAmount(BigDecimal.valueOf(23))
 
         settingsManager?.getAllowedMethods("allowed_card_auth_key")
-            ?.let { dataConfig.setAllowedCardAuthMethods(it) }
+            ?.let { dataConfig.setAllowedCardAuthMethods(it) } //**Required type of auth PAN_ONLY, CRYPTOGRAM , ALL**/
 
 
         settingsManager?.getString("key_currency_code","USD")
-            ?.let { dataConfig.setTransactionCurrency(it) }
+            ?.let { dataConfig.setTransactionCurrency(it) } //**Required Currency **/
 
-        settingsManager?.getString("country_code_key","US")?.let { dataConfig.setCountryCode(it) }
+        settingsManager?.getString("country_code_key","US")?.let { dataConfig.setCountryCode(it) } //**Required Country **/
 
-        println("settings are"+settingsManager?.getSet("key_payment_networks"))
+        //println("settings are"+settingsManager?.getSet("key_payment_networks"))
 
 //        val SUPPORTED_NETWORKS = mutableListOf<String>(
 //            "AMEX",
 //            "MASTERCARD",
 //            "VISA")
 
-        dataConfig.setAllowedCardNetworks(settingsManager?.getSet("key_payment_networks")?.toMutableList())
+        dataConfig.setAllowedCardNetworks(settingsManager?.getSet("key_payment_networks")?.toMutableList()) //**Required Payment Networks **/
     }
 
     private fun initializeSDK() {
