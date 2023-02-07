@@ -19,6 +19,7 @@ import company.tap.google.pay.databinding.ActivityGoogleApiBinding.inflate
 import company.tap.google.pay.internal.GoogleApiActivity
 import company.tap.google.pay.internal.PaymentsUtil
 import company.tap.google.pay.open.enums.GooglePayButtonType
+import kotlin.properties.Delegates
 
 
 @SuppressLint("ViewConstructor")
@@ -28,11 +29,12 @@ import company.tap.google.pay.open.enums.GooglePayButtonType
     lateinit var _activity: Activity
     lateinit var mainLL: LinearLayout
      lateinit var googlePayButton :View
-    @JvmField var googlePayTokenRqd:Boolean= false
-    @JvmField var tapTokenRqd:Boolean= false
+  //  @JvmField var googlePayTokenRqd:Boolean= false
+   // @JvmField var tapTokenRqd:Boolean= false
     @JvmField var googlePayButtonType:GooglePayButtonType?=GooglePayButtonType.NORMAL_GOOGLE_PAY
     val googlePayNormal by lazy { findViewById<View>(R.id.google_pay_normal) }
-  //  val googlePayBuyWith by lazy { findViewById<View>(R.id.google_pay_buy_with) }
+    val googlePayBuyWith by lazy { findViewById<View>(R.id.google_pay_buy_with) }
+    val googlePayWith by lazy { findViewById<View>(R.id.google_pay_pay_with) }
     /**
      * Simple constructor to use when creating a TapPayCardSwitch from code.
      *  @param context The Context the view is running in, through which it can
@@ -86,11 +88,13 @@ import company.tap.google.pay.open.enums.GooglePayButtonType
     PaymentsClient.html.isReadyToPay
     ) */
     @RequiresApi(api = Build.VERSION_CODES.N)
-    fun possiblyShowGooglePayButton(activity: Activity, _googlePayButton: View , googlePayToken:Boolean , tapToken:Boolean,googlePayButtonType: GooglePayButtonType?=null) {
+    fun possiblyShowGooglePayButton(activity: Activity, _googlePayButton: View ,googlePayToken :Boolean ,googlePayButtonType: GooglePayButtonType?=null) {
      //   _googlePayButton.visibility = VISIBLE
        this.googlePayButtonType = googlePayButtonType
-        this.googlePayTokenRqd = googlePayToken
-        this.tapTokenRqd = tapToken
+       // setVisibilityOfButtons(googlePayButtonType)
+        //this.googlePayTokenRqd = googlePayToken
+       // this.tapTokenRqd = tapToken
+
         googlePayButton = _googlePayButton
         _googlePayButton.isEnabled= true
         _googlePayButton.isFocusable= true
@@ -106,7 +110,7 @@ import company.tap.google.pay.open.enums.GooglePayButtonType
         val task = paymentsClient.isReadyToPay(request)
         task.addOnCompleteListener { completedTask ->
             try {
-                setGooglePayAvailable(completedTask.getResult(ApiException::class.java),_googlePayButton)
+                setGooglePayAvailable(completedTask.getResult(ApiException::class.java),_googlePayButton,googlePayToken)
             } catch (exception: ApiException) {
                 // Process error
                 Log.w("isReadyToPay failed", exception)
@@ -124,7 +128,7 @@ import company.tap.google.pay.open.enums.GooglePayButtonType
      *
      * @param available isReadyToPay API response.
      */
-    private fun setGooglePayAvailable(available: Boolean,___googlePayButton: View) {
+    private fun setGooglePayAvailable(available: Boolean,___googlePayButton: View,googlePayToken: Boolean) {
         println("available$available")
         if (available) {
             println("googlePayButton$___googlePayButton")
@@ -132,20 +136,37 @@ import company.tap.google.pay.open.enums.GooglePayButtonType
             ___googlePayButton.isEnabled= true
             ___googlePayButton.isFocusable= true
             ___googlePayButton.isClickable= true
-            val myIntent = Intent(_activity as Context, GoogleApiActivity::class.java)
+            val intent = Intent(_activity as Context, GoogleApiActivity::class.java)
            // GoogleApiActivity().GPAY = googlePayButton
-            (_activity as Context).startActivity(myIntent)
-           /* googlePayButton.setOnClickListener {
-                val myIntent = Intent(_activity as Context, GoogleApiActivity::class.java)
-                GoogleApiActivity().GPAY = googlePayButton
-                (_activity as Context).startActivity(myIntent)
-            }*/
+            intent.putExtra("googlePayToken",googlePayToken)
+            (_activity as Context).startActivity(intent)
 
 
         } else {
             ___googlePayButton.visibility= View.GONE
             DataConfiguration.getListener()?.onFailed("Google Pay Not Supported")
             // Toast.makeText(holder.itemView.getContext(), R.string.googlepay_button_not_supported, Toast.LENGTH_LONG).show()
+        }
+    }
+
+
+    private fun setVisibilityOfButtons(googlePayButtonType: GooglePayButtonType?){
+        if(googlePayButtonType == GooglePayButtonType.PAY_WITH_GOOGLE_PAY){
+            googlePayNormal.visibility =View.GONE
+            googlePayBuyWith.visibility =View.GONE
+            googlePayWith.visibility =View.VISIBLE
+        } else if(googlePayButtonType == GooglePayButtonType.BUY_WITH_GOOGLE_PAY){
+            googlePayNormal.visibility =View.GONE
+            googlePayBuyWith.visibility =View.VISIBLE
+            googlePayWith.visibility =View.GONE
+        }else if(googlePayButtonType == GooglePayButtonType.NORMAL_GOOGLE_PAY){
+            googlePayNormal.visibility =View.VISIBLE
+            googlePayBuyWith.visibility =View.GONE
+            googlePayWith.visibility =View.GONE
+        }else {
+            googlePayNormal.visibility =View.VISIBLE
+            googlePayBuyWith.visibility =View.GONE
+            googlePayWith.visibility =View.GONE
         }
     }
 }

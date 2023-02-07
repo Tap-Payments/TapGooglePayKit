@@ -31,6 +31,7 @@ class GoogleApiActivity : Activity() {
      var _activity: Activity = this
 
      lateinit var GPAY: View
+      var googlePayTokenOnly: Boolean =false
 
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -41,6 +42,8 @@ class GoogleApiActivity : Activity() {
         }
         _activity =this
         paymentsClient = PaymentsUtil.createPaymentsClient(this)
+        val googlePayTokenval =intent.getBooleanExtra("googlePayToken",false)
+        googlePayTokenOnly = googlePayTokenval
         possiblyShowGooglePayButton(_activity)
 
     }
@@ -165,13 +168,12 @@ class GoogleApiActivity : Activity() {
             println("tokenizationData>>>$tokenizationData")
             // final String tokenizationType = tokenizationData.getString("type");
             val token = tokenizationData.getString("token")
-           if(!GooglePayButton(_activity).tapTokenRqd && GooglePayButton(_activity).googlePayTokenRqd ) {
+
+           if(googlePayTokenOnly) {
                DataConfiguration.getListener()?.onGooglePayToken(token)
+               return
 
-           }else if(GooglePayButton(_activity).tapTokenRqd && GooglePayButton(_activity).googlePayTokenRqd ) {
-                DataConfiguration.getListener()?.onGooglePayToken(token)
-
-            }else {
+           }else {
                DataConfiguration.getListener()?.onGooglePayToken(token)
                //  System.out.println("token is"+token);
                val gson = Gson()

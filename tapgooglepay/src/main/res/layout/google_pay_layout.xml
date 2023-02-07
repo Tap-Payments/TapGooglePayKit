@@ -14,6 +14,19 @@
         android:layout_height="48dp"
         android:visibility="visible" />
 
+    <include
+        android:id="@+id/google_pay_buy_with"
+        layout="@layout/buy_with_google_pay"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:visibility="gone" />
+  <include
+        android:id="@+id/google_pay_pay_with"
+        layout="@layout/pay_with_google_pay"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:visibility="gone" />
+
 
 
 </LinearLayout>
