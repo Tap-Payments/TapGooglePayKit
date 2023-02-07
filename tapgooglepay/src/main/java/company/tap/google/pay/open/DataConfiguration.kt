@@ -28,11 +28,6 @@ object  DataConfiguration {
 
     private fun initPaymentDataSource() {
         paymentDataSource = PaymentDataSource
-      /*  if (paymentDataSource != null) {
-            println("paymentDataSource sdk ${paymentDataSource.toString()}")
-            PaymentDataProvider().setExternalDataSource(paymentDataSource!!)
-        }*/
-
 
     }
     fun addSDKDelegate(_sdkDelegate: SDKDelegate) {
