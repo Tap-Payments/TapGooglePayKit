@@ -14,6 +14,7 @@
         <entry key="tapgooglepay/src/main/res/drawable/donate_with_googlepay_button_content.xml" value="0.205" />
         <entry key="tapgooglepay/src/main/res/drawable/googlepay_button_background_shape.xml" value="0.1955" />
         <entry key="tapgooglepay/src/main/res/drawable/googlepay_button_content.xml" value="0.212" />
+        <entry key="tapgooglepay/src/main/res/drawable/googlepay_button_overlay.xml" value="0.189" />
         <entry key="tapgooglepay/src/main/res/drawable/order_with_googlepay_button_content.xml" value="0.1985" />
         <entry key="tapgooglepay/src/main/res/drawable/pay_with_googlepay_button_content.xml" value="0.205" />
         <entry key="tapgooglepay/src/main/res/drawable/subscribe_with_googlepay_button_content.xml" value="0.205" />
@@ -27,7 +28,7 @@
         <entry key="tapgooglepay/src/main/res/layout/googlepay_button.xml" value="0.21354166666666666" />
         <entry key="tapgooglepay/src/main/res/layout/order_with_googlepay_button.xml" value="0.18645833333333334" />
         <entry key="tapgooglepay/src/main/res/layout/pay_with_google_pay.xml" value="0.19322916666666667" />
-        <entry key="tapgooglepay/src/main/res/layout/plain_googlepay_button.xml" value="0.625" />
+        <entry key="tapgooglepay/src/main/res/layout/plain_googlepay_button.xml" value="0.5519287833827893" />
         <entry key="tapgooglepay/src/main/res/layout/subscribe_with_google_pay.xml" value="0.19322916666666667" />
         <entry key="tapgooglepaylib/src/main/res/layout/activity_main.xml" value="0.2708333333333333" />
       </map>
