@@ -175,7 +175,7 @@ class GoogleApiActivity : Activity() {
                return
 
            }else {
-               DataConfiguration.getListener()?.onGooglePayToken(token)
+              // DataConfiguration.getListener()?.onGooglePayToken(token)
                //  System.out.println("token is"+token);
                val gson = Gson()
                val jsonToken = gson.fromJson(token, JsonObject::class.java)

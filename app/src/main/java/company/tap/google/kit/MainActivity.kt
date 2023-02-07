@@ -10,6 +10,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import company.tap.google.pay.internal.api.responses.Token
 import company.tap.google.pay.open.SDKDelegate
@@ -90,13 +91,15 @@ class MainActivity : AppCompatActivity() , SDKDelegate {
     }
 
     override fun onGooglePayToken(token: String) {
-        Toast.makeText(this, token, Toast.LENGTH_SHORT).show()
+        customAlertBox("onGooglePayToken",token)
+       // Toast.makeText(this, token, Toast.LENGTH_SHORT).show()
 
     }
 
 
     override fun onTapToken(token: Token) {
-        Toast.makeText(this, "onTapToken"+token.id, Toast.LENGTH_SHORT).show()
+        customAlertBox("onTapToken",token.id.toString())
+       // Toast.makeText(this, "onTapToken"+token.id, Toast.LENGTH_SHORT).show()
     }
 
     override fun onFailed(error:String) {
@@ -128,6 +131,36 @@ class MainActivity : AppCompatActivity() , SDKDelegate {
             // Invoke the superclass to handle it.
             super.onOptionsItemSelected(item)
         }
+    }
+    private fun customAlertBox(title:String,message:String){
+        // Create the object of AlertDialog Builder class
+        val builder = AlertDialog.Builder(this)
+
+        // Set the message show for the Alert time
+        builder.setMessage(message)
+
+        // Set Alert Title
+        builder.setTitle(title)
+
+        // Set Cancelable false for when the user clicks on the outside the Dialog Box then it will remain show
+        builder.setCancelable(false)
+
+        // Set the positive button with yes name Lambda OnClickListener method is use of DialogInterface interface.
+        builder.setPositiveButton("Yes") {
+            // When the user click yes button then app will close
+                dialog, which -> dialog.dismiss()
+        }
+
+        // Set the Negative button with No name Lambda OnClickListener method is use of DialogInterface interface.
+        builder.setNegativeButton("No") {
+            // If user click no then dialog box is canceled.
+                dialog, which -> dialog.cancel()
+        }
+
+        // Create the Alert dialog
+        val alertDialog = builder.create()
+        // Show the Alert Dialog box
+        alertDialog.show()
     }
 
 
