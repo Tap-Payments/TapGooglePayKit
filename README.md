@@ -80,8 +80,8 @@ Step 2. Add the dependency
 First of all, `tapGoooglePaySDK` should be set up. In this section secret key and application ID are required.
 
 <a name="setup_gosellsdk_class_properties"></a>
-## checkOutSDK Class Properties
-First of all, `tapGoooglePaySDK` should be set up. To set it up, add the following lines of code somewhere in your project and make sure they will be called before any usage of `checkOutSDK`.
+## tapGoooglePaySDK Class Properties
+First of all, `tapGoooglePaySDK` should be set up. To set it up, add the following lines of code somewhere in your project and make sure they will be called before any usage of `tapGoooglePaySDK`.
 
 Below is the list of properties in checkOutSDK class you can manipulate. Make sure you do the setup before any usage of the SDK.
 
@@ -115,7 +115,7 @@ SDK Mode is automatically identified in the backend based on the secrete key you
 <a name="configure_sdk_with_required_data"></a>
 ### Configure SDK With Required Data
 
-`checkOutSDK` should be set up. To set it up, add the following lines of code somewhere in your project and make sure they will be called before any usage of `checkOutSDK`.
+`tapGoooglePaySDK` should be set up. To set it up, add the following lines of code somewhere in your project and make sure they will be called before any usage of `tapGoooglePaySDK`.
 *Kotlin:*
 ```kotlin
 
@@ -135,10 +135,10 @@ SDK Mode is automatically identified in the backend based on the secrete key you
             
             
         
-<a name="setup_checkoutsdk_class_properties_secret_key"></a>
+<a name="setup_tapGoooglePaySDK_class_properties_secret_key"></a>
 ### Configure SDK Secret Key and Application ID and SDK Language
 
-To set it up, add the following line of code somewhere in your project and make sure it will be called before any usage of `checkOutSDK`, otherwise an exception will be thrown. **Required**.
+To set it up, add the following line of code somewhere in your project and make sure it will be called before any usage of `tapGoooglePaySDK`, otherwise an exception will be thrown. **Required**.
 
 *Kotlin:*
 ```kotlin
