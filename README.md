@@ -156,8 +156,8 @@ To set it up, add the following line of code somewhere in your project and make 
 
 
 <a name="configure_sdk_Session"></a>
-## Configure SDK Session
-**SDKSession** is the main interface for  library from you application, so you can use it to start SDK with pay button or without pay button.
+## Configure SDK Data
+**DATACONFIGURATION** is the main interface for  library from you application
 ### Properties
 
 <table style="text-align:center">
@@ -167,7 +167,7 @@ To set it up, add the following line of code somewhere in your project and make 
 
 
    <tr>
-	<td> sessionDelegate  </td>
+	<td> sdkDelegate  </td>
 	<td> Activity </td>
 	<td> Activity. it is used to notify Merchant application with all SDK Events </td>
    <tr>
@@ -181,8 +181,8 @@ To set it up, add the following line of code somewhere in your project and make 
     <th colspan=1>Property</th>
     <th colspan=1>Type</th>
     <tr>
-	 <td> addSessionDelegate  </td>
-	 <td> pass your activity that implements SessionDelegate interface . you have to override all methods available through this interface </td>
+	 <td> addSDKDelegate  </td>
+	 <td> pass your activity that implements SdkDelegate interface . you have to override all methods available through this interface </td>
     </tr>
     <tr>
 	 <td> instantiatePaymentDataSource  </td>
@@ -193,71 +193,34 @@ To set it up, add the following line of code somewhere in your project and make 
    	 <td> Set the transaction currency associated to your account. Transaction currency must be of type TapCurrency("currency_iso_code"). i.e new TapCurrency("KWD") </td>
     </tr>
     <tr>
-	 <td> setTransactionMode  </td>
-	 <td> SDK offers different transaction modes such as [ TransactionMode.PURCHASE - TransactionMode.AUTHORIZE_CAPTURE - TransactionMode.SAVE_CARD - TransactionMode.TOKENIZE_CARD]   </td>
-    </tr>
-    <tr>
-	 <td> setCustomer </td>
-	 <td> Pass your customer data. Customer must be of type Tap Customer. You can create Tap Customer as following
-	  TapCustomer(
-                "cust_id", "cust_firstname", "cust_middlename",
-                "cust_lastname", "cust_email",
-                PhoneNumber("country_code", "MobileNo"), "metdata",
-            )</td>
+	 <td> setEnvironmentMode  </td>
+	 <td> SDK offers different environment modes such as [ TEST - PRODUCTION]   </td>
     </tr>
     <tr>
 	 <td> setAmount </td>
 	 <td> Set Total Amount. Amount value must be of type BigDecimal i.e new BigDecimal(40) </td>
     </tr>
     <tr>
-	 <td> setPaymentItems </td>
-	 <td> ArrayList that contains payment items. each item of this array must be of type PaymentItem. in case of SAVE_CARD or TOKENIZE_CARD you can pass it null</td>
+	 <td> setGatewayId </td>
+	 <td> Gateway id required to use TAP as PSP . Here it is tappayments</td>
     </tr>
     <tr>
-  	 <td> setTaxes </td>
-  	 <td> ArrayList that contains Tax items. each item of this array must be of type Tax. in case of SAVE_CARD or TOKENIZE_CARD you can pass it null</td>
+  	 <td> setGatewayMerchantID </td>
+  	 <td> MerchantID available with TAP</td>
   	</tr>
   	<tr>
-  	 <td> setShipping </td>
-  	 <td> ArrayList that contains Shipping items. each item of this array must be of type Shipping. in case of SAVE_CARD or TOKENIZE_CARD you can pass it null</td>
+  	 <td> setAllowedCardAuthMethods </td>
+  	 <td> ALLOWED CARD auth methods here it is PAN_ONLY, CRYPTOGRAM_3DS , ALL</td>
   	</tr>
   	<tr>
-  	 <td> setPostURL </td>
-  	 <td> POST URL. </td>
+  	 <td> setCountryCode </td>
+  	 <td> Set country code. </td>
   	</tr>
   	<tr>
-  	 <td> setPaymentDescription </td>
-  	 <td> Payment description. </td>
+  	 <td> setAllowedCardNetworks </td>
+  	 <td> CARD networks like VISA, AMEX, JCB ,MADA. </td>
   	</tr>
-  	<tr>
-  	 <td> setPaymentMetadata </td>
-  	 <td> HashMap that contains any other payment related data. </td>
-  	</tr>
-  	<tr>
-  	 <td> setPaymentReference </td>
-  	 <td> Payment reference. it must be of type Reference object or null </td>
-  	</tr>
-  	<tr>
-  	 <td> setPaymentStatementDescriptor </td>
-  	 <td> Payment Statement Description </td>
-  	</tr>
-  	<tr>
-  	 <td> isRequires3DSecure </td>
-  	 <td> Enable or Disable 3D Secure </td>
-  	</tr>
-  	<tr>
-  	 <td> setReceiptSettings </td>
-  	 <td> Identify Receipt Settings. You must pass  Receipt object or null </td>
-  	</tr>
-  	<tr>
-  	 <td> setAuthorizeAction </td>
-  	 <td> Identify AuthorizeAction. You must pass AuthorizeAction object or null </td>
-  	</tr>
-  	<tr>
-  	 <td> setDestination </td>
-  	 <td> Identify Array of destination. You must pass Destinations object or null </td>
-  	</tr>
-  
+  	
 </table>
 
 **Configure SDK DATA Example** 
