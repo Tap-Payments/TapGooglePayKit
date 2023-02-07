@@ -59,6 +59,7 @@ class MainActivity : AppCompatActivity() , SDKDelegate {
         dataConfig.setGatewayId("tappayments")  //**Required GATEWAY ID**/
 
         dataConfig.setGatewayMerchantID("1124340") //**Required GATEWAY Merchant ID**/
+
         settingsManager?.getString("key_amount_name", "23")?.let { BigDecimal(it) }?.let {
             dataConfig.setAmount(
                       it

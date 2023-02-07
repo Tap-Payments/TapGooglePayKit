@@ -55,15 +55,15 @@ object PaymentsUtil {
             }else {
                 jsonArray = JSONArray  (Arrays.asList(PaymentDataSource.getAllowedCardMethod().name))
             }
-            val capCardBrandList: MutableList<String?> = ArrayList()
+          /*  val capCardBrandList: MutableList<String?> = ArrayList()
             capCardBrandList.add("VISA")
-            capCardBrandList.add("MASTERCARD")
+            capCardBrandList.add("MASTERCARD")*/
 
-            println("PaymentDataSource.getAllowedCardMethod()"+jsonArray)
+            println("PaymentDataSource.getAllowedNetworks()"+PaymentDataSource.getAllowedNetworks())
             val parameters = JSONObject().apply {
                 put("allowedAuthMethods", jsonArray)
                // put("allowedCardNetworks", JSONArray(PaymentDataSource.getAllowedNetworks()))
-                put("allowedCardNetworks", JSONArray(capCardBrandList))
+                put("allowedCardNetworks", JSONArray(PaymentDataSource.getAllowedNetworks()))
 
             }
 
