@@ -6,25 +6,24 @@ A standalone kit for handling google pay
 [![SDK Version](https://img.shields.io/badge/minSdkVersion-21-blue.svg)](https://stuff.mit.edu/afs/sipb/project/android/docs/reference/packages.html)
 [![SDK Version](https://img.shields.io/badge/targetSdkVersion-30-informational.svg)](https://stuff.mit.edu/afs/sipb/project/android/docs/reference/packages.html)
 
-CheckoutSDK Android compatible version of CheckoutSDK library that fully covers payment/authorization/card saving process inside your Android application.
 # Table of Contents
 ---
 1. [Requirements](#requirements)
 2. [Installation](#installation)
-    1. [Include CheckoutSDK library as a dependency module in your project](#include_library_to_code_locally)
+    1. [Include TapGooglePayKit library as a dependency module in your project](#include_library_to_code_locally)
     2. [Installation with jitpack](#installation_with_jitpack)
 
 3. [Setup](#setup)
-    1. [CheckoutSDK Class Properties](#setup_checkoutsdk_class_properties)
+    1. [TapGooglePayKit Class Properties](#setup_tapgoogle_pay_sdk_class_properties_secret_key)
 4. [Usage](#usage)
     1. [Configure SDK with Required Data](#configure_sdk_with_required_data)
     2. [Configure SDK Look and Feel](#configure_sdk_look_and_feel)
    
    
 5. [SDKSession Delegate](#sdk_delegate)
-    1. [Payment Success Callback](#payment_success_callback)
-    2. [Payment Failure Callback](#payment_failure_callback)
-    3. [Authorization Success Callback](#authorization_success_callback)
+    1. [OnTapToken Success Callback](#payment_success_callback)
+    2. [OnFailure Callback](#payment_failure_callback)
+    3. [OnGooglePay_Token_Success Callback](#authorization_success_callback)
    
 6. [Documentation](#docs)
 
@@ -86,7 +85,7 @@ First of all, `tapGoooglePaySDK` should be set up. To set it up, add the followi
 
 Below is the list of properties in checkOutSDK class you can manipulate. Make sure you do the setup before any usage of the SDK.
 
-<a name="setup_checkoutsdk_class_properties_secret_key"></a>
+<a name="setup_tapgoogle_pay_sdk_class_properties_secret_key"></a>
 ### Secret Key and Application ID
 
 To set it up, add the following line of code somewhere in your project and make sure it will be called before any usage of `checkOutSDK`, otherwise an exception will be thrown. **Required**.
@@ -103,7 +102,7 @@ dataConfig.initSDK(this@MainActivity as Context,"sk_test_kXXXXXXXXXXXXXXXXXXXXXX
 1. **`authToken`** - to authorize your requests.// Secret key (format: "sk_XXXXXXXXXXXXXXXXXXXXXXXX")
 2. **`app_id`** - replace it using your application ID "Application main package".
 
-<a name="setup_checkoutsdk_class_properties_mode"></a>
+<a name="setup_tap_google_pay_sdk_class_properties_mode"></a>
 ### Mode
 
 SDK mode defines which mode SDK is operating in, either **sandbox** or **production**.
@@ -259,41 +258,8 @@ To set it up, add the following line of code somewhere in your project and make 
   	 <td> Identify Array of destination. You must pass Destinations object or null </td>
   	</tr>
   
-</table> private fun configureSDKData() {
-        // pass your activity as a session delegate to listen to SDK internal payment process follow
-        dataConfig.addSDKDelegate(this) //** Required **
+</table>
 
-      //  dataConfig.setEnvironmentMode(SDKMode.ENVIRONMENT_TEST)
-        settingsManager?.getSDKMode("key_sdkmode")?.let { dataConfig.setEnvironmentMode(it) } //**Required SDK MODE**/
-
-        dataConfig.setGatewayId("tappayments")  //**Required GATEWAY ID**/
-
-        dataConfig.setGatewayMerchantID("1124340") //**Required GATEWAY Merchant ID**/
-        settingsManager?.getString("key_amount_name", "23")?.let { BigDecimal(it) }?.let {
-            dataConfig.setAmount(
-                      it
-                )
-             } //**Required Amount**/
-       // dataConfig.setAmount(BigDecimal.valueOf(23))
-
-        settingsManager?.getAllowedMethods("allowed_card_auth_key")
-            ?.let { dataConfig.setAllowedCardAuthMethods(it) } //**Required type of auth PAN_ONLY, CRYPTOGRAM , ALL**/
-
-
-        settingsManager?.getString("key_currency_code","USD")
-            ?.let { dataConfig.setTransactionCurrency(it) } //**Required Currency **/
-
-        settingsManager?.getString("country_code_key","US")?.let { dataConfig.setCountryCode(it) } //**Required Country **/
-
-        //println("settings are"+settingsManager?.getSet("key_payment_networks")) 
-
-//        val SUPPORTED_NETWORKS = mutableListOf<String>(
-//            "AMEX",
-//            "MASTERCARD",
-//            "VISA")
-
-        dataConfig.setAllowedCardNetworks(settingsManager?.getSet("key_payment_networks")?.toMutableList()) //**Required Payment Networks **/
-    }
 **Configure SDK DATA Example** 
 
 *Kotlin:*
