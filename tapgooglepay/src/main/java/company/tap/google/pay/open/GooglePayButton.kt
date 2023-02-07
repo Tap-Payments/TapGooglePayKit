@@ -76,6 +76,12 @@ import company.tap.google.pay.open.enums.GooglePayButtonType
         }else if(googlePayButtonType?.name == GooglePayButtonType.CHECKOUT_WITH_GOOGLE_PAY.name){
             buttonView = LayoutInflater.from(context).inflate(R.layout.checkout_with_googlepay_button, mainView, false)
             mainView.addView(buttonView)
+        }else if(googlePayButtonType?.name == GooglePayButtonType.ORDER_WITH_GOOGLE_PAY.name){
+            buttonView = LayoutInflater.from(context).inflate(R.layout.order_with_googlepay_button, mainView, false)
+            mainView.addView(buttonView)
+        }else if(googlePayButtonType?.name == GooglePayButtonType.BOOK_WITH_GOOGLE_PAY.name){
+            buttonView = LayoutInflater.from(context).inflate(R.layout.book_with_googlepay_button, mainView, false)
+            mainView.addView(buttonView)
         }
 
         mainView.isFocusable= true
