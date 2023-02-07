@@ -1,11 +1,12 @@
 package company.tap.google.pay.internal.api
 
 import android.app.Activity
-import android.content.Context
 import android.os.Build
 import androidx.annotation.RequiresApi
 import com.google.gson.Gson
 import com.google.gson.JsonElement
+import company.tap.google.pay.internal.api.requests.CreateTokenGPayRequest
+import company.tap.google.pay.internal.api.responses.Token
 import company.tap.google.pay.open.DataConfiguration
 import company.tap.tapnetworkkit.controller.NetworkController
 import company.tap.tapnetworkkit.enums.TapMethodType

@@ -1,8 +1,9 @@
-package company.tap.google.pay.internal.api
+package company.tap.google.pay.internal.api.responses
 
 import androidx.annotation.RestrictTo
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import company.tap.google.pay.internal.api.enums.Address
 import java.io.Serializable
 
 @RestrictTo(RestrictTo.Scope.LIBRARY)

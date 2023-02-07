@@ -11,6 +11,7 @@ import company.tap.google.pay.internal.PaymentDataSource
 import company.tap.google.pay.internal.api.ApiService
 import company.tap.google.pay.internal.interfaces.SDKDelegate
 import company.tap.google.pay.open.enums.AllowedMethods
+import company.tap.google.pay.open.enums.GooglePayButtonType
 import company.tap.google.pay.open.enums.SDKMode
 import company.tap.tapnetworkkit.connection.NetworkApp
 import java.math.BigDecimal
@@ -107,8 +108,8 @@ object  DataConfiguration {
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
-    fun startGooglePay(activity: Activity, googlePayButton: View){
-        GooglePayButton(activity as Context).possiblyShowGooglePayButton(activity,googlePayButton,true,true)
+    fun startGooglePay(activity: Activity, googlePayButton: View,googleButtonType:GooglePayButtonType?){
+        GooglePayButton(activity as Context).possiblyShowGooglePayButton(activity,googlePayButton,true,true,googleButtonType)
 
     }
 

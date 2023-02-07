@@ -11,16 +11,17 @@ import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import company.tap.google.pay.internal.api.Token
+import company.tap.google.pay.internal.api.responses.Token
 import company.tap.google.pay.internal.interfaces.SDKDelegate
 import company.tap.google.pay.open.DataConfiguration
-import company.tap.google.pay.open.enums.SDKMode
+import company.tap.google.pay.open.enums.GooglePayButtonType
 import java.math.BigDecimal
 
 class MainActivity : AppCompatActivity() , SDKDelegate {
     var dataConfig: DataConfiguration = DataConfiguration
     lateinit var googlePayView: View
     lateinit var googlePayButton: View
+   // lateinit var mainView: View
     private  val TAG = "MainActivity"
     private var settingsManager: SettingsManager? = null
 
@@ -31,11 +32,12 @@ class MainActivity : AppCompatActivity() , SDKDelegate {
         settingsManager = SettingsManager
         settingsManager?.setPref(this)
         googlePayView = findViewById(R.id.googlePayView)
-        googlePayButton = googlePayView.rootView.findViewById(company.tap.google.pay.R.id.gPay)
+       // mainView = googlePayView.rootView.findViewById(R.id.googlePayView)
+       googlePayButton = googlePayView.rootView.findViewById(company.tap.google.pay.R.id.gPay)
+
 
         googlePayButton.setOnClickListener {
-            println("clicc")
-            dataConfig.startGooglePay(this, googlePayButton)
+            dataConfig.startGooglePay(this, googlePayView,GooglePayButtonType.NORMAL_GOOGLE_PAY)
 
         }
 
@@ -90,7 +92,7 @@ class MainActivity : AppCompatActivity() , SDKDelegate {
     }
 
 
-    override fun onTapToken(token:Token) {
+    override fun onTapToken(token: Token) {
         Toast.makeText(this, "onTapToken"+token.id, Toast.LENGTH_SHORT).show()
     }
 

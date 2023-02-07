@@ -18,6 +18,7 @@ import company.tap.google.pay.R
 import company.tap.google.pay.databinding.ActivityGoogleApiBinding.inflate
 import company.tap.google.pay.internal.GoogleApiActivity
 import company.tap.google.pay.internal.PaymentsUtil
+import company.tap.google.pay.open.enums.GooglePayButtonType
 
 
 @SuppressLint("ViewConstructor")
@@ -29,6 +30,7 @@ import company.tap.google.pay.internal.PaymentsUtil
      lateinit var googlePayButton :View
     @JvmField var googlePayTokenRqd:Boolean= false
     @JvmField var tapTokenRqd:Boolean= false
+    @JvmField var googlePayButtonType:GooglePayButtonType?=GooglePayButtonType.NORMAL_GOOGLE_PAY
 
     /**
      * Simple constructor to use when creating a TapPayCardSwitch from code.
@@ -48,18 +50,27 @@ import company.tap.google.pay.internal.PaymentsUtil
     init {
 
       val view=  View.inflate(context, R.layout.google_pay_layout,this)
-      /*  mainLL = view.findViewById(R.id.mainLL)
-
-
-        // assuming your Wizard content is in content_wizard.xml
-        val wizardView: View = LayoutInflater.from(context).inflate(R.layout.buy_with_google_pay, mainLL, false)
-
-
-// add the inflated View to the layout
-        mainLL.addView(wizardView)*/
+        mainLL = view.findViewById(R.id.mainLL)
+           // setButtonType(view)
         // googlePayButton = findViewById(R.id.gPay)
   }
 
+    private fun setButtonType(view:View){
+        mainLL = view.findViewById(R.id.mainLL)
+        if(googlePayButtonType?.name == GooglePayButtonType.NORMAL_GOOGLE_PAY.name){
+            val wizardView: View = LayoutInflater.from(context).inflate(R.layout.googlepay_button, mainLL, false)
+            mainLL.addView(wizardView)
+        }else if(googlePayButtonType?.name == GooglePayButtonType.BUY_WITH_GOOGLE_PAY.name){
+            val wizardView: View = LayoutInflater.from(context).inflate(R.layout.buy_with_google_pay, mainLL, false)
+            mainLL.addView(wizardView)
+        }else if(googlePayButtonType?.name == GooglePayButtonType.DONATE_WITH_GOOGLE_PAY.name){
+            val wizardView: View = LayoutInflater.from(context).inflate(R.layout.donate_with_google_pay, mainLL, false)
+            mainLL.addView(wizardView)
+        }else if(googlePayButtonType?.name == GooglePayButtonType.PAY_WITH_GOOGLE_PAY.name){
+            val wizardView: View = LayoutInflater.from(context).inflate(R.layout.pay_with_google_pay, mainLL, false)
+            mainLL.addView(wizardView)
+        }
+    }
     /**
      * Determine the viewer's ability to pay with a payment method supported by your app and display a
      * Google Pay payment button.
@@ -68,13 +79,14 @@ import company.tap.google.pay.internal.PaymentsUtil
     PaymentsClient.html.isReadyToPay
     ) */
     @RequiresApi(api = Build.VERSION_CODES.N)
-    fun possiblyShowGooglePayButton(activity: Activity, _googlePayButton: View , googlePayToken:Boolean , tapToken:Boolean) {
+    fun possiblyShowGooglePayButton(activity: Activity, _googlePayButton: View , googlePayToken:Boolean , tapToken:Boolean,googlePayButtonType: GooglePayButtonType?=null) {
+       this.googlePayButtonType = googlePayButtonType
         this.googlePayTokenRqd = googlePayToken
         this.tapTokenRqd = tapToken
         googlePayButton = _googlePayButton
-        googlePayButton.isEnabled= true
-        googlePayButton.isFocusable= true
-        googlePayButton.isClickable= true
+        _googlePayButton.isEnabled= true
+        _googlePayButton.isFocusable= true
+        _googlePayButton.isClickable= true
         _activity = activity
         paymentsClient = PaymentsUtil.createPaymentsClient(activity)
         val isReadyToPayJson = PaymentsUtil.isReadyToPayRequest() ?: return

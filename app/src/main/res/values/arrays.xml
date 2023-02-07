@@ -111,4 +111,18 @@
         <item>TEST ENVIRONMENT</item>
         <item>PRODUCTION ENVIRONMENT</item>
     </string-array>
+
+    <string-array name="pref_array_button_type_entries">
+        <item>BUY_WITH_GOOGLE_PAY</item>
+        <item>DONATE_WITH_GOOGLE_PAY</item>
+        <item>NORMAL_GOOGLE_PAY</item>
+        <item>PAY_WITH_GOOGLE_PAY</item>
+    </string-array>
+
+    <string-array name="pref_array_button_type_value">
+        <item>BUY_WITH_GOOGLE_PAY</item>
+        <item>DONATE_WITH_GOOGLE_PAY</item>
+        <item>NORMAL_GOOGLE_PAY</item>
+        <item>PAY_WITH_GOOGLE_PAY</item>
+    </string-array>
 </resources>

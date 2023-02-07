@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import company.tap.google.pay.open.enums.AllowedMethods
+import company.tap.google.pay.open.enums.GooglePayButtonType
 import company.tap.google.pay.open.enums.SDKMode
 
 @SuppressLint("StaticFieldLeak")
@@ -85,5 +86,29 @@ object SettingsManager {
             )
         ) return SDKMode.ENVIRONMENT_PRODUCTION
         else SDKMode.ENVIRONMENT_TEST
+    }
+    fun getGPAYButtonType(key: String): GooglePayButtonType {
+        val trx_mode = pref?.getString(key, GooglePayButtonType.NORMAL_GOOGLE_PAY.name)
+        if (trx_mode.equals(
+                GooglePayButtonType.NORMAL_GOOGLE_PAY.name,
+                ignoreCase = true
+            )
+        ) return  GooglePayButtonType.NORMAL_GOOGLE_PAY
+         if (trx_mode.equals(
+                GooglePayButtonType.BUY_WITH_GOOGLE_PAY.name,
+                ignoreCase = true
+            )
+        ) return  GooglePayButtonType.BUY_WITH_GOOGLE_PAY
+         if (trx_mode.equals(
+                GooglePayButtonType.DONATE_WITH_GOOGLE_PAY.name,
+                ignoreCase = true
+            )
+        ) return  GooglePayButtonType.DONATE_WITH_GOOGLE_PAY
+       return if (trx_mode.equals(
+                GooglePayButtonType.PAY_WITH_GOOGLE_PAY.name,
+                ignoreCase = true
+            )
+        ) return  GooglePayButtonType.PAY_WITH_GOOGLE_PAY
+        else GooglePayButtonType.NORMAL_GOOGLE_PAY
     }
 }

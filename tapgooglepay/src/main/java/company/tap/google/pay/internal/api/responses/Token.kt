@@ -1,7 +1,10 @@
-package company.tap.google.pay.internal.api
+package company.tap.google.pay.internal.api.responses
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import company.tap.google.pay.internal.api.enums.TokenType
+import company.tap.google.pay.internal.api.responses.BaseResponse
+import company.tap.google.pay.internal.api.responses.TokenizedCard
 
 import java.io.Serializable
 

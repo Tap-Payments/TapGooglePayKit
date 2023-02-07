@@ -1,4 +1,4 @@
-package company.tap.google.pay.internal.api
+package company.tap.google.pay.internal.api.enums
 
 import com.google.gson.annotations.SerializedName
 

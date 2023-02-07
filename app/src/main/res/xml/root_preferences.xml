@@ -57,4 +57,16 @@
         android:key="key_amount_name"
         android:summary="key_amount_value"
         android:title="Enter the amount" />
+
+ <!--   <PreferenceCategory android:title="GooglePay Button Type">
+
+        <ListPreference
+            android:defaultValue="NORMAL_GOOGLE_PAY"
+            android:dialogTitle="Button Type"
+            android:entries="@array/pref_array_button_type_value"
+            android:entryValues="@array/pref_array_button_type_entries"
+            android:key="button_type_key"
+            android:summary="Choose your preferred GPAY Button"
+            android:title="GPAY Button Prefered"/>
+    </PreferenceCategory>-->
 </PreferenceScreen>

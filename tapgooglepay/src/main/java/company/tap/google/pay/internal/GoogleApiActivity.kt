@@ -2,7 +2,6 @@ package company.tap.google.pay.internal
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -14,7 +13,7 @@ import com.google.android.gms.wallet.*
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import company.tap.google.pay.internal.api.ApiCallsKitRepository
-import company.tap.google.pay.internal.api.CreateTokenGPayRequest
+import company.tap.google.pay.internal.api.requests.CreateTokenGPayRequest
 import company.tap.google.pay.open.DataConfiguration
 import company.tap.google.pay.open.GooglePayButton
 import org.json.JSONException
@@ -181,7 +180,11 @@ class GoogleApiActivity : Activity() {
                /**
                 * At this stage, Passing the googlePaylaod to Tap Backend TokenAPI call followed by chargeAPI.
                 */
-               val createTokenGPayRequest = CreateTokenGPayRequest("googlepay", jsonToken)
+               val createTokenGPayRequest =
+                   CreateTokenGPayRequest(
+                       "googlepay",
+                       jsonToken
+                   )
                ApiCallsKitRepository().getGPayTokenRequest(this, createTokenGPayRequest)
            }
         } catch (e: JSONException) {

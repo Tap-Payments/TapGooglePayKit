@@ -1,4 +1,6 @@
-package company.tap.google.pay.internal.api;
+package company.tap.google.pay.internal.api.requests;
+
+import androidx.annotation.RestrictTo;
 
 import com.google.gson.JsonObject;
 import com.google.gson.annotations.Expose;
@@ -6,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-
+@RestrictTo(RestrictTo.Scope.LIBRARY)
 public final class CreateTokenGPayRequest implements Serializable {
     @SerializedName("type")
     @Expose
