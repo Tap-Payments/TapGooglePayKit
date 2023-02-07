@@ -1,4 +1,4 @@
-package company.tap.google.pay.internal.interfaces
+package company.tap.google.pay.open
 
 import company.tap.google.pay.internal.api.responses.Token
 

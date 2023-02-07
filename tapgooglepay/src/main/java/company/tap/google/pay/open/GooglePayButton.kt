@@ -56,19 +56,24 @@ import company.tap.google.pay.open.enums.GooglePayButtonType
   }
 
     private fun setButtonType(view:View){
-        mainLL = view.findViewById(R.id.mainLL)
         if(googlePayButtonType?.name == GooglePayButtonType.NORMAL_GOOGLE_PAY.name){
-            val wizardView: View = LayoutInflater.from(context).inflate(R.layout.googlepay_button, mainLL, false)
-            mainLL.addView(wizardView)
+            val buttonView: View = LayoutInflater.from(context).inflate(R.layout.googlepay_button, mainLL, false)
+            mainLL.addView(buttonView)
         }else if(googlePayButtonType?.name == GooglePayButtonType.BUY_WITH_GOOGLE_PAY.name){
-            val wizardView: View = LayoutInflater.from(context).inflate(R.layout.buy_with_google_pay, mainLL, false)
-            mainLL.addView(wizardView)
+            val buttonView: View = LayoutInflater.from(context).inflate(R.layout.buy_with_google_pay, mainLL, false)
+            mainLL.addView(buttonView)
         }else if(googlePayButtonType?.name == GooglePayButtonType.DONATE_WITH_GOOGLE_PAY.name){
-            val wizardView: View = LayoutInflater.from(context).inflate(R.layout.donate_with_google_pay, mainLL, false)
-            mainLL.addView(wizardView)
+            val buttonView: View = LayoutInflater.from(context).inflate(R.layout.donate_with_google_pay, mainLL, false)
+            mainLL.addView(buttonView)
         }else if(googlePayButtonType?.name == GooglePayButtonType.PAY_WITH_GOOGLE_PAY.name){
-            val wizardView: View = LayoutInflater.from(context).inflate(R.layout.pay_with_google_pay, mainLL, false)
-            mainLL.addView(wizardView)
+            val buttonView: View = LayoutInflater.from(context).inflate(R.layout.pay_with_google_pay, mainLL, false)
+            mainLL.addView(buttonView)
+        }else if(googlePayButtonType?.name == GooglePayButtonType.SUBSCRIBE_WITH_GOOGLE_PAY.name){
+            val buttonView: View = LayoutInflater.from(context).inflate(R.layout.subscribe_with_google_pay, mainLL, false)
+            mainLL.addView(buttonView)
+        }else{
+            val buttonView: View = LayoutInflater.from(context).inflate(R.layout.googlepay_button, mainLL, false)
+        mainLL.addView(buttonView)
         }
     }
     /**

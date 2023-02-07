@@ -12,9 +12,8 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import company.tap.google.pay.internal.api.responses.Token
-import company.tap.google.pay.internal.interfaces.SDKDelegate
+import company.tap.google.pay.open.SDKDelegate
 import company.tap.google.pay.open.DataConfiguration
-import company.tap.google.pay.open.enums.GooglePayButtonType
 import java.math.BigDecimal
 
 class MainActivity : AppCompatActivity() , SDKDelegate {

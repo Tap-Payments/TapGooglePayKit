@@ -104,6 +104,11 @@ object SettingsManager {
                 ignoreCase = true
             )
         ) return  GooglePayButtonType.DONATE_WITH_GOOGLE_PAY
+        if (trx_mode.equals(
+                GooglePayButtonType.SUBSCRIBE_WITH_GOOGLE_PAY.name,
+                ignoreCase = true
+            )
+        ) return  GooglePayButtonType.SUBSCRIBE_WITH_GOOGLE_PAY
        return if (trx_mode.equals(
                 GooglePayButtonType.PAY_WITH_GOOGLE_PAY.name,
                 ignoreCase = true

@@ -1,6 +1,7 @@
 package company.tap.google.pay.internal
 
 import android.app.Activity
+import androidx.annotation.RestrictTo
 import com.google.android.gms.wallet.PaymentsClient
 import com.google.android.gms.wallet.Wallet
 import com.google.android.gms.wallet.WalletConstants
@@ -10,7 +11,7 @@ import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 import java.util.*
-
+@RestrictTo(RestrictTo.Scope.LIBRARY)
 object PaymentsUtil {
     /**
      * Create a Google Pay API base request object with properties used in all requests.

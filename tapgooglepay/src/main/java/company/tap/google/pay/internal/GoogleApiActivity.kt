@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.annotation.RequiresApi
+import androidx.annotation.RestrictTo
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.wallet.*
 import com.google.gson.Gson
@@ -19,7 +20,7 @@ import company.tap.google.pay.open.GooglePayButton
 import org.json.JSONException
 import org.json.JSONObject
 
-
+@RestrictTo(RestrictTo.Scope.LIBRARY)
 class GoogleApiActivity : Activity() {
     @JvmField
     // Arbitrarily-picked constant integer you define to track a request for payment data activity.

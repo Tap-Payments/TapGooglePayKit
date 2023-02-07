@@ -1,9 +1,10 @@
 package company.tap.google.pay.internal
 
+import androidx.annotation.RestrictTo
 import company.tap.google.pay.open.enums.AllowedMethods
 import company.tap.google.pay.open.enums.SDKMode
 import java.math.BigDecimal
-
+@RestrictTo(RestrictTo.Scope.LIBRARY)
 object PaymentDataSource : company.tap.google.pay.internal.interfaces.PaymentDataSource {
     private var currency: String? = null
     private var amount: BigDecimal? = null

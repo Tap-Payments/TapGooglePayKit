@@ -7,5 +7,7 @@ enum class GooglePayButtonType {
 
     NORMAL_GOOGLE_PAY,
 
-    PAY_WITH_GOOGLE_PAY
+    PAY_WITH_GOOGLE_PAY,
+
+    SUBSCRIBE_WITH_GOOGLE_PAY
 }
