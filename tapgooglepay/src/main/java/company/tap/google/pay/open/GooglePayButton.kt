@@ -137,7 +137,6 @@ import kotlin.properties.Delegates
             ___googlePayButton.isFocusable= true
             ___googlePayButton.isClickable= true
             val intent = Intent(_activity as Context, GoogleApiActivity::class.java)
-           // GoogleApiActivity().GPAY = googlePayButton
             intent.putExtra("googlePayToken",googlePayToken)
             (_activity as Context).startActivity(intent)
 

@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() , SDKDelegate {
                 dataConfig.getGooglePayToken(this, googlePayView)
 
             }else if(defaultPref.toString() == "GET TAP TOKEN"){
-                dataConfig.startGooglePay(this, googlePayView)
+                dataConfig.getTapToken(this, googlePayView)
             }
 
         }
