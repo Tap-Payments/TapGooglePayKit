@@ -171,6 +171,7 @@ class GoogleApiActivity : Activity() {
 
            if(googlePayTokenOnly) {
                DataConfiguration.getListener()?.onGooglePayToken(token)
+               finish()
                return
 
            }else {

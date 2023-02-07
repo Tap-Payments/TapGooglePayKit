@@ -125,4 +125,14 @@
         <item>NORMAL_GOOGLE_PAY</item>
         <item>PAY_WITH_GOOGLE_PAY</item>
     </string-array>
+
+    <string-array name="pref_array_token_entries">
+        <item>GET GOOGLEPAY TOKEN</item>
+        <item>GET TAP TOKEN</item>
+    </string-array>
+
+    <string-array name="pref_array_token_values">
+        <item>GET GOOGLEPAY TOKEN</item>
+        <item>GET TAP TOKEN</item>
+    </string-array>
 </resources>

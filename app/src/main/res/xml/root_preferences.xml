@@ -58,7 +58,7 @@
         android:summary="key_amount_value"
         android:title="Enter the amount" />
 
-  <PreferenceCategory android:title="GooglePay Button Type">
+<!--  <PreferenceCategory android:title="GooglePay Button Type">
 
         <ListPreference
             android:defaultValue="NORMAL_GOOGLE_PAY"
@@ -68,5 +68,17 @@
             android:key="button_type_key"
             android:summary="Choose your preferred GPAY Button"
             android:title="GPAY Button Prefered"/>
+    </PreferenceCategory>-->
+
+    <PreferenceCategory android:title="Testing Preference">
+
+        <ListPreference
+            android:defaultValue="GET GOOGLEPAY TOKEN"
+            android:dialogTitle="Token type"
+            android:entries="@array/pref_array_token_values"
+            android:entryValues="@array/pref_array_token_entries"
+            android:key="token_type_key"
+            android:summary="Choose your preferred Token Type"
+            android:title="Tokenization Type Prefered"/>
     </PreferenceCategory>
 </PreferenceScreen>
