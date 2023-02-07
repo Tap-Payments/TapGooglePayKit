@@ -14,13 +14,13 @@ import androidx.appcompat.app.AppCompatActivity
 import company.tap.google.pay.internal.api.responses.Token
 import company.tap.google.pay.open.SDKDelegate
 import company.tap.google.pay.open.DataConfiguration
+import company.tap.google.pay.open.GooglePayButton
 import java.math.BigDecimal
 
 class MainActivity : AppCompatActivity() , SDKDelegate {
     var dataConfig: DataConfiguration = DataConfiguration //** Required**//
-    lateinit var googlePayView: View
+    lateinit var googlePayView: GooglePayButton
     lateinit var googlePayButton: View
-   // lateinit var mainView: View
     private  val TAG = "MainActivity"
     private var settingsManager: SettingsManager? = null
 
@@ -31,9 +31,7 @@ class MainActivity : AppCompatActivity() , SDKDelegate {
         settingsManager = SettingsManager
         settingsManager?.setPref(this)
         googlePayView = findViewById(R.id.googlePayView)
-       // mainView = googlePayView.rootView.findViewById(R.id.googlePayView)
-       googlePayButton = googlePayView.rootView.findViewById(company.tap.google.pay.R.id.gPay)
-        googlePayButton.setOnClickListener {
+        googlePayView.googlePayNormal.setOnClickListener {
             dataConfig.startGooglePay(this, googlePayView)
 
         }

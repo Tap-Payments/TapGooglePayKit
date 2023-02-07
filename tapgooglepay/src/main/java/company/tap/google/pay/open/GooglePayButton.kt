@@ -31,7 +31,8 @@ import company.tap.google.pay.open.enums.GooglePayButtonType
     @JvmField var googlePayTokenRqd:Boolean= false
     @JvmField var tapTokenRqd:Boolean= false
     @JvmField var googlePayButtonType:GooglePayButtonType?=GooglePayButtonType.NORMAL_GOOGLE_PAY
-
+    val googlePayNormal by lazy { findViewById<View>(R.id.google_pay_normal) }
+  //  val googlePayBuyWith by lazy { findViewById<View>(R.id.google_pay_buy_with) }
     /**
      * Simple constructor to use when creating a TapPayCardSwitch from code.
      *  @param context The Context the view is running in, through which it can
@@ -51,6 +52,7 @@ import company.tap.google.pay.open.enums.GooglePayButtonType
 
       val view=  View.inflate(context, R.layout.google_pay_layout,this)
         mainLL = view.findViewById(R.id.mainLL)
+
            // setButtonType(view)
         // googlePayButton = findViewById(R.id.gPay)
   }
@@ -85,6 +87,7 @@ import company.tap.google.pay.open.enums.GooglePayButtonType
     ) */
     @RequiresApi(api = Build.VERSION_CODES.N)
     fun possiblyShowGooglePayButton(activity: Activity, _googlePayButton: View , googlePayToken:Boolean , tapToken:Boolean,googlePayButtonType: GooglePayButtonType?=null) {
+     //   _googlePayButton.visibility = VISIBLE
        this.googlePayButtonType = googlePayButtonType
         this.googlePayTokenRqd = googlePayToken
         this.tapTokenRqd = tapToken

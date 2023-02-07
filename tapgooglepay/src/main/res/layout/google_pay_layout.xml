@@ -8,9 +8,12 @@
     android:orientation="horizontal">
 
     <include
-        android:id="@+id/gPay"
+        android:id="@+id/google_pay_normal"
         layout="@layout/googlepay_button"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:visibility="visible" />
+
+
+
 </LinearLayout>
