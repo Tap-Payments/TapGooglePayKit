@@ -49,6 +49,7 @@ class SettingsActivity : AppCompatActivity() {
             bindPreferenceSummaryToValue(findPreference("key_sdkmode"))
             bindPreferenceSummaryToValue(findPreference("key_package_name"))
             bindPreferenceSummaryToValue(findPreference("key_test_name"))
+            bindPreferenceSummaryToValue(findPreference("key_merchant_id"))
 
 
             //  bindPreferenceSummaryToValue(findPreference("cardHolderNameEditable"))
@@ -108,6 +109,9 @@ class SettingsActivity : AppCompatActivity() {
                     // update the changed gallery name to summary filed
                     preference.setSummary(stringValue)
                 } else if (preference.getKey().equals("key_test_name")) {
+                    // update the changed gallery name to summary filed
+                    preference.setSummary(stringValue)
+                }else if (preference.getKey().equals("key_merchant_id")) {
                     // update the changed gallery name to summary filed
                     preference.setSummary(stringValue)
                 }

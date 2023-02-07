@@ -71,6 +71,13 @@
         android:summary="key_test_value"
         android:title="Enter the  Key" />
 
+    <EditTextPreference
+        android:defaultValue="1124340"
+        android:inputType="text"
+        android:key="key_merchant_id"
+        android:summary="key_merchant_id_value"
+        android:title="Enter the Merchant Id" />
+
  <PreferenceCategory android:title="GooglePay Button Type">
 
         <ListPreference
