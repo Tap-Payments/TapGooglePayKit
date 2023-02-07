@@ -51,7 +51,7 @@
             />
     </PreferenceCategory>
     <EditTextPreference
-        android:defaultValue="1.00"
+        android:defaultValue="23.00"
         android:inputType="numberDecimal"
         android:digits="0123456789."
         android:key="key_amount_name"

@@ -27,6 +27,8 @@ import company.tap.google.pay.internal.PaymentsUtil
     lateinit var _activity: Activity
     lateinit var mainLL: LinearLayout
      lateinit var googlePayButton :View
+    @JvmField var googlePayTokenRqd:Boolean= false
+    @JvmField var tapTokenRqd:Boolean= false
 
     /**
      * Simple constructor to use when creating a TapPayCardSwitch from code.
@@ -66,7 +68,9 @@ import company.tap.google.pay.internal.PaymentsUtil
     PaymentsClient.html.isReadyToPay
     ) */
     @RequiresApi(api = Build.VERSION_CODES.N)
-    fun possiblyShowGooglePayButton(activity: Activity, _googlePayButton: View) {
+    fun possiblyShowGooglePayButton(activity: Activity, _googlePayButton: View , googlePayToken:Boolean , tapToken:Boolean) {
+        this.googlePayTokenRqd = googlePayToken
+        this.tapTokenRqd = tapToken
         googlePayButton = _googlePayButton
         googlePayButton.isEnabled= true
         googlePayButton.isFocusable= true

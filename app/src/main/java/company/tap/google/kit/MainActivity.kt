@@ -53,8 +53,12 @@ class MainActivity : AppCompatActivity() , SDKDelegate {
         dataConfig.setGatewayId("tappayments")
 
         dataConfig.setGatewayMerchantID("1124340")
-
-        dataConfig.setAmount(BigDecimal.valueOf(23))
+        settingsManager?.getString("key_amount_name", "23")?.let { BigDecimal(it) }?.let {
+            dataConfig.setAmount(
+                      it
+                )
+             }
+       // dataConfig.setAmount(BigDecimal.valueOf(23))
 
         settingsManager?.getAllowedMethods("allowed_card_auth_key")
             ?.let { dataConfig.setAllowedCardAuthMethods(it) }

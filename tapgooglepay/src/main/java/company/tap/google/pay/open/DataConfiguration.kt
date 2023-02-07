@@ -108,13 +108,18 @@ object  DataConfiguration {
 
     @RequiresApi(Build.VERSION_CODES.N)
     fun startGooglePay(activity: Activity, googlePayButton: View){
-        GooglePayButton(activity as Context).possiblyShowGooglePayButton(activity,googlePayButton)
+        GooglePayButton(activity as Context).possiblyShowGooglePayButton(activity,googlePayButton,true,true)
 
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
-    fun getGooglePayToken(activity: Activity,googlePayButton: GooglePayButton){
-        GooglePayButton(activity as Context).possiblyShowGooglePayButton(activity,googlePayButton)
+    fun getGooglePayToken(activity: Activity,googlePayButton: View){
+        GooglePayButton(activity as Context).possiblyShowGooglePayButton(activity,googlePayButton,true,false)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    fun getTapToken(activity: Activity,googlePayButton: View){
+        GooglePayButton(activity as Context).possiblyShowGooglePayButton(activity,googlePayButton,false,true)
     }
 }
 

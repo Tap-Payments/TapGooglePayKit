@@ -16,6 +16,7 @@ import com.google.gson.JsonObject
 import company.tap.google.pay.internal.api.ApiCallsKitRepository
 import company.tap.google.pay.internal.api.CreateTokenGPayRequest
 import company.tap.google.pay.open.DataConfiguration
+import company.tap.google.pay.open.GooglePayButton
 import org.json.JSONException
 import org.json.JSONObject
 
@@ -165,17 +166,24 @@ class GoogleApiActivity : Activity() {
             println("tokenizationData>>>$tokenizationData")
             // final String tokenizationType = tokenizationData.getString("type");
             val token = tokenizationData.getString("token")
-            DataConfiguration.getListener()?.onGooglePayToken(token)
+           if(!GooglePayButton(_activity).tapTokenRqd && GooglePayButton(_activity).googlePayTokenRqd ) {
+               DataConfiguration.getListener()?.onGooglePayToken(token)
 
-            //  System.out.println("token is"+token);
-            val gson = Gson()
-            val jsonToken = gson.fromJson(token, JsonObject::class.java)
+           }else if(GooglePayButton(_activity).tapTokenRqd && GooglePayButton(_activity).googlePayTokenRqd ) {
+                DataConfiguration.getListener()?.onGooglePayToken(token)
 
-            /**
-             * At this stage, Passing the googlePaylaod to Tap Backend TokenAPI call followed by chargeAPI.
-             */
-            val createTokenGPayRequest = CreateTokenGPayRequest("googlepay", jsonToken)
-            ApiCallsKitRepository().getGPayTokenRequest(this,createTokenGPayRequest)
+            }else {
+               DataConfiguration.getListener()?.onGooglePayToken(token)
+               //  System.out.println("token is"+token);
+               val gson = Gson()
+               val jsonToken = gson.fromJson(token, JsonObject::class.java)
+
+               /**
+                * At this stage, Passing the googlePaylaod to Tap Backend TokenAPI call followed by chargeAPI.
+                */
+               val createTokenGPayRequest = CreateTokenGPayRequest("googlepay", jsonToken)
+               ApiCallsKitRepository().getGPayTokenRequest(this, createTokenGPayRequest)
+           }
         } catch (e: JSONException) {
             e.printStackTrace()
         }
