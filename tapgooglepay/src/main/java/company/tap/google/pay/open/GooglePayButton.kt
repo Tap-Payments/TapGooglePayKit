@@ -15,11 +15,9 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.wallet.IsReadyToPayRequest
 import com.google.android.gms.wallet.PaymentsClient
 import company.tap.google.pay.R
-import company.tap.google.pay.databinding.ActivityGoogleApiBinding.inflate
 import company.tap.google.pay.internal.GoogleApiActivity
 import company.tap.google.pay.internal.PaymentsUtil
 import company.tap.google.pay.open.enums.GooglePayButtonType
-import kotlin.properties.Delegates
 
 
 @SuppressLint("ViewConstructor")
@@ -27,14 +25,15 @@ import kotlin.properties.Delegates
     @SuppressLint("StaticFieldLeak")
     private lateinit var paymentsClient: PaymentsClient
     lateinit var _activity: Activity
-    lateinit var mainLL: LinearLayout
+    val mainView by lazy { findViewById<LinearLayout>(R.id.mainLL) }
      lateinit var googlePayButton :View
+    lateinit var buttonView: View
   //  @JvmField var googlePayTokenRqd:Boolean= false
    // @JvmField var tapTokenRqd:Boolean= false
     @JvmField var googlePayButtonType:GooglePayButtonType?=GooglePayButtonType.NORMAL_GOOGLE_PAY
-    val googlePayNormal by lazy { findViewById<View>(R.id.google_pay_normal) }
-    val googlePayBuyWith by lazy { findViewById<View>(R.id.google_pay_buy_with) }
-    val googlePayWith by lazy { findViewById<View>(R.id.google_pay_pay_with) }
+   // val googlePayNormal by lazy { findViewById<View>(R.id.google_pay_normal) }
+   // val googlePayBuyWith by lazy { findViewById<View>(R.id.google_pay_buy_with) }
+  //  val googlePayWith by lazy { findViewById<View>(R.id.google_pay_pay_with) }
     /**
      * Simple constructor to use when creating a TapPayCardSwitch from code.
      *  @param context The Context the view is running in, through which it can
@@ -51,34 +50,36 @@ import kotlin.properties.Delegates
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
 
     init {
-
-      val view=  View.inflate(context, R.layout.google_pay_layout,this)
-        mainLL = view.findViewById(R.id.mainLL)
-
-           // setButtonType(view)
-        // googlePayButton = findViewById(R.id.gPay)
+        View.inflate(context, R.layout.google_pay_layout,this)
   }
 
-    private fun setButtonType(view:View){
+    fun setGooglePayButtonType(__googlePayButtonType: GooglePayButtonType?){
+        this.googlePayButtonType= __googlePayButtonType
+        setButtonType()
+    }
+    private fun setButtonType(){
         if(googlePayButtonType?.name == GooglePayButtonType.NORMAL_GOOGLE_PAY.name){
-            val buttonView: View = LayoutInflater.from(context).inflate(R.layout.googlepay_button, mainLL, false)
-            mainLL.addView(buttonView)
+            buttonView  = LayoutInflater.from(context).inflate(R.layout.plain_googlepay_button, mainView, false)
+            mainView.addView(buttonView)
         }else if(googlePayButtonType?.name == GooglePayButtonType.BUY_WITH_GOOGLE_PAY.name){
-            val buttonView: View = LayoutInflater.from(context).inflate(R.layout.buy_with_google_pay, mainLL, false)
-            mainLL.addView(buttonView)
+            buttonView = LayoutInflater.from(context).inflate(R.layout.buy_with_google_pay, mainView, false)
+            mainView.addView(buttonView)
         }else if(googlePayButtonType?.name == GooglePayButtonType.DONATE_WITH_GOOGLE_PAY.name){
-            val buttonView: View = LayoutInflater.from(context).inflate(R.layout.donate_with_google_pay, mainLL, false)
-            mainLL.addView(buttonView)
+            buttonView = LayoutInflater.from(context).inflate(R.layout.donate_with_google_pay, mainView, false)
+            mainView.addView(buttonView)
         }else if(googlePayButtonType?.name == GooglePayButtonType.PAY_WITH_GOOGLE_PAY.name){
-            val buttonView: View = LayoutInflater.from(context).inflate(R.layout.pay_with_google_pay, mainLL, false)
-            mainLL.addView(buttonView)
+            buttonView = LayoutInflater.from(context).inflate(R.layout.pay_with_google_pay, mainView, false)
+            mainView.addView(buttonView)
         }else if(googlePayButtonType?.name == GooglePayButtonType.SUBSCRIBE_WITH_GOOGLE_PAY.name){
-            val buttonView: View = LayoutInflater.from(context).inflate(R.layout.subscribe_with_google_pay, mainLL, false)
-            mainLL.addView(buttonView)
-        }else{
-            val buttonView: View = LayoutInflater.from(context).inflate(R.layout.googlepay_button, mainLL, false)
-        mainLL.addView(buttonView)
+            buttonView = LayoutInflater.from(context).inflate(R.layout.subscribe_with_google_pay, mainView, false)
+            mainView.addView(buttonView)
+        }else if(googlePayButtonType?.name == GooglePayButtonType.CHECKOUT_WITH_GOOGLE_PAY.name){
+            buttonView = LayoutInflater.from(context).inflate(R.layout.checkout_with_googlepay_button, mainView, false)
+            mainView.addView(buttonView)
         }
+
+        mainView.isFocusable= true
+        mainView.isEnabled= true
     }
     /**
      * Determine the viewer's ability to pay with a payment method supported by your app and display a
@@ -110,7 +111,7 @@ import kotlin.properties.Delegates
         val task = paymentsClient.isReadyToPay(request)
         task.addOnCompleteListener { completedTask ->
             try {
-                setGooglePayAvailable(completedTask.getResult(ApiException::class.java),_googlePayButton,googlePayToken)
+                setGooglePayAvailable(completedTask.getResult(ApiException::class.java),_googlePayButton.rootView,googlePayToken)
             } catch (exception: ApiException) {
                 // Process error
                 Log.w("isReadyToPay failed", exception)
@@ -149,23 +150,5 @@ import kotlin.properties.Delegates
     }
 
 
-    private fun setVisibilityOfButtons(googlePayButtonType: GooglePayButtonType?){
-        if(googlePayButtonType == GooglePayButtonType.PAY_WITH_GOOGLE_PAY){
-            googlePayNormal.visibility =View.GONE
-            googlePayBuyWith.visibility =View.GONE
-            googlePayWith.visibility =View.VISIBLE
-        } else if(googlePayButtonType == GooglePayButtonType.BUY_WITH_GOOGLE_PAY){
-            googlePayNormal.visibility =View.GONE
-            googlePayBuyWith.visibility =View.VISIBLE
-            googlePayWith.visibility =View.GONE
-        }else if(googlePayButtonType == GooglePayButtonType.NORMAL_GOOGLE_PAY){
-            googlePayNormal.visibility =View.VISIBLE
-            googlePayBuyWith.visibility =View.GONE
-            googlePayWith.visibility =View.GONE
-        }else {
-            googlePayNormal.visibility =View.VISIBLE
-            googlePayBuyWith.visibility =View.GONE
-            googlePayWith.visibility =View.GONE
-        }
-    }
+
 }

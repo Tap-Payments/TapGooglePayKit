@@ -117,6 +117,8 @@
         <item>DONATE_WITH_GOOGLE_PAY</item>
         <item>NORMAL_GOOGLE_PAY</item>
         <item>PAY_WITH_GOOGLE_PAY</item>
+        <item>SUBSCRIBE_WITH_GOOGLE_PAY</item>
+        <item>CHECKOUT_WITH_GOOGLE_PAY</item>
     </string-array>
 
     <string-array name="pref_array_button_type_value">
@@ -124,6 +126,8 @@
         <item>DONATE_WITH_GOOGLE_PAY</item>
         <item>NORMAL_GOOGLE_PAY</item>
         <item>PAY_WITH_GOOGLE_PAY</item>
+        <item>SUBSCRIBE_WITH_GOOGLE_PAY</item>
+        <item>CHECKOUT_WITH_GOOGLE_PAY</item>
     </string-array>
 
     <string-array name="pref_array_token_entries">

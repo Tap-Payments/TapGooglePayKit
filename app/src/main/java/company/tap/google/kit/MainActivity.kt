@@ -32,8 +32,10 @@ class MainActivity : AppCompatActivity() , SDKDelegate {
         settingsManager?.setPref(this)
         googlePayView = findViewById(R.id.googlePayView)
         val defaultPref=    settingsManager?.getString("token_type_key","GET GOOGLEPAY TOKEN")
+       // googlePayView.googlePayBuyWith?.visibility=View.VISIBLE
+        googlePayView.setGooglePayButtonType(settingsManager?.getGPAYButtonType("button_type_key"))
 
-        googlePayView.googlePayNormal.setOnClickListener {
+        googlePayView.buttonView.setOnClickListener {
             if(defaultPref.toString() == "GET GOOGLEPAY TOKEN"){
                 dataConfig.getGooglePayToken(this, googlePayView)
 
