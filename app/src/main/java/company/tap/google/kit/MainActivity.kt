@@ -87,7 +87,11 @@ class MainActivity : AppCompatActivity() , SDKDelegate {
     }
 
     private fun initializeSDK() {
-        dataConfig.initSDK(this@MainActivity as Context,"sk_test_kovrMB0mupFJXfNZWx6Etg5y","company.tap.goSellSDKExample")
+        settingsManager?.getString("key_test_name", "sk_test_kovrMB0mupFJXfNZWx6Etg5y")?.let {
+            dataConfig.initSDK(this@MainActivity as Context, it,
+                settingsManager?.getString("key_package_name", "company.tap.goSellSDKExample")!!
+            )
+        }
 
     }
 

@@ -58,6 +58,19 @@
         android:summary="key_amount_value"
         android:title="Enter the amount" />
 
+    <EditTextPreference
+        android:defaultValue="company.tap.goSellSDKExample"
+        android:inputType="text"
+        android:key="key_package_name"
+        android:summary="key_package_value"
+        android:title="Enter the package ID" />
+    <EditTextPreference
+        android:defaultValue="sk_test_kovrMB0mupFJXfNZWx6Etg5y"
+        android:inputType="text"
+        android:key="key_test_name"
+        android:summary="key_test_value"
+        android:title="Enter the  Key" />
+
  <PreferenceCategory android:title="GooglePay Button Type">
 
         <ListPreference

@@ -47,19 +47,10 @@ class SettingsActivity : AppCompatActivity() {
             bindPreferenceSummaryToValue(findPreference("allowed_card_auth_key"))
             bindPreferenceSummaryToValue(findPreference("key_payment_networks"))
             bindPreferenceSummaryToValue(findPreference("key_sdkmode"))
-
-
-
+            bindPreferenceSummaryToValue(findPreference("key_package_name"))
             bindPreferenceSummaryToValue(findPreference("key_test_name"))
-            bindPreferenceSummaryToValue(findPreference("key_live_name"))
-            bindPreferenceSummaryToValue(findPreference("key_merchant_id"))
-            bindPreferenceSummaryToValue(findPreference("key_sdk_payment_type"))
-            bindPreferenceSummaryToValue(findPreference("key_sdk_card_type"))
-            bindPreferenceSummaryToValue(findPreference("showImageKey"))
-            bindPreferenceSummaryToValue(findPreference("useShippingEnableKey"))
-            bindPreferenceSummaryToValue(findPreference("enableLoyaltyProgram"))
-            bindPreferenceSummaryToValue(findPreference("showHideHolderName"))
-            bindPreferenceSummaryToValue(findPreference("cardHolderNameEditable"))
+
+
             //  bindPreferenceSummaryToValue(findPreference("cardHolderNameEditable"))
 
         }
@@ -117,16 +108,6 @@ class SettingsActivity : AppCompatActivity() {
                     // update the changed gallery name to summary filed
                     preference.setSummary(stringValue)
                 } else if (preference.getKey().equals("key_test_name")) {
-                    // update the changed gallery name to summary filed
-                    preference.setSummary(stringValue)
-                } else if (preference.getKey().equals("key_live_name")) {
-                    // update the changed gallery name to summary filed
-                    preference.setSummary(stringValue)
-                } else if (preference.getKey().equals("key_merchant_id")) {
-                    // update the changed gallery name to summary filed
-                    preference.setSummary(stringValue)
-                }
-                else if (preference.getKey().equals("key_default_holder_name")) {
                     // update the changed gallery name to summary filed
                     preference.setSummary(stringValue)
                 }
