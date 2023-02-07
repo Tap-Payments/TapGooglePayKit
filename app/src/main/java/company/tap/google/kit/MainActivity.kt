@@ -17,7 +17,7 @@ import company.tap.google.pay.open.DataConfiguration
 import java.math.BigDecimal
 
 class MainActivity : AppCompatActivity() , SDKDelegate {
-    var dataConfig: DataConfiguration = DataConfiguration
+    var dataConfig: DataConfiguration = DataConfiguration //** Required**//
     lateinit var googlePayView: View
     lateinit var googlePayButton: View
    // lateinit var mainView: View
@@ -33,13 +33,10 @@ class MainActivity : AppCompatActivity() , SDKDelegate {
         googlePayView = findViewById(R.id.googlePayView)
        // mainView = googlePayView.rootView.findViewById(R.id.googlePayView)
        googlePayButton = googlePayView.rootView.findViewById(company.tap.google.pay.R.id.gPay)
-
-
         googlePayButton.setOnClickListener {
             dataConfig.startGooglePay(this, googlePayView)
 
         }
-
         initializeSDK()
         configureSDKData()
     }
