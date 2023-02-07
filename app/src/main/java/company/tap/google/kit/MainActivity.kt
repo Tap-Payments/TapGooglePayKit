@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() , SDKDelegate {
 
 
         googlePayButton.setOnClickListener {
-            dataConfig.startGooglePay(this, googlePayView,GooglePayButtonType.NORMAL_GOOGLE_PAY)
+            dataConfig.startGooglePay(this, googlePayView)
 
         }
 

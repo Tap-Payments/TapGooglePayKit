@@ -108,8 +108,9 @@ object  DataConfiguration {
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
-    fun startGooglePay(activity: Activity, googlePayButton: View,googleButtonType:GooglePayButtonType?){
-        GooglePayButton(activity as Context).possiblyShowGooglePayButton(activity,googlePayButton,true,true,googleButtonType)
+   // fun startGooglePay(activity: Activity, googlePayButton: View,googleButtonType:GooglePayButtonType?){
+    fun startGooglePay(activity: Activity, googlePayButton: View){
+        GooglePayButton(activity as Context).possiblyShowGooglePayButton(activity,googlePayButton,true,true)
 
     }
 
