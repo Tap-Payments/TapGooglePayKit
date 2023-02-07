@@ -109,6 +109,21 @@ object SettingsManager {
                 ignoreCase = true
             )
         ) return  GooglePayButtonType.SUBSCRIBE_WITH_GOOGLE_PAY
+        if (trx_mode.equals(
+                GooglePayButtonType.CHECKOUT_WITH_GOOGLE_PAY.name,
+                ignoreCase = true
+            )
+        ) return  GooglePayButtonType.CHECKOUT_WITH_GOOGLE_PAY
+        if (trx_mode.equals(
+                GooglePayButtonType.BOOK_WITH_GOOGLE_PAY.name,
+                ignoreCase = true
+            )
+        ) return  GooglePayButtonType.BOOK_WITH_GOOGLE_PAY
+        if (trx_mode.equals(
+                GooglePayButtonType.ORDER_WITH_GOOGLE_PAY.name,
+                ignoreCase = true
+            )
+        ) return  GooglePayButtonType.ORDER_WITH_GOOGLE_PAY
        return if (trx_mode.equals(
                 GooglePayButtonType.PAY_WITH_GOOGLE_PAY.name,
                 ignoreCase = true

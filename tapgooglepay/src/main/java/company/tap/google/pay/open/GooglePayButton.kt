@@ -55,31 +55,31 @@ import company.tap.google.pay.open.enums.GooglePayButtonType
 
     fun setGooglePayButtonType(__googlePayButtonType: GooglePayButtonType?){
         this.googlePayButtonType= __googlePayButtonType
-        setButtonType()
+        setButtonType(googlePayButtonType)
     }
-    private fun setButtonType(){
-        if(googlePayButtonType?.name == GooglePayButtonType.NORMAL_GOOGLE_PAY.name){
+    private fun setButtonType(_googlePayButtonType:GooglePayButtonType?){
+        if(_googlePayButtonType?.name == GooglePayButtonType.NORMAL_GOOGLE_PAY.name){
             buttonView  = LayoutInflater.from(context).inflate(R.layout.plain_googlepay_button, mainView, false)
             mainView.addView(buttonView)
-        }else if(googlePayButtonType?.name == GooglePayButtonType.BUY_WITH_GOOGLE_PAY.name){
+        }else if(_googlePayButtonType?.name == GooglePayButtonType.BUY_WITH_GOOGLE_PAY.name){
             buttonView = LayoutInflater.from(context).inflate(R.layout.buy_with_google_pay, mainView, false)
             mainView.addView(buttonView)
-        }else if(googlePayButtonType?.name == GooglePayButtonType.DONATE_WITH_GOOGLE_PAY.name){
+        }else if(_googlePayButtonType?.name == GooglePayButtonType.DONATE_WITH_GOOGLE_PAY.name){
             buttonView = LayoutInflater.from(context).inflate(R.layout.donate_with_google_pay, mainView, false)
             mainView.addView(buttonView)
-        }else if(googlePayButtonType?.name == GooglePayButtonType.PAY_WITH_GOOGLE_PAY.name){
+        }else if(_googlePayButtonType?.name == GooglePayButtonType.PAY_WITH_GOOGLE_PAY.name){
             buttonView = LayoutInflater.from(context).inflate(R.layout.pay_with_google_pay, mainView, false)
             mainView.addView(buttonView)
-        }else if(googlePayButtonType?.name == GooglePayButtonType.SUBSCRIBE_WITH_GOOGLE_PAY.name){
+        }else if(_googlePayButtonType?.name == GooglePayButtonType.SUBSCRIBE_WITH_GOOGLE_PAY.name){
             buttonView = LayoutInflater.from(context).inflate(R.layout.subscribe_with_google_pay, mainView, false)
             mainView.addView(buttonView)
-        }else if(googlePayButtonType?.name == GooglePayButtonType.CHECKOUT_WITH_GOOGLE_PAY.name){
+        }else if(_googlePayButtonType?.name == GooglePayButtonType.CHECKOUT_WITH_GOOGLE_PAY.name){
             buttonView = LayoutInflater.from(context).inflate(R.layout.checkout_with_googlepay_button, mainView, false)
             mainView.addView(buttonView)
-        }else if(googlePayButtonType?.name == GooglePayButtonType.ORDER_WITH_GOOGLE_PAY.name){
+        }else if(_googlePayButtonType?.name == GooglePayButtonType.ORDER_WITH_GOOGLE_PAY.name){
             buttonView = LayoutInflater.from(context).inflate(R.layout.order_with_googlepay_button, mainView, false)
             mainView.addView(buttonView)
-        }else if(googlePayButtonType?.name == GooglePayButtonType.BOOK_WITH_GOOGLE_PAY.name){
+        }else if(_googlePayButtonType?.name == GooglePayButtonType.BOOK_WITH_GOOGLE_PAY.name){
             buttonView = LayoutInflater.from(context).inflate(R.layout.book_with_googlepay_button, mainView, false)
             mainView.addView(buttonView)
         }
@@ -121,6 +121,7 @@ import company.tap.google.pay.open.enums.GooglePayButtonType
             } catch (exception: ApiException) {
                 // Process error
                 Log.w("isReadyToPay failed", exception)
+                DataConfiguration.getListener()?.onFailed(exception.toString())
             }
         }
 

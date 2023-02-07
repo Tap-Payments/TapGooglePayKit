@@ -108,6 +108,8 @@ class MainActivity : AppCompatActivity() , SDKDelegate {
     }
 
     override fun onFailed(error:String) {
+        customAlertBox("onFailed",error)
+
         Log.e(TAG, "onFailed:$error")
     }
 
