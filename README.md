@@ -247,11 +247,7 @@ To set it up, add the following line of code somewhere in your project and make 
 	 <td> addSDKDelegate  </td>
 	 <td> pass your activity that implements SdkDelegate interface . you have to override all methods available through this interface </td>
     </tr>
-    <tr>
-	 <td> instantiatePaymentDataSource  </td>
-	 <td> Payment Data Source Object is the main object that is responsible of holding all data required from our backend to return all payment options [ Debit Cards - Credit Cards ] available for this merchant . </td>
-    </tr>
-    <tr>
+      <tr>
    	 <td> setTransactionCurrency  </td>
    	 <td> Set the transaction currency associated to your account. Transaction currency must be of type TapCurrency("currency_iso_code"). i.e new TapCurrency("KWD") </td>
     </tr>
