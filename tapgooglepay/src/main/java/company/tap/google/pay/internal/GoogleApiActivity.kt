@@ -123,7 +123,7 @@ class GoogleApiActivity : Activity() {
                     RESULT_OK -> {
                         val paymentData = data?.let { PaymentData.getFromIntent(it) }
                         if (paymentData != null) {
-                            println("paymentData" + paymentData)
+                            println("paymentData" + paymentData.toJson())
                             handleSuccessCallBack(paymentData)
 
                         } else {
