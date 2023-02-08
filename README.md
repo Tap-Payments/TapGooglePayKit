@@ -176,8 +176,10 @@ SDK Mode is automatically identified in the backend based on the secrete key you
 <a name="configure_sdk_with_required_data"></a>
 ### Configure SDK With Required Data
 
-`tapGoooglePaySDK` should be set up. To set it up, add the following lines of code somewhere in your project and make sure they will be called before any usage of `tapGoooglePaySDK`.
+`tapGooglePay™SDK` should be set up. To set it up, add the following lines of code somewhere in your project and make sure they will be called before any usage of `tapGoooglePaySDK`.
+
 *Kotlin:*
+
 ```kotlin
 
      
@@ -194,7 +196,7 @@ SDK Mode is automatically identified in the backend based on the secrete key you
          */
         configureSDKData()
             
-            
+ ```           
         
 <a name="setup_tapGoooglePaySDK_class_properties_secret_key"></a>
 ### Configure SDK Secret Key and Application ID and SDK Language
@@ -291,19 +293,14 @@ To set it up, add the following line of code somewhere in your project and make 
  private fun configureSDKData() {
    // pass your activity as a session delegate to listen to SDK internal payment process follow
    dataConfig.addSDKDelegate(this) //** Required **
-
-   //  dataConfig.setEnvironmentMode(SDKMode.ENVIRONMENT_TEST)
-   settingsManager?.getSDKMode("key_sdkmode")?.let { dataConfig.setEnvironmentMode(it) } //**Required SDK MODE**/
+   
+   dataConfig.setEnvironmentMode(SDKMode.ENVIRONMENT_TEST) //**Required SDK MODE**/
 
    dataConfig.setGatewayId("tappayments")  //**Required GATEWAY ID**/
 
    dataConfig.setGatewayMerchantID("1124340") //**Required GATEWAY Merchant ID**/
-   settingsManager?.getString("key_amount_name", "23")?.let { BigDecimal(it) }?.let {
-      dataConfig.setAmount(
-         it
-      )
-   } //**Required Amount**/
-   // dataConfig.setAmount(BigDecimal.valueOf(23))
+   
+    dataConfig.setAmount(BigDecimal.valueOf(23))  //**Required Amount**/
 
    settingsManager?.getAllowedMethods("allowed_card_auth_key")
       ?.let { dataConfig.setAllowedCardAuthMethods(it) } //**Required type of auth PAN_ONLY, CRYPTOGRAM , ALL**/
@@ -314,13 +311,7 @@ To set it up, add the following line of code somewhere in your project and make 
 
    settingsManager?.getString("country_code_key","US")?.let { dataConfig.setCountryCode(it) } //**Required Country **/
 
-   //println("settings are"+settingsManager?.getSet("key_payment_networks")) 
-
-//        val SUPPORTED_NETWORKS = mutableListOf<String>(
-//            "AMEX",
-//            "MASTERCARD",
-//            "VISA")
-
+  
    dataConfig.setAllowedCardNetworks(settingsManager?.getSet("key_payment_networks")?.toMutableList()) //**Required Payment Networks **/
 }
  ```
@@ -332,8 +323,8 @@ To set it up, add the following line of code somewhere in your project and make 
 1. SessionDelegate
 ```kotlin
   fun onGooglePayToken(token:String)
-fun onTapToken(token: Token)
-fun onFailed(error:String)
+  fun onTapToken(token: Token)
+  fun onFailed(error:String)
 ```
 
 <a name="sdk_open_enums"></a>
@@ -348,6 +339,7 @@ enum class AllowedMethods {
 ```
 
 2.SdkMode
+Setup the mode you want to test in
 ```kotlin
 enum class SDKMode {
    /**
@@ -361,6 +353,28 @@ enum class SDKMode {
     */
 
    ENVIRONMENT_PRODUCTION
+}
+```
+3.GooglePayButtonType
+Choose the type of button you wish to use in your app
+
+```kotlin
+enum class GooglePayButtonType {
+   BUY_WITH_GOOGLE_PAY,
+
+   DONATE_WITH_GOOGLE_PAY,
+
+   NORMAL_GOOGLE_PAY,
+
+   PAY_WITH_GOOGLE_PAY,
+
+   SUBSCRIBE_WITH_GOOGLE_PAY,
+
+   CHECKOUT_WITH_GOOGLE_PAY,
+
+   ORDER_WITH_GOOGLE_PAY,
+
+   BOOK_WITH_GOOGLE_PAY
 }
 ```
 
