@@ -1,5 +1,5 @@
-# TapGooglePayKit
-A standalone kit for handling google pay
+# TapGooglePay™Kit
+A standalone kit for handling Google Pay™
 
 [![Platform](https://img.shields.io/badge/platform-Android-inactive.svg?style=flat)](https://github.com/Tap-Payments/TapGooglePayKit/)
 [![Documentation](https://img.shields.io/badge/documentation-100%25-bright%20green.svg)](https://github.com/Tap-Payments/TapGooglePayKit/)
@@ -16,8 +16,8 @@ https://user-images.githubusercontent.com/57221514/217261036-33b3367c-2d60-49f2-
     2. [Installation with jitpack](#installation_with_jitpack)
 
 3. [Setup](#setup)
-    1. [TapGooglePayKit Class Properties](#setup_tapgoogle_pay_sdk_class_properties_secret_key)
-    2. [TapGooglePayKit Button](#setup_tapgoogle_pay_button)
+    1. [TapGooglePay™Kit Class Properties](#setup_tapgoogle_pay_sdk_class_properties_secret_key)
+    2. [TapGooglePay™Kit Button](#setup_tapgoogle_pay_button)
 4. [Usage](#usage)
     1. [Configure SDK with Required Data](#configure_sdk_with_required_data)
     2. [Configure SDK Look and Feel](#configure_sdk_look_and_feel)
@@ -62,7 +62,7 @@ To use the SDK the following requirements must be met:
 ---
 [JitPack](https://jitpack.io/) is a novel package repository for JVM and Android projects. It builds Git projects on demand and provides you with ready-to-use artifacts (jar, aar).
 
-To integrate goSellSDK into your project add it in your **root** `build.gradle` at the end of repositories:
+To integrate tapGooglePay™SDK into your project add it in your **root** `build.gradle` at the end of repositories:
 ```java
 	allprojects {
 		repositories {
@@ -80,13 +80,13 @@ Step 2. Add the dependency
 <a name="setup"></a>
 # Setup
 ---
-First of all, `tapGoooglePaySDK` should be set up. In this section secret key and application ID are required.
+First of all, `tapGooglePay™SDK` should be set up. In this section secret key and application ID are required.
 
 <a name="setup_gosellsdk_class_properties"></a>
-## tapGoooglePaySDK Class Properties
-First of all, `tapGoooglePaySDK` should be set up. To set it up, add the following lines of code somewhere in your project and make sure they will be called before any usage of `tapGoooglePaySDK`.
+## tapGooglePay™SDK Class Properties
+First of all, `tapGooglePay™SDK` should be set up. To set it up, add the following lines of code somewhere in your project and make sure they will be called before any usage of `tapGoooglePaySDK`.
 
-Below is the list of properties in checkOutSDK class you can manipulate. Make sure you do the setup before any usage of the SDK.
+Below is the list of properties in tapGooglePaySDK class you can manipulate. Make sure you do the setup before any usage of the SDK.
 
 <a name="setup_tapgoogle_pay_sdk_class_properties_secret_key"></a>
 ### Secret Key and Application ID
