@@ -103,6 +103,7 @@ Here we need to make a Top level declaration
 var dataConfig: DataConfiguration = DataConfiguration
 ```
 ```kotlin
+
 dataConfig.initSDK(this@MainActivity as Context,"sk_test_kXXXXXXXXXXXXXXXXXXXXXXXX","app_id")
  ```    
 1. **`authToken`** - to authorize your requests.// Secret key (format: "sk_XXXXXXXXXXXXXXXXXXXXXXXX")
@@ -114,6 +115,7 @@ dataConfig.initSDK(this@MainActivity as Context,"sk_test_kXXXXXXXXXXXXXXXXXXXXXX
 Include the Google Pay™ button view inside the xml file as below
 
 *Kotlin*
+
 ```kotlin
         <company.tap.google.pay.open.GooglePayButton
          android:id="@+id/googlePayView"
@@ -126,19 +128,27 @@ Include the Google Pay™ button view inside the xml file as below
 ```
 Then declare it in the class as follows:
 1. In Top level add 
+
 *Kotlin*
+  
    ```kotlin
    lateinit var googlePayView: GooglePayButton
    ```
+
 2. Set the Button Type you prefer from the list of enums we have
+
 *Kotlin*
+  
    ```kotlin
     googlePayView = findViewById(R.id.googlePayView)
     googlePayView.setGooglePayButtonType(GooglePayButtonType.CHECKOUT_WITH_GOOGLE_PAY)
    ```
+
 3. Set The click event for the Google Pay™ view as below:
+
 *Kotlin*
-   ```kotlin
+   
+```kotlin
     googlePayView.buttonView.setOnClickListener {
    Here you choose what you prefer to call getGooglePayToken or getTapToken
             if(defaultPref.toString() == "GET GOOGLEPAY TOKEN"){
