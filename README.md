@@ -312,7 +312,7 @@ To set it up, add the following line of code somewhere in your project and make 
    settingsManager?.getString("country_code_key","US")?.let { dataConfig.setCountryCode(it) } //**Required Country **/
 
   
-   dataConfig.setAllowedCardNetworks(settingsManager?.getSet("key_payment_networks")?.toMutableList()) //**Required Payment Networks **/
+   dataConfig.setAllowedCardNetworks(settingsManager?.getSet("key_payment_networks")?.toMutableList()) //**Required Payment Networks you want google to display for you **/
 }
  ```
 
@@ -331,6 +331,9 @@ To set it up, add the following line of code somewhere in your project and make 
 ## SDK Open ENUMs
 SDK open Enums available for implementation through Merchant Project:
 1. AllowedMethods
+
+Choose your allowed methods like PAN,CRYPTO etc
+
 ```kotlin
 enum class AllowedMethods {
    PAN_ONLY,
@@ -339,7 +342,9 @@ enum class AllowedMethods {
 ```
 
 2.SdkMode
+
 Setup the mode you want to test in
+
 ```kotlin
 enum class SDKMode {
    /**
@@ -356,6 +361,7 @@ enum class SDKMode {
 }
 ```
 3.GooglePayButtonType
+
 Choose the type of button you wish to use in your app
 
 ```kotlin
