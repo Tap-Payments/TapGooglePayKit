@@ -24,9 +24,7 @@
         android:layout_alignParentBottom="true"
         android:enabled="true"
         android:focusable="true"
-
-
-        />
+ />
 
 
 

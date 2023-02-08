@@ -17,6 +17,7 @@ https://user-images.githubusercontent.com/57221514/217261036-33b3367c-2d60-49f2-
 
 3. [Setup](#setup)
     1. [TapGooglePayKit Class Properties](#setup_tapgoogle_pay_sdk_class_properties_secret_key)
+    2. [TapGooglePayKit Button](#setup_tapgoogle_pay_button)
 4. [Usage](#usage)
     1. [Configure SDK with Required Data](#configure_sdk_with_required_data)
     2. [Configure SDK Look and Feel](#configure_sdk_look_and_feel)
@@ -97,12 +98,60 @@ To set it up, add the following line of code somewhere in your project and make 
  dataConfig.initSDK(this@MainActivity as Context,"sk_test_kXXXXXXXXXXXXXXXXXXXXXXXX","app_id");
 ```
 *Kotlin:*
+Here we need to make a Top level declaration
 ```kotlin
 var dataConfig: DataConfiguration = DataConfiguration
+```
+```kotlin
 dataConfig.initSDK(this@MainActivity as Context,"sk_test_kXXXXXXXXXXXXXXXXXXXXXXXX","app_id")
  ```    
 1. **`authToken`** - to authorize your requests.// Secret key (format: "sk_XXXXXXXXXXXXXXXXXXXXXXXX")
 2. **`app_id`** - replace it using your application ID "Application main package".
+
+<a name="setup_tapgoogle_pay_button"></a>
+### SetUp Google Pay™ Button
+
+Include the Google Pay™ button view inside the xml file as below
+
+*Kotlin*
+```kotlin
+        <company.tap.google.pay.open.GooglePayButton
+         android:id="@+id/googlePayView"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_alignParentBottom="true"
+        android:enabled="true"
+        android:focusable="true"
+/>
+```
+Then declare it in the class as follows:
+1. In Top level add 
+*Kotlin*
+   ```kotlin
+   lateinit var googlePayView: GooglePayButton
+   ```
+2. Set the Button Type you prefer from the list of enums we have
+*Kotlin*
+   ```kotlin
+    googlePayView = findViewById(R.id.googlePayView)
+    googlePayView.setGooglePayButtonType(GooglePayButtonType.CHECKOUT_WITH_GOOGLE_PAY)
+   ```
+3. Set The click event for the Google Pay™ view as below:
+*Kotlin*
+   ```kotlin
+    googlePayView.buttonView.setOnClickListener {
+   Here you choose what you prefer to call getGooglePayToken or getTapToken
+            if(defaultPref.toString() == "GET GOOGLEPAY TOKEN"){
+                dataConfig.getGooglePayToken(this, googlePayView)
+
+            }else if(defaultPref.toString() == "GET TAP TOKEN"){
+                dataConfig.getTapToken(this, googlePayView)
+            }
+
+        }
+   ``` 
+
+
 
 <a name="setup_tap_google_pay_sdk_class_properties_mode"></a>
 ### Mode
