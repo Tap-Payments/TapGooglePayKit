@@ -14,11 +14,13 @@
     <string-array name="pref_array_currency_code_entries">
         <item>USD</item>
         <item>AED</item>
+        <item>KWD</item>
     </string-array>
 
     <string-array name="pref_array_currency_code_values">
         <item>USD</item>
         <item>AED</item>
+        <item>KWD</item>
     </string-array>
 
     <string-array name="pref_array_sdk_payment_network_entries">
