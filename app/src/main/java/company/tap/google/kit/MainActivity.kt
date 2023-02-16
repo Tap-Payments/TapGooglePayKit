@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() , SDKDelegate {
     private  val TAG = "MainActivity"
     private var settingsManager: SettingsManager? = null
 
-    private DataConfiguration dataConfig = new DataConfiguration()
+   
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
