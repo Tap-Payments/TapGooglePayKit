@@ -85,31 +85,6 @@ Step 2. Add the dependency
 First of all, `tapGooglePay™SDK` should be set up. In this section secret key and application ID are required.
 
 <a name="setup_gosellsdk_class_properties"></a>
-## tapGooglePay™SDK Class Properties
-First of all, `tapGooglePay™SDK` should be set up. To set it up, add the following lines of code somewhere in your project and make sure they will be called before any usage of `tapGoooglePaySDK`.
-
-Below is the list of properties in tapGooglePaySDK class you can manipulate. Make sure you do the setup before any usage of the SDK.
-
-<a name="setup_tapgoogle_pay_sdk_class_properties_secret_key"></a>
-### Secret Key and Application ID
-
-To set it up, add the following line of code somewhere in your project and make sure it will be called before any usage of `tapGoogle Pay™`, otherwise an exception will be thrown. **Required**.
-
-*Java:*
-```java
- tapDataConfig.initSDK(this@MainActivity as Context,"sk_test_kXXXXXXXXXXXXXXXXXXXXXXXX","app_id");
-```
-*Kotlin:*
-Here we need to make a Top level declaration
-```kotlin
-var tapDataConfig: TapDataConfiguration = TapDataConfiguration
-```
-```kotlin
-
-tapDataConfig.initSDK(this@MainActivity as Context,"sk_test_kXXXXXXXXXXXXXXXXXXXXXXXX","app_id")
- ```    
-1. **`authToken`** - to authorize your requests.// Secret key (format: "sk_XXXXXXXXXXXXXXXXXXXXXXXX")
-2. **`app_id`** - replace it using your application ID "Application main package".
 
 <a name="setup_tapgoogle_pay_button"></a>
 ### SetUp Google Pay™ Button
@@ -162,6 +137,31 @@ Then declare it in the class as follows:
 
         }
    ``` 
+## tapGooglePay™SDK Class Properties
+First of all, `tapGooglePay™SDK` should be set up. To set it up, add the following lines of code somewhere in your project and make sure they will be called before any usage of `tapGoooglePaySDK`.
+
+Below is the list of properties in tapGooglePaySDK class you can manipulate. Make sure you do the setup before any usage of the SDK.
+
+<a name="setup_tapgoogle_pay_sdk_class_properties_secret_key"></a>
+### Secret Key and Application ID
+
+To set it up, add the following line of code somewhere in your project and make sure it will be called before any usage of `tapGoogle Pay™`, otherwise an exception will be thrown. **Required**.
+
+*Java:*
+```java
+ tapDataConfig.initSDK(this@MainActivity as Context,"sk_test_kXXXXXXXXXXXXXXXXXXXXXXXX","app_id");
+```
+*Kotlin:*
+Here we need to make a Top level declaration
+```kotlin
+var tapDataConfig: TapDataConfiguration = TapDataConfiguration
+```
+```kotlin
+
+tapDataConfig.initSDK(this@MainActivity as Context,"sk_test_kXXXXXXXXXXXXXXXXXXXXXXXX","app_id")
+ ```    
+1. **`authToken`** - to authorize your requests.// Secret key (format: "sk_XXXXXXXXXXXXXXXXXXXXXXXX")
+2. **`app_id`** - replace it using your application ID "Application main package".
 
 
 <a name="usage"></a>
@@ -195,7 +195,58 @@ Then declare it in the class as follows:
         configureTapData()
             
  ```           
-        
+## Configure Google Pay™ Data
+**Google Pay™ DATA CONFIGURATION** is required to start a transaction with Google Pay™
+### Properties
+
+<table style="text-align:center">
+    <th colspan=1>Property</th>
+    <th colspan=1>Type</th>
+      <tr>
+   	 <td> environment  </td>
+   	 <td> The Google Pay™ environment to target.Note: in the "TEST" environment, fake payment credentials are returned.
+      In order to use the "PRODUCTION" environment, your App must be registered with Google Pay. This can be done through the Google Pay Business Console.
+     </td>
+    </tr>
+      <tr>
+	 <td> authentication </td>
+	 <td> Fields supported to authenticate a card transaction.
+      1. PAN_ONLY: This authentication method is associated with payment cards stored on file with the user's Google Account. Returned payment data includes personal account number (PAN) with the expiration month and the expiration year.
+      2. CRYPTOGRAM_3DS: This authentication method is associated with cards stored as Android device tokens. Returned payment data includes a 3-D Secure (3DS) cryptogram generated on the device. </td>
+    </tr>
+    <tr>
+	 <td> supportedNetworks </td>
+	 <td> One or more card networks that you support, also supported by the Google Pay™ API.
+      AMEX ,DISCOVER ,INTERAC ,JCB ,MASTERCARD ,VISA</td>
+    </tr>
+    <tr>
+  	 <td> amount </td>
+  	 <td> Total monetary value of the transaction with an optional decimal precision of two decimal places.</td>
+  	</tr>
+  	<tr>
+  	 <td> label </td>
+  	 <td> Custom label for the total price within the display items.</td>
+  	</tr>
+  	<tr>
+  	 <td> currency </td>
+  	 <td> The ISO 4217 alphabetic currency code. </td>
+  	</tr>
+
+
+</table>
+
+
+**Configure Google Pay™-DATA Example**
+
+*Kotlin:*
+```kotlin
+ private fun configureGooglePayData() {
+   googlePayView.setGooglePayData(GooglePayEnviroment.ENVIRONMENT_TEST,
+      mutableListOf("PAN_ONLY", "CRYPTOGRAM_3DS"), mutableListOf("AMEX", "DISCOVER", "JCB", "MASTERCARD", "VISA"),"Total",
+      BigDecimal(2),"KWD")
+}
+ ```
+
 <a name="setup_tapGoooglePaySDK_class_properties_secret_key"></a>
 ### Configure SDK Secret Key and Application ID and SDK Language
 
@@ -253,57 +304,7 @@ To set it up, add the following line of code somewhere in your project and make 
 
 }
  ```
-## Configure Google Pay™ Data
-**Google Pay™ DATA CONFIGURATION** is required to start a transaction with Google Pay™
-### Properties
 
-<table style="text-align:center">
-    <th colspan=1>Property</th>
-    <th colspan=1>Type</th>
-      <tr>
-   	 <td> environment  </td>
-   	 <td> The Google Pay™ environment to target.Note: in the "TEST" environment, fake payment credentials are returned.
-      In order to use the "PRODUCTION" environment, your App must be registered with Google Pay. This can be done through the Google Pay Business Console.
-     </td>
-    </tr>
-      <tr>
-	 <td> authentication </td>
-	 <td> Fields supported to authenticate a card transaction.
-      1. PAN_ONLY: This authentication method is associated with payment cards stored on file with the user's Google Account. Returned payment data includes personal account number (PAN) with the expiration month and the expiration year.
-      2. CRYPTOGRAM_3DS: This authentication method is associated with cards stored as Android device tokens. Returned payment data includes a 3-D Secure (3DS) cryptogram generated on the device. </td>
-    </tr>
-    <tr>
-	 <td> supportedNetworks </td>
-	 <td> One or more card networks that you support, also supported by the Google Pay™ API.
-      AMEX ,DISCOVER ,INTERAC ,JCB ,MASTERCARD ,VISA</td>
-    </tr>
-    <tr>
-  	 <td> amount </td>
-  	 <td> Total monetary value of the transaction with an optional decimal precision of two decimal places.</td>
-  	</tr>
-  	<tr>
-  	 <td> label </td>
-  	 <td> Custom label for the total price within the display items.</td>
-  	</tr>
-  	<tr>
-  	 <td> currency </td>
-  	 <td> The ISO 4217 alphabetic currency code. </td>
-  	</tr>
-  	
-
-</table>
-
-
-**Configure Google Pay™-DATA Example**
-
-*Kotlin:*
-```kotlin
- private fun configureGooglePayData() {
-   googlePayView.setGooglePayData(GooglePayEnviroment.ENVIRONMENT_TEST,
-      mutableListOf("PAN_ONLY", "CRYPTOGRAM_3DS"), mutableListOf("AMEX", "DISCOVER", "JCB", "MASTERCARD", "VISA"),"Total",
-      BigDecimal(2),"KWD")
-}
- ```
 
 <a name="sdk_open_interfaces"></a>
 ## SDK Open Interfaces
