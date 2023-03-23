@@ -97,16 +97,16 @@ To set it up, add the following line of code somewhere in your project and make 
 
 *Java:*
 ```java
- dataConfig.initSDK(this@MainActivity as Context,"sk_test_kXXXXXXXXXXXXXXXXXXXXXXXX","app_id");
+ tapDataConfig.initSDK(this@MainActivity as Context,"sk_test_kXXXXXXXXXXXXXXXXXXXXXXXX","app_id");
 ```
 *Kotlin:*
 Here we need to make a Top level declaration
 ```kotlin
-var dataConfig: DataConfiguration = DataConfiguration
+var tapDataConfig: TapDataConfiguration = TapDataConfiguration
 ```
 ```kotlin
 
-dataConfig.initSDK(this@MainActivity as Context,"sk_test_kXXXXXXXXXXXXXXXXXXXXXXXX","app_id")
+tapDataConfig.initSDK(this@MainActivity as Context,"sk_test_kXXXXXXXXXXXXXXXXXXXXXXXX","app_id")
  ```    
 1. **`authToken`** - to authorize your requests.// Secret key (format: "sk_XXXXXXXXXXXXXXXXXXXXXXXX")
 2. **`app_id`** - replace it using your application ID "Application main package".
@@ -154,10 +154,10 @@ Then declare it in the class as follows:
     googlePayView.buttonView.setOnClickListener {
    Here you choose what you prefer to call getGooglePayToken or getTapToken
             if(defaultPref.toString() == "GET GOOGLEPAY TOKEN"){
-                dataConfig.getGooglePayToken(this, googlePayView)
+               tapDataConfig.getGooglePayToken(this, googlePayView)
 
             }else if(defaultPref.toString() == "GET TAP TOKEN"){
-                dataConfig.getTapToken(this, googlePayView)
+               tapDataConfig.getTapToken(this, googlePayView)
             }
 
         }
