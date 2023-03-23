@@ -167,13 +167,14 @@ import java.math.BigDecimal
     }
 
     fun setGooglePayData(environment: GooglePayEnviroment, authentication:MutableList<String>?, supportedNetworks:MutableList<String>?,
-                         amount:BigDecimal, currency: String,country:String){
+                         label:String,
+                         amount:BigDecimal, currency: String){
         paymentDataSource?.setEnvironmentMode(environment)
         paymentDataSource?.setAllowedCardAuthMethods(authentication)
         paymentDataSource?.setAllowedCardNetworks(supportedNetworks)
         paymentDataSource?.setAmount(amount)
         paymentDataSource?.setTransactionCurrency(currency)
-        paymentDataSource?.setCountryCode(country)
+
 
 
     }

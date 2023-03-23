@@ -121,8 +121,9 @@ object PaymentsUtil {
         return JSONObject().apply {
             put("totalPrice", price)
             put("totalPriceStatus", "FINAL")
-            put("countryCode", PaymentDataSource.getCountryCode())
             put("currencyCode", PaymentDataSource.getCurrency())
+            if(PaymentDataSource.getCountryCode().isNotEmpty())
+            put("countryCode", PaymentDataSource.getCountryCode())
         }
     }
     /**

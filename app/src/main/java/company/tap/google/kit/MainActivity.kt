@@ -56,9 +56,8 @@ class MainActivity : AppCompatActivity() , SDKDelegate {
 
     private fun configureGooglePayData() {
         googlePayView.setGooglePayData(GooglePayEnviroment.ENVIRONMENT_TEST,
-            mutableListOf("PAN_ONLY", "CRYPTOGRAM_3DS"), mutableListOf("AMEX", "DISCOVER", "JCB", "MASTERCARD", "VISA"),
-        BigDecimal(2),"KWD","KW"
-        )
+            mutableListOf("PAN_ONLY", "CRYPTOGRAM_3DS"), mutableListOf("AMEX", "DISCOVER", "JCB", "MASTERCARD", "VISA"),"Total",
+        BigDecimal(2),"KWD")
     }
 
     private fun configureTapData() {

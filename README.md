@@ -193,7 +193,7 @@ SDK Mode is automatically identified in the backend based on the secrete key you
             initializeSDK()
         /**
          * Required step.
-         * Configure GooglePay Data of your choice.
+         * Configure Google Pay™ Data of your choice.
          */
         configureGooglePayData()
          /**
@@ -225,8 +225,8 @@ To set it up, add the following line of code somewhere in your project and make 
 
 
 <a name="configure_sdk_Session"></a>
-## Configure TAPData
-**DATACONFIGURATION** is the main interface for  library from you application
+## Configure TAP Data
+**DATA CONFIGURATION** is the main interface for  library from you application
 ### Properties
 
 <table style="text-align:center">
@@ -302,15 +302,55 @@ To set it up, add the following line of code somewhere in your project and make 
 
 }
  ```
+## Configure Google Pay™ Data
+**Google Pay™ DATA CONFIGURATION** is required to start a transaction with Google Pay™
+### Properties
+
+<table style="text-align:center">
+    <th colspan=1>Property</th>
+    <th colspan=1>Type</th>
+      <tr>
+   	 <td> environment  </td>
+   	 <td> The Google Pay environment to target.Note: in the "TEST" environment, fake payment credentials are returned.
+      In order to use the "PRODUCTION" environment, your App must be registered with Google Pay. This can be done through the Google Pay Business Console.
+     </td>
+    </tr>
+      <tr>
+	 <td> authentication </td>
+	 <td> Fields supported to authenticate a card transaction.
+PAN_ONLY: This authentication method is associated with payment cards stored on file with the user's Google Account. Returned payment data includes personal account number (PAN) with the expiration month and the expiration year.
+CRYPTOGRAM_3DS: This authentication method is associated with cards stored as Android device tokens. Returned payment data includes a 3-D Secure (3DS) cryptogram generated on the device. </td>
+    </tr>
+    <tr>
+	 <td> supportedNetworks </td>
+	 <td> One or more card networks that you support, also supported by the Google Pay API.
+      AMEX ,DISCOVER ,INTERAC ,JCB ,MASTERCARD ,VISA</td>
+    </tr>
+    <tr>
+  	 <td> amount </td>
+  	 <td> Total monetary value of the transaction with an optional decimal precision of two decimal places.</td>
+  	</tr>
+  	<tr>
+  	 <td> label </td>
+  	 <td> Custom label for the total price within the display items.</td>
+  	</tr>
+  	<tr>
+  	 <td> currency </td>
+  	 <td> The ISO 4217 alphabetic currency code. </td>
+  	</tr>
+  	
+
+</table>
+
+
 **Configure GooglePay-DATA Example**
 
 *Kotlin:*
 ```kotlin
-  private fun configureGooglePayData() {
+ private fun configureGooglePayData() {
    googlePayView.setGooglePayData(GooglePayEnviroment.ENVIRONMENT_TEST,
-      mutableListOf("PAN_ONLY", "CRYPTOGRAM_3DS"), mutableListOf("AMEX", "DISCOVER", "JCB", "MASTERCARD", "VISA"),
-      BigDecimal(2),"KWD","KW"
-   )
+      mutableListOf("PAN_ONLY", "CRYPTOGRAM_3DS"), mutableListOf("AMEX", "DISCOVER", "JCB", "MASTERCARD", "VISA"),"Total",
+      BigDecimal(2),"KWD")
 }
  ```
 
