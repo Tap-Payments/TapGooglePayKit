@@ -6,7 +6,6 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import company.tap.google.pay.internal.PaymentDataSource
 import company.tap.google.pay.internal.api.ApiService
-import company.tap.google.pay.open.enums.Authentication
 import company.tap.google.pay.open.enums.GooglePayEnviroment
 import company.tap.tapnetworkkit.connection.NetworkApp
 import java.math.BigDecimal
@@ -34,26 +33,7 @@ object  TapDataConfiguration {
     fun getListener(): SDKDelegate? {
         return sdkDelegate
     }
-    /**
-     * set amount  The total amount you want to collect
-     */
-    fun setAmount(amount: BigDecimal) {
-        println("amount ... $amount")
-        paymentDataSource?.setAmount(amount)
-    }
 
-    /**
-     * set transaction currency
-     *
-     * @param transactionCurrency the tap currency
-     */
-    fun setTransactionCurrency(transactionCurrency: String) {
-        paymentDataSource?.setTransactionCurrency(transactionCurrency)
-    }
-    /// Indicates the mode the merchant wants to run the sdk with. Default is sandbox mode
-    fun setEnvironmentMode(googlePayEnviroment: GooglePayEnviroment) {
-        paymentDataSource?.setEnvironmentMode(googlePayEnviroment)
-    }
     /**
      * set gatewayId
      *
@@ -71,18 +51,7 @@ object  TapDataConfiguration {
     fun setGatewayMerchantID(gatewayMerchantId: String) {
         paymentDataSource?.setGatewayMerchantId(gatewayMerchantId)
     }
-   /// The payment networks you  want to limit the payment to default [.Amex,.Visa,.Mada,.MasterCard]
-    fun setAllowedCardNetworks(allowedCardNetworks: MutableList<String>?) {
-        paymentDataSource?.setAllowedCardNetworks(allowedCardNetworks)
-    }
-   // Defines type of authentication you want PAN_ONLY, CRYPTOGRAM_3DS, ALL
-    fun setAllowedCardAuthMethods(authentication: MutableList<String>) {
-        paymentDataSource?.setAllowedCardAuthMethods(authentication)
-    }
-/// - Parameter countryCode: The country code where the user transacts default .AED
-    fun setCountryCode(countryCode: String) {
-        paymentDataSource?.setCountryCode(countryCode)
-    }
+
     /// Inidcates the tap provided keys for this merchant to use for his transactions. If not set, any transaction will fail. Please if you didn't get a tap key yet, refer to https://www.tap.company/en/sell
     fun initSDK(context:Context,secretKeys :String , packageID: String){
         initNetworkCallOfKit(context,secretKeys,packageID)

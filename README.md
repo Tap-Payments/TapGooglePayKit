@@ -12,8 +12,7 @@ https://user-images.githubusercontent.com/57221514/217261036-33b3367c-2d60-49f2-
 ---
 1. [Requirements](#requirements)
 2. [Installation](#installation)
-    1. [Include TapGooglePayKit library as a dependency module in your project](#include_library_to_code_locally)
-    2. [Installation with jitpack](#installation_with_jitpack)
+   [Installation with jitpack](#installation_with_jitpack)
 
 3. [Setup](#setup)
     1. [TapGooglePay™Kit Class Properties](#setup_tapgoogle_pay_sdk_class_properties_secret_key)
@@ -44,20 +43,6 @@ To use the SDK the following requirements must be met:
 
 <a name="installation"></a>
 <a name="include_library_to_code_locally"></a>
-### Include tapGoogle Pay™ library as a dependency module in your project
----
-1. Clone tapGoogle Pay™ library from Tap repository
-   ```
-       https://github.com/Tap-Payments/TapGooglePayKit
-    ```
-2. Add goSellSDK library to your project settings.gradle file as following
-    ```java
-        include ':library', ':YourAppName'
-    ```
-3. Setup your project to include checkout as a dependency Module.
-    1. File -> Project Structure -> Modules -> << your project name >>
-    2. Dependencies -> click on **+** icon in the screen bottom -> add Module Dependency
-    3. select checkout library
 
 <a name="installation_with_jitpack"></a>
 ### Installation with JitPack

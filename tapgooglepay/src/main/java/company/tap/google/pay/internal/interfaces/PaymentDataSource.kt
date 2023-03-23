@@ -1,7 +1,6 @@
 package company.tap.google.pay.internal.interfaces
 
 import androidx.annotation.RestrictTo
-import company.tap.google.pay.open.enums.Authentication
 import company.tap.google.pay.open.enums.GooglePayEnviroment
 import java.math.BigDecimal
 @RestrictTo(RestrictTo.Scope.LIBRARY)
@@ -23,6 +22,6 @@ interface PaymentDataSource {
 
     fun getGatewayMerchantId(): String
 
-    fun getCountryCode(): String
+    fun getCountryCode(): String?
 
 }

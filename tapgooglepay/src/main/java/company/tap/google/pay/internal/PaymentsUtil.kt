@@ -5,7 +5,6 @@ import androidx.annotation.RestrictTo
 import com.google.android.gms.wallet.PaymentsClient
 import com.google.android.gms.wallet.Wallet
 import com.google.android.gms.wallet.WalletConstants
-import company.tap.google.pay.open.enums.Authentication
 import company.tap.google.pay.open.enums.GooglePayEnviroment
 import org.json.JSONArray
 import org.json.JSONException
@@ -50,12 +49,8 @@ object PaymentsUtil {
     private fun baseCardPaymentMethod(): JSONObject {
         var  jsonArray :JSONArray ?= null
         return JSONObject().apply {
-            if(PaymentDataSource.getAllowedCardMethod().toString()==Authentication.ALL.name){
-              jsonArray = JSONArray  (Arrays.asList("PAN_ONLY", "CRYPTOGRAM_3DS"))
-            }else {
-                jsonArray = JSONArray(PaymentDataSource.getAllowedCardMethod())
-            }
 
+            jsonArray = JSONArray(PaymentDataSource.getAllowedCardMethod())
             println("PaymentDataSource.getAllowedNetworks()"+PaymentDataSource.getAllowedNetworks())
             val parameters = JSONObject().apply {
                 put("allowedAuthMethods", jsonArray)

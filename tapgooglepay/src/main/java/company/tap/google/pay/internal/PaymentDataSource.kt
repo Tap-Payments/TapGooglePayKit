@@ -1,7 +1,6 @@
 package company.tap.google.pay.internal
 
 import androidx.annotation.RestrictTo
-import company.tap.google.pay.open.enums.Authentication
 import company.tap.google.pay.open.enums.GooglePayEnviroment
 import java.math.BigDecimal
 @RestrictTo(RestrictTo.Scope.LIBRARY)
@@ -84,6 +83,8 @@ object PaymentDataSource : company.tap.google.pay.internal.interfaces.PaymentDat
     }
 
     override fun getCountryCode(): String {
+        if(::countryCode.isInitialized)
        return countryCode
+        else return ""
     }
 }

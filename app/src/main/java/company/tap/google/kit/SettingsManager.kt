@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
-import company.tap.google.pay.open.enums.Authentication
 import company.tap.google.pay.open.enums.GooglePayButtonType
 import company.tap.google.pay.open.enums.GooglePayEnviroment
 

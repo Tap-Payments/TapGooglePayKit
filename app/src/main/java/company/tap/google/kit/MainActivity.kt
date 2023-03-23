@@ -14,14 +14,13 @@ import androidx.appcompat.app.AppCompatActivity
 import company.tap.google.pay.internal.api.responses.Token
 import company.tap.google.pay.open.TapDataConfiguration
 import company.tap.google.pay.open.GooglePayButton
-import company.tap.google.pay.open.GooglePayData
 import company.tap.google.pay.open.SDKDelegate
 import company.tap.google.pay.open.enums.GooglePayEnviroment
 import java.math.BigDecimal
 
 class MainActivity : AppCompatActivity() , SDKDelegate {
     var tapDataConfig: TapDataConfiguration = TapDataConfiguration //** Required**//
-    var googlePaymentData:GooglePayData = GooglePayData //** Required**//
+
     lateinit var googlePayView: GooglePayButton
     lateinit var googlePayButton: View
     private  val TAG = "MainActivity"
