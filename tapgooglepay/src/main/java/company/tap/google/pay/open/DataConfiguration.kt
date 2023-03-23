@@ -96,7 +96,7 @@ object  DataConfiguration {
             packageID,
             ApiService.BASE_URL,
             //   sdkIdentifier,BuildConfig.EncryptAPIKEY)
-            "NATIVE",false)
+            "NATIVE",true)
     }
 
     @RequiresApi(Build.VERSION_CODES.N)

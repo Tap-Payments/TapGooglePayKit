@@ -107,6 +107,7 @@ class MainActivity : AppCompatActivity() , SDKDelegate {
 
     override fun onTapToken(token: Token) {
         customAlertBox("onTapToken",token.id.toString())
+        println("onTapToken"+token.id)
        // Toast.makeText(this, "onTapToken"+token.id, Toast.LENGTH_SHORT).show()
     }
 
