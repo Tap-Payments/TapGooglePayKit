@@ -227,22 +227,6 @@ To set it up, add the following line of code somewhere in your project and make 
 <a name="configure_sdk_Session"></a>
 ## Configure TAP Data
 **DATA CONFIGURATION** is the main interface for  library from you application
-### Properties
-
-<table style="text-align:center">
-    <th colspan=1>Property</th>
-    <th colspan=1>Type</th>
-    <th rowspan=1>Description</th>
-
-
-   <tr>
-	<td> sdkDelegate  </td>
-	<td> Activity </td>
-	<td> Activity. it is used to notify Merchant application with all SDK Events </td>
-   <tr>
-
-
-</table>
 
 ### Methods
 
@@ -253,18 +237,6 @@ To set it up, add the following line of code somewhere in your project and make 
 	 <td> addSDKDelegate  </td>
 	 <td> pass your activity that implements SdkDelegate interface . you have to override all methods available through this interface </td>
     </tr>
-      <tr>
-   	 <td> setTransactionCurrency  </td>
-   	 <td> Set the transaction currency associated to your account. Transaction currency must be of type TapCurrency("currency_iso_code"). i.e new TapCurrency("KWD") </td>
-    </tr>
-    <tr>
-	 <td> setEnvironmentMode  </td>
-	 <td> SDK offers different environment modes such as [ TEST - PRODUCTION]   </td>
-    </tr>
-    <tr>
-	 <td> setAmount </td>
-	 <td> Set Total Amount. Amount value must be of type BigDecimal i.e new BigDecimal(40) </td>
-    </tr>
     <tr>
 	 <td> setGatewayId </td>
 	 <td> Gateway id required to use TAP as PSP . Here it is tappayments</td>
@@ -273,19 +245,6 @@ To set it up, add the following line of code somewhere in your project and make 
   	 <td> setGatewayMerchantID </td>
   	 <td> MerchantID available with TAP</td>
   	</tr>
-  	<tr>
-  	 <td> setAllowedCardAuthMethods </td>
-  	 <td> ALLOWED CARD auth methods here it is PAN_ONLY, CRYPTOGRAM_3DS , ALL</td>
-  	</tr>
-  	<tr>
-  	 <td> setCountryCode </td>
-  	 <td> Set country code. </td>
-  	</tr>
-  	<tr>
-  	 <td> setAllowedCardNetworks </td>
-  	 <td> CARD networks like VISA, AMEX, JCB ,MADA. </td>
-  	</tr>
-  	
 </table>
 
 **Configure TAP-DATA Example** 
