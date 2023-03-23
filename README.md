@@ -137,35 +137,9 @@ Then declare it in the class as follows:
 
         }
    ``` 
-## tapGooglePay™SDK Class Properties
-First of all, `tapGooglePay™SDK` should be set up. To set it up, add the following lines of code somewhere in your project and make sure they will be called before any usage of `tapGoooglePaySDK`.
-
-Below is the list of properties in tapGooglePaySDK class you can manipulate. Make sure you do the setup before any usage of the SDK.
-
-<a name="setup_tapgoogle_pay_sdk_class_properties_secret_key"></a>
-### Secret Key and Application ID
-
-To set it up, add the following line of code somewhere in your project and make sure it will be called before any usage of `tapGoogle Pay™`, otherwise an exception will be thrown. **Required**.
-
-*Java:*
-```java
- tapDataConfig.initSDK(this@MainActivity as Context,"sk_test_kXXXXXXXXXXXXXXXXXXXXXXXX","app_id");
-```
-*Kotlin:*
-Here we need to make a Top level declaration
-```kotlin
-var tapDataConfig: TapDataConfiguration = TapDataConfiguration
-```
-```kotlin
-
-tapDataConfig.initSDK(this@MainActivity as Context,"sk_test_kXXXXXXXXXXXXXXXXXXXXXXXX","app_id")
- ```    
-1. **`authToken`** - to authorize your requests.// Secret key (format: "sk_XXXXXXXXXXXXXXXXXXXXXXXX")
-2. **`app_id`** - replace it using your application ID "Application main package".
-
 
 <a name="usage"></a>
-#Usage
+### Usage
 ---
 <a name="configure_sdk_with_required_data"></a>
 ### Configure SDK With Required Data
@@ -247,25 +221,31 @@ tapDataConfig.initSDK(this@MainActivity as Context,"sk_test_kXXXXXXXXXXXXXXXXXXX
 }
  ```
 
-<a name="setup_tapGoooglePaySDK_class_properties_secret_key"></a>
-### Configure SDK Secret Key and Application ID and SDK Language
+## tapGooglePay™SDK Class Properties
+First of all, `tapGooglePay™SDK` should be set up. To set it up, add the following lines of code somewhere in your project and make sure they will be called before any usage of `tapGoooglePaySDK`.
 
-To set it up, add the following line of code somewhere in your project and make sure it will be called before any usage of `tapGoooglePaySDK`, otherwise an exception will be thrown. **Required**.
+Below is the list of properties in tapGooglePaySDK class you can manipulate. Make sure you do the setup before any usage of the SDK.
 
-*Kotlin:*
-```kotlin
-        /**
-         * Required step.
-         * Configure SDK with your Secret API key and App Bundle name registered with tap company.
-         */
-        private fun initializeSDK(){
-   tapDataConfig.initSDK(this@MainActivity as Context,"sk_test_kXXXXXXXXXXXXXXXXXXXXXXXX","app_id")
+<a name="setup_tapgoogle_pay_sdk_class_properties_secret_key"></a>
+### Secret Key and Application ID
 
-        }
+To set it up, add the following line of code somewhere in your project and make sure it will be called before any usage of `tapGoogle Pay™`, otherwise an exception will be thrown. **Required**.
+
+*Java:*
+```java
+ tapDataConfig.initSDK(this@MainActivity as Context,"sk_test_kXXXXXXXXXXXXXXXXXXXXXXXX","app_id");
 ```
+*Kotlin:*
+Here we need to make a Top level declaration
+```kotlin
+var tapDataConfig: TapDataConfiguration = TapDataConfiguration
+```
+```kotlin
+
+tapDataConfig.initSDK(this@MainActivity as Context,"sk_test_kXXXXXXXXXXXXXXXXXXXXXXXX","app_id")
+ ```    
 1. **`authToken`** - to authorize your requests.// Secret key (format: "sk_XXXXXXXXXXXXXXXXXXXXXXXX")
 2. **`app_id`** - replace it using your application ID "Application main package".
-
 
 <a name="configure_sdk_Session"></a>
 ## Configure TAP Data
