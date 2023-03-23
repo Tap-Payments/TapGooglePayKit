@@ -46,7 +46,7 @@ To use the SDK the following requirements must be met:
 <a name="include_library_to_code_locally"></a>
 ### Include tapGoogle Pay™ library as a dependency module in your project
 ---
-1. Clone checkoutSDK library from Tap repository
+1. Clone tapGoogle Pay™ library from Tap repository
    ```
        https://github.com/Tap-Payments/TapGooglePayKit
     ```
