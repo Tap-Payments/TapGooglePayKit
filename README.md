@@ -93,7 +93,7 @@ Below is the list of properties in tapGooglePaySDK class you can manipulate. Mak
 <a name="setup_tapgoogle_pay_sdk_class_properties_secret_key"></a>
 ### Secret Key and Application ID
 
-To set it up, add the following line of code somewhere in your project and make sure it will be called before any usage of `checkOutSDK`, otherwise an exception will be thrown. **Required**.
+To set it up, add the following line of code somewhere in your project and make sure it will be called before any usage of `tapGoogle Pay™`, otherwise an exception will be thrown. **Required**.
 
 *Java:*
 ```java
