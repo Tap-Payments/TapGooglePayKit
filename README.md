@@ -44,7 +44,7 @@ To use the SDK the following requirements must be met:
 
 <a name="installation"></a>
 <a name="include_library_to_code_locally"></a>
-### Include tapgooglepay library as a dependency module in your project
+### Include tapGoogle Pay™ library as a dependency module in your project
 ---
 1. Clone checkoutSDK library from Tap repository
    ```
@@ -164,14 +164,6 @@ Then declare it in the class as follows:
    ``` 
 
 
-
-<a name="setup_tap_google_pay_sdk_class_properties_mode"></a>
-### Mode
-
-SDK mode defines which mode SDK is operating in, either **sandbox** or **production**.
-
-SDK Mode is automatically identified in the backend based on the secrete key you defined earlier in setup process.
-
 <a name="usage"></a>
 #Usage
 ---
@@ -270,19 +262,19 @@ To set it up, add the following line of code somewhere in your project and make 
     <th colspan=1>Type</th>
       <tr>
    	 <td> environment  </td>
-   	 <td> The Google Pay environment to target.Note: in the "TEST" environment, fake payment credentials are returned.
+   	 <td> The Google Pay™ environment to target.Note: in the "TEST" environment, fake payment credentials are returned.
       In order to use the "PRODUCTION" environment, your App must be registered with Google Pay. This can be done through the Google Pay Business Console.
      </td>
     </tr>
       <tr>
 	 <td> authentication </td>
 	 <td> Fields supported to authenticate a card transaction.
-PAN_ONLY: This authentication method is associated with payment cards stored on file with the user's Google Account. Returned payment data includes personal account number (PAN) with the expiration month and the expiration year.
-CRYPTOGRAM_3DS: This authentication method is associated with cards stored as Android device tokens. Returned payment data includes a 3-D Secure (3DS) cryptogram generated on the device. </td>
+      1. PAN_ONLY: This authentication method is associated with payment cards stored on file with the user's Google Account. Returned payment data includes personal account number (PAN) with the expiration month and the expiration year.
+      2. CRYPTOGRAM_3DS: This authentication method is associated with cards stored as Android device tokens. Returned payment data includes a 3-D Secure (3DS) cryptogram generated on the device. </td>
     </tr>
     <tr>
 	 <td> supportedNetworks </td>
-	 <td> One or more card networks that you support, also supported by the Google Pay API.
+	 <td> One or more card networks that you support, also supported by the Google Pay™ API.
       AMEX ,DISCOVER ,INTERAC ,JCB ,MASTERCARD ,VISA</td>
     </tr>
     <tr>
@@ -302,7 +294,7 @@ CRYPTOGRAM_3DS: This authentication method is associated with cards stored as An
 </table>
 
 
-**Configure GooglePay-DATA Example**
+**Configure Google Pay™-DATA Example**
 
 *Kotlin:*
 ```kotlin
@@ -327,18 +319,8 @@ CRYPTOGRAM_3DS: This authentication method is associated with cards stored as An
 <a name="sdk_open_enums"></a>
 ## SDK Open ENUMs
 SDK open Enums available for implementation through Merchant Project:
-1. AllowedMethods
 
-Choose your allowed methods like PAN,CRYPTO etc
-
-```kotlin
-enum class AllowedMethods {
-   PAN_ONLY,
-   CRYPTOGRAM_3DS,ALL
-}
-```
-
-2.SdkMode
+1.Google Pay™ Enviroment
 
 Setup the mode you want to test in
 
@@ -357,7 +339,7 @@ enum class GooglePayEnviroment {
    ENVIRONMENT_PRODUCTION
 }
 ```
-3.GooglePayButtonType
+2.GooglePayButtonType
 
 Choose the type of button you wish to use in your app
 
@@ -388,7 +370,7 @@ enum class GooglePayButtonType {
 Below are listed down all available callbacks:
 
 <a name="google_pay_success_callback"></a>
-### GooglePay Token Success Callback
+### Google Pay™ Token Success Callback
 
 Notifies the receiver that googlepay token has succeed.
 
@@ -433,7 +415,7 @@ Notifies the receiver that failed.
 
 <a name="additional_config_googlepay"></a>
 # Additional Data Configuration
-To use GooglePay in your app , you will be required to do additional configuration as follows:
+To use Google Pay™ in your app , you will be required to do additional configuration as follows:
 
 1. In build.gradle file add
 
