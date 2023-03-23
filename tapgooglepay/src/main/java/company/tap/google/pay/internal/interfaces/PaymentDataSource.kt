@@ -1,8 +1,8 @@
 package company.tap.google.pay.internal.interfaces
 
 import androidx.annotation.RestrictTo
-import company.tap.google.pay.open.enums.AllowedMethods
-import company.tap.google.pay.open.enums.SDKMode
+import company.tap.google.pay.open.enums.Authentication
+import company.tap.google.pay.open.enums.GooglePayEnviroment
 import java.math.BigDecimal
 @RestrictTo(RestrictTo.Scope.LIBRARY)
 interface PaymentDataSource {
@@ -13,9 +13,9 @@ interface PaymentDataSource {
 
     fun getAmount(): BigDecimal?
 
-    fun getEnvironment(): SDKMode?
+    fun getEnvironment(): GooglePayEnviroment?
 
-    fun getAllowedCardMethod(): AllowedMethods
+    fun getAllowedCardMethod(): MutableList<String>
 
     fun getAllowedNetworks(): MutableList<String>?
 

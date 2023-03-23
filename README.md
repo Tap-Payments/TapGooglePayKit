@@ -191,12 +191,16 @@ SDK Mode is automatically identified in the backend based on the secrete key you
          * Configure SDK with your choice from the given list.
          */   
             initializeSDK()
-            
+        /**
+         * Required step.
+         * Configure GooglePay Data of your choice.
+         */
+        configureGooglePayData()
          /**
          * Required step.
-         * Configure SDK Session with all required data.
+         * Configure SDK Delegate with all required data.
          */
-        configureSDKData()
+        configureTapData()
             
  ```           
         
@@ -212,7 +216,7 @@ To set it up, add the following line of code somewhere in your project and make 
          * Configure SDK with your Secret API key and App Bundle name registered with tap company.
          */
         private fun initializeSDK(){
-           dataConfig.initSDK(this@MainActivity as Context,"sk_test_kXXXXXXXXXXXXXXXXXXXXXXXX","app_id")
+   tapDataConfig.initSDK(this@MainActivity as Context,"sk_test_kXXXXXXXXXXXXXXXXXXXXXXXX","app_id")
 
         }
 ```
@@ -221,7 +225,7 @@ To set it up, add the following line of code somewhere in your project and make 
 
 
 <a name="configure_sdk_Session"></a>
-## Configure SDK Data
+## Configure TAPData
 **DATACONFIGURATION** is the main interface for  library from you application
 ### Properties
 
@@ -284,33 +288,29 @@ To set it up, add the following line of code somewhere in your project and make 
   	
 </table>
 
-**Configure SDK DATA Example** 
+**Configure TAP-DATA Example** 
 
 *Kotlin:*
 ```kotlin
  private fun configureSDKData() {
-   // pass your activity as a session delegate to listen to SDK internal payment process follow
-   dataConfig.addSDKDelegate(this) //** Required **
-   
-   dataConfig.setEnvironmentMode(SDKMode.ENVIRONMENT_TEST) //**Required SDK MODE**/
+   // pass your activity as a sdk delegate to listen to SDK internal payment process follow
+   tapDataConfig.addSDKDelegate(this) //** Required **
 
-   dataConfig.setGatewayId("tappayments")  //**Required GATEWAY ID**/
-
-   dataConfig.setGatewayMerchantID("1124340") //**Required GATEWAY Merchant ID**/
-   
-    dataConfig.setAmount(BigDecimal.valueOf(23))  //**Required Amount**/
-
-   settingsManager?.getAllowedMethods("allowed_card_auth_key")
-      ?.let { dataConfig.setAllowedCardAuthMethods(it) } //**Required type of auth PAN_ONLY, CRYPTOGRAM , ALL**/
-
-
-   settingsManager?.getString("key_currency_code","USD")
-      ?.let { dataConfig.setTransactionCurrency(it) } //**Required Currency **/
-
-   settingsManager?.getString("country_code_key","US")?.let { dataConfig.setCountryCode(it) } //**Required Country **/
-
+   tapDataConfig.setGatewayId("tappayments")  //**Required GATEWAY ID**/
   
-   dataConfig.setAllowedCardNetworks(settingsManager?.getSet("key_payment_networks")?.toMutableList()) //**Required Payment Networks you want google to display for you **/
+   tapDataConfig.setGatewayMerchantID("1311313131")  //**Required GATEWAY Merchant ID**/
+
+}
+ ```
+**Configure GooglePay-DATA Example**
+
+*Kotlin:*
+```kotlin
+  private fun configureGooglePayData() {
+   googlePayView.setGooglePayData(GooglePayEnviroment.ENVIRONMENT_TEST,
+      mutableListOf("PAN_ONLY", "CRYPTOGRAM_3DS"), mutableListOf("AMEX", "DISCOVER", "JCB", "MASTERCARD", "VISA"),
+      BigDecimal(2),"KWD","KW"
+   )
 }
  ```
 
@@ -318,7 +318,7 @@ To set it up, add the following line of code somewhere in your project and make 
 ## SDK Open Interfaces
  SDK open Interfaces available for implementation through Merchant Project:
 
-1. SessionDelegate
+1. SDKDelegate
 ```kotlin
   fun onGooglePayToken(token:String)
   fun onTapToken(token: Token)
@@ -344,7 +344,7 @@ enum class AllowedMethods {
 Setup the mode you want to test in
 
 ```kotlin
-enum class SDKMode {
+enum class GooglePayEnviroment {
    /**
     * Sandbox is for testing purposes
     */

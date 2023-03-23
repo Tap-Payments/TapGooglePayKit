@@ -5,8 +5,8 @@ import androidx.annotation.RestrictTo
 import com.google.android.gms.wallet.PaymentsClient
 import com.google.android.gms.wallet.Wallet
 import com.google.android.gms.wallet.WalletConstants
-import company.tap.google.pay.open.enums.AllowedMethods
-import company.tap.google.pay.open.enums.SDKMode
+import company.tap.google.pay.open.enums.Authentication
+import company.tap.google.pay.open.enums.GooglePayEnviroment
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -50,20 +50,17 @@ object PaymentsUtil {
     private fun baseCardPaymentMethod(): JSONObject {
         var  jsonArray :JSONArray ?= null
         return JSONObject().apply {
-            if(PaymentDataSource.getAllowedCardMethod().toString()==AllowedMethods.ALL.name){
+            if(PaymentDataSource.getAllowedCardMethod().toString()==Authentication.ALL.name){
               jsonArray = JSONArray  (Arrays.asList("PAN_ONLY", "CRYPTOGRAM_3DS"))
             }else {
-                jsonArray = JSONArray  (Arrays.asList(PaymentDataSource.getAllowedCardMethod().name))
+                jsonArray = JSONArray(PaymentDataSource.getAllowedCardMethod())
             }
-          /*  val capCardBrandList: MutableList<String?> = ArrayList()
-            capCardBrandList.add("VISA")
-            capCardBrandList.add("MASTERCARD")*/
 
             println("PaymentDataSource.getAllowedNetworks()"+PaymentDataSource.getAllowedNetworks())
             val parameters = JSONObject().apply {
                 put("allowedAuthMethods", jsonArray)
                // put("allowedCardNetworks", JSONArray(PaymentDataSource.getAllowedNetworks()))
-                put("allowedCardNetworks", JSONArray(PaymentDataSource.getAllowedNetworks()))
+                put("allowedCardNetworks",JSONArray(PaymentDataSource.getAllowedNetworks()))
 
             }
 
@@ -98,10 +95,10 @@ object PaymentsUtil {
     fun createPaymentsClient(activity: Activity): PaymentsClient {
         var walletOptions: Wallet.WalletOptions? = null
         if (PaymentDataSource.getEnvironment() != null) {
-            if (PaymentDataSource.getEnvironment() == SDKMode.ENVIRONMENT_TEST) {
+            if (PaymentDataSource.getEnvironment() == GooglePayEnviroment.ENVIRONMENT_TEST) {
                 walletOptions =
                     Wallet.WalletOptions.Builder().setEnvironment(WalletConstants.ENVIRONMENT_TEST).build()
-            } else if (PaymentDataSource.getEnvironment() == SDKMode.ENVIRONMENT_PRODUCTION
+            } else if (PaymentDataSource.getEnvironment() == GooglePayEnviroment.ENVIRONMENT_PRODUCTION
             ) {
                 walletOptions =
                     Wallet.WalletOptions.Builder().setEnvironment(WalletConstants.ENVIRONMENT_PRODUCTION)
@@ -169,6 +166,6 @@ object PaymentsUtil {
      * @see [MerchantInfo](https://developers.google.com/pay/api/android/reference/object.MerchantInfo)
      */
     private val merchantInfo: JSONObject =
-        JSONObject().put("merchantName", PaymentDataSource?.getGatewayMerchantId())
+        JSONObject().put("merchantName", PaymentDataSource.getGatewayMerchantId())
 
 }

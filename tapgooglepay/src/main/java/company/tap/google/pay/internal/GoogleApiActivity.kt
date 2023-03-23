@@ -15,8 +15,7 @@ import com.google.gson.Gson
 import com.google.gson.JsonObject
 import company.tap.google.pay.internal.api.ApiCallsKitRepository
 import company.tap.google.pay.internal.api.requests.CreateTokenGPayRequest
-import company.tap.google.pay.open.DataConfiguration
-import company.tap.google.pay.open.GooglePayButton
+import company.tap.google.pay.open.TapDataConfiguration
 import org.json.JSONException
 import org.json.JSONObject
 
@@ -135,7 +134,7 @@ class GoogleApiActivity : Activity() {
 
                     }
                     RESULT_CANCELED -> {
-                        DataConfiguration.getListener()?.onFailed("RESULT_CANCELED")
+                        TapDataConfiguration.getListener()?.onFailed("RESULT_CANCELED")
                         finish()
                         // isGooglePayClicked = false
 
@@ -170,12 +169,12 @@ class GoogleApiActivity : Activity() {
             val token = tokenizationData.getString("token")
 
            if(googlePayTokenOnly) {
-               DataConfiguration.getListener()?.onGooglePayToken(token)
+               TapDataConfiguration.getListener()?.onGooglePayToken(token)
                finish()
                return
 
            }else {
-              // DataConfiguration.getListener()?.onGooglePayToken(token)
+              // TapDataConfiguration.getListener()?.onGooglePayToken(token)
                //  System.out.println("token is"+token);
                val gson = Gson()
                val jsonToken = gson.fromJson(token, JsonObject::class.java)

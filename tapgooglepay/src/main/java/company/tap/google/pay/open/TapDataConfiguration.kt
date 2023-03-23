@@ -3,18 +3,16 @@ package company.tap.google.pay.open
 import android.app.Activity
 import android.content.Context
 import android.os.Build
-import android.view.View
 import androidx.annotation.RequiresApi
 import company.tap.google.pay.internal.PaymentDataSource
 import company.tap.google.pay.internal.api.ApiService
-import company.tap.google.pay.open.enums.AllowedMethods
-import company.tap.google.pay.open.enums.GooglePayButtonType
-import company.tap.google.pay.open.enums.SDKMode
+import company.tap.google.pay.open.enums.Authentication
+import company.tap.google.pay.open.enums.GooglePayEnviroment
 import company.tap.tapnetworkkit.connection.NetworkApp
 import java.math.BigDecimal
 
 
-object  DataConfiguration {
+object  TapDataConfiguration {
     private var sdkDelegate: SDKDelegate? = null
     private var paymentDataSource: PaymentDataSource? = null
 
@@ -53,8 +51,8 @@ object  DataConfiguration {
         paymentDataSource?.setTransactionCurrency(transactionCurrency)
     }
     /// Indicates the mode the merchant wants to run the sdk with. Default is sandbox mode
-    fun setEnvironmentMode(sdkMode: SDKMode) {
-        paymentDataSource?.setEnvironmentMode(sdkMode)
+    fun setEnvironmentMode(googlePayEnviroment: GooglePayEnviroment) {
+        paymentDataSource?.setEnvironmentMode(googlePayEnviroment)
     }
     /**
      * set gatewayId
@@ -62,6 +60,7 @@ object  DataConfiguration {
      * @param gatewayId of TAP
      */
     fun setGatewayId(gatewayId: String) {
+        println("gatewayId>>"+gatewayId)
         paymentDataSource?.setGatewayId(gatewayId)
     }
     /**
@@ -77,8 +76,8 @@ object  DataConfiguration {
         paymentDataSource?.setAllowedCardNetworks(allowedCardNetworks)
     }
    // Defines type of authentication you want PAN_ONLY, CRYPTOGRAM_3DS, ALL
-    fun setAllowedCardAuthMethods(allowedMethods: AllowedMethods) {
-        paymentDataSource?.setAllowedCardAuthMethods(allowedMethods)
+    fun setAllowedCardAuthMethods(authentication: MutableList<String>) {
+        paymentDataSource?.setAllowedCardAuthMethods(authentication)
     }
 /// - Parameter countryCode: The country code where the user transacts default .AED
     fun setCountryCode(countryCode: String) {
@@ -100,7 +99,6 @@ object  DataConfiguration {
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
-   // fun startGooglePay(activity: Activity, googlePayButton: View,googleButtonType: GooglePayButtonType?){
     fun startGooglePay(activity: Activity, googlePayButton: GooglePayButton){
         googlePayButton.possiblyShowGooglePayButton(activity,googlePayButton,false)
 

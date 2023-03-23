@@ -1,8 +1,8 @@
 package company.tap.google.pay.internal
 
 import androidx.annotation.RestrictTo
-import company.tap.google.pay.open.enums.AllowedMethods
-import company.tap.google.pay.open.enums.SDKMode
+import company.tap.google.pay.open.enums.Authentication
+import company.tap.google.pay.open.enums.GooglePayEnviroment
 import java.math.BigDecimal
 @RestrictTo(RestrictTo.Scope.LIBRARY)
 object PaymentDataSource : company.tap.google.pay.internal.interfaces.PaymentDataSource {
@@ -10,8 +10,8 @@ object PaymentDataSource : company.tap.google.pay.internal.interfaces.PaymentDat
     private var amount: BigDecimal? = null
     private lateinit var gatewayMerchantId: String
     private lateinit var gatewayId: String
-    private lateinit var sdkMode: SDKMode
-    private lateinit var allowedMethods: AllowedMethods
+    private lateinit var googlePayEnviroment: GooglePayEnviroment
+    private lateinit var authentication: MutableList<String>
    // private lateinit var allowedCardNetworks: ArrayList<String>
     private var allowedCardNetworks: MutableList<String>? = java.util.ArrayList()
     private lateinit var countryCode: String
@@ -31,8 +31,8 @@ object PaymentDataSource : company.tap.google.pay.internal.interfaces.PaymentDat
     fun setAmount(amount: BigDecimal?) {
         this.amount = amount
     }
-    fun setEnvironmentMode(sdkMode: SDKMode) {
-        this.sdkMode = sdkMode
+    fun setEnvironmentMode(googlePayEnviroment: GooglePayEnviroment) {
+        this.googlePayEnviroment = googlePayEnviroment
     }
 
     fun setGatewayId(gatewayId: String) {
@@ -45,8 +45,10 @@ object PaymentDataSource : company.tap.google.pay.internal.interfaces.PaymentDat
         this.allowedCardNetworks = allowedCardNetworks
     }
 
-    fun setAllowedCardAuthMethods(allowedMethods: AllowedMethods) {
-        this.allowedMethods = allowedMethods
+    fun setAllowedCardAuthMethods(authentication:  MutableList<String>?) {
+        if (authentication != null) {
+            this.authentication = authentication
+        }
     }
 
     fun setCountryCode(countryCode: String) {
@@ -61,12 +63,12 @@ object PaymentDataSource : company.tap.google.pay.internal.interfaces.PaymentDat
         return amount
     }
 
-    override fun getEnvironment(): SDKMode? {
-       return sdkMode
+    override fun getEnvironment(): GooglePayEnviroment? {
+       return googlePayEnviroment
     }
 
-    override fun getAllowedCardMethod(): AllowedMethods {
-      return allowedMethods
+    override fun getAllowedCardMethod(): MutableList<String> {
+      return authentication
     }
 
     override fun getAllowedNetworks(): MutableList<String>? {

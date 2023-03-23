@@ -7,7 +7,7 @@ import com.google.gson.Gson
 import com.google.gson.JsonElement
 import company.tap.google.pay.internal.api.requests.CreateTokenGPayRequest
 import company.tap.google.pay.internal.api.responses.Token
-import company.tap.google.pay.open.DataConfiguration
+import company.tap.google.pay.open.TapDataConfiguration
 import company.tap.tapnetworkkit.controller.NetworkController
 import company.tap.tapnetworkkit.enums.TapMethodType
 import company.tap.tapnetworkkit.exception.GoSellError
@@ -32,9 +32,8 @@ class ApiCallsKitRepository : APIRequestCallback{
     override fun onSuccess(responseCode: Int, requestCode: Int, response: Response<JsonElement>?) {
         if (requestCode == CREATE_GPAY_TOKEN_CODE) {
             response?.body().let {
-                println("response is"+response)
                 tokenResponse = Gson().fromJson(it, Token::class.java)
-              DataConfiguration.getListener()?.onTapToken(tokenResponse)
+              TapDataConfiguration.getListener()?.onTapToken(tokenResponse)
                 activity.finish()
             }
         }
@@ -44,7 +43,7 @@ class ApiCallsKitRepository : APIRequestCallback{
         if (requestCode == CREATE_GPAY_TOKEN_CODE) {
             errorDetails?.errorBody.let {
 
-                errorDetails?.errorBody?.let { it1 -> DataConfiguration.getListener()?.onFailed(it1) }
+                errorDetails?.errorBody?.let { it1 -> TapDataConfiguration.getListener()?.onFailed(it1) }
                 activity.finish()
             }
         }

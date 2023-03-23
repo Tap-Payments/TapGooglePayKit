@@ -16,8 +16,11 @@ import com.google.android.gms.wallet.IsReadyToPayRequest
 import com.google.android.gms.wallet.PaymentsClient
 import company.tap.google.pay.R
 import company.tap.google.pay.internal.GoogleApiActivity
+import company.tap.google.pay.internal.PaymentDataSource
 import company.tap.google.pay.internal.PaymentsUtil
 import company.tap.google.pay.open.enums.GooglePayButtonType
+import company.tap.google.pay.open.enums.GooglePayEnviroment
+import java.math.BigDecimal
 
 
 @SuppressLint("ViewConstructor")
@@ -28,12 +31,10 @@ import company.tap.google.pay.open.enums.GooglePayButtonType
     val mainView by lazy { findViewById<LinearLayout>(R.id.mainLL) }
      lateinit var googlePayButton :View
     lateinit var buttonView: View
-  //  @JvmField var googlePayTokenRqd:Boolean= false
-   // @JvmField var tapTokenRqd:Boolean= false
+    private var paymentDataSource: PaymentDataSource? = null
+
     @JvmField var googlePayButtonType:GooglePayButtonType?=GooglePayButtonType.NORMAL_GOOGLE_PAY
-   // val googlePayNormal by lazy { findViewById<View>(R.id.google_pay_normal) }
-   // val googlePayBuyWith by lazy { findViewById<View>(R.id.google_pay_buy_with) }
-  //  val googlePayWith by lazy { findViewById<View>(R.id.google_pay_pay_with) }
+
     /**
      * Simple constructor to use when creating a TapPayCardSwitch from code.
      *  @param context The Context the view is running in, through which it can
@@ -51,8 +52,17 @@ import company.tap.google.pay.open.enums.GooglePayButtonType
 
     init {
         View.inflate(context, R.layout.google_pay_layout,this)
+        initPaymentDataSource()
   }
 
+
+
+
+
+    private fun initPaymentDataSource() {
+        paymentDataSource = PaymentDataSource
+
+    }
     fun setGooglePayButtonType(__googlePayButtonType: GooglePayButtonType?){
         this.googlePayButtonType= __googlePayButtonType
         setButtonType(googlePayButtonType)
@@ -121,7 +131,7 @@ import company.tap.google.pay.open.enums.GooglePayButtonType
             } catch (exception: ApiException) {
                 // Process error
                 Log.w("isReadyToPay failed", exception)
-                DataConfiguration.getListener()?.onFailed(exception.toString())
+                TapDataConfiguration.getListener()?.onFailed(exception.toString())
             }
         }
 
@@ -151,10 +161,23 @@ import company.tap.google.pay.open.enums.GooglePayButtonType
 
         } else {
             ___googlePayButton.visibility= View.GONE
-            DataConfiguration.getListener()?.onFailed("Google Pay Not Supported")
+            TapDataConfiguration.getListener()?.onFailed("Google Pay Not Supported")
             // Toast.makeText(holder.itemView.getContext(), R.string.googlepay_button_not_supported, Toast.LENGTH_LONG).show()
         }
     }
+
+    fun setGooglePayData(environment: GooglePayEnviroment, authentication:MutableList<String>?, supportedNetworks:MutableList<String>?,
+                         amount:BigDecimal, currency: String,country:String){
+        paymentDataSource?.setEnvironmentMode(environment)
+        paymentDataSource?.setAllowedCardAuthMethods(authentication)
+        paymentDataSource?.setAllowedCardNetworks(supportedNetworks)
+        paymentDataSource?.setAmount(amount)
+        paymentDataSource?.setTransactionCurrency(currency)
+        paymentDataSource?.setCountryCode(country)
+
+
+    }
+
 
 
 

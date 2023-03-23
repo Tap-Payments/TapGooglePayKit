@@ -1,5 +1,5 @@
 package company.tap.google.pay.open.enums
-enum class SDKMode {
+enum class GooglePayEnviroment {
     /**
      * Sandbox is for testing purposes
      */

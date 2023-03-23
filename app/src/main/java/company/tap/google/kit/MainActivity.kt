@@ -8,18 +8,20 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import company.tap.google.pay.internal.api.responses.Token
-import company.tap.google.pay.open.SDKDelegate
-import company.tap.google.pay.open.DataConfiguration
+import company.tap.google.pay.open.TapDataConfiguration
 import company.tap.google.pay.open.GooglePayButton
+import company.tap.google.pay.open.GooglePayData
+import company.tap.google.pay.open.SDKDelegate
+import company.tap.google.pay.open.enums.GooglePayEnviroment
 import java.math.BigDecimal
 
 class MainActivity : AppCompatActivity() , SDKDelegate {
-    var dataConfig: DataConfiguration = DataConfiguration //** Required**//
+    var tapDataConfig: TapDataConfiguration = TapDataConfiguration //** Required**//
+    var googlePaymentData:GooglePayData = GooglePayData //** Required**//
     lateinit var googlePayView: GooglePayButton
     lateinit var googlePayButton: View
     private  val TAG = "MainActivity"
@@ -40,58 +42,38 @@ class MainActivity : AppCompatActivity() , SDKDelegate {
 
         googlePayView.buttonView.setOnClickListener {
             if(defaultPref.toString() == "GET GOOGLEPAY TOKEN"){
-                dataConfig.getGooglePayToken(this, googlePayView)
+                tapDataConfig.getGooglePayToken(this, googlePayView)
 
             }else if(defaultPref.toString() == "GET TAP TOKEN"){
-                dataConfig.getTapToken(this, googlePayView)
+                tapDataConfig.getTapToken(this, googlePayView)
             }
 
         }
         initializeSDK()
-        configureSDKData()
+        configureGooglePayData()
+        configureTapData()
     }
 
-    private fun configureSDKData() {
+    private fun configureGooglePayData() {
+        googlePayView.setGooglePayData(GooglePayEnviroment.ENVIRONMENT_TEST,
+            mutableListOf("PAN_ONLY", "CRYPTOGRAM_3DS"), mutableListOf("AMEX", "DISCOVER", "JCB", "MASTERCARD", "VISA"),
+        BigDecimal(2),"KWD","KW"
+        )
+    }
+
+    private fun configureTapData() {
         // pass your activity as a session delegate to listen to SDK internal payment process follow
-        dataConfig.addSDKDelegate(this) //** Required **
-
-      //  dataConfig.setEnvironmentMode(SDKMode.ENVIRONMENT_TEST)
-        settingsManager?.getSDKMode("key_sdkmode")?.let { dataConfig.setEnvironmentMode(it) } //**Required SDK MODE**/
-
-        dataConfig.setGatewayId("tappayments")  //**Required GATEWAY ID**/
-
+        tapDataConfig.addSDKDelegate(this) //** Required **
+        tapDataConfig.setGatewayId("tappayments")  //**Required GATEWAY ID**/
         settingsManager?.getString("key_merchant_id", "1124340")
-            ?.let { dataConfig.setGatewayMerchantID(it) } //**Required GATEWAY Merchant ID**/
-
-        settingsManager?.getString("key_amount_name", "23")?.let { BigDecimal(it) }?.let {
-            dataConfig.setAmount(
-                      it
-                )
-             } //**Required Amount**/
-       // dataConfig.setAmount(BigDecimal.valueOf(23))
-
-        settingsManager?.getAllowedMethods("allowed_card_auth_key")
-            ?.let { dataConfig.setAllowedCardAuthMethods(it) } //**Required type of auth PAN_ONLY, CRYPTOGRAM , ALL**/
+            ?.let { tapDataConfig.setGatewayMerchantID(it) } //**Required GATEWAY Merchant ID**/
 
 
-        settingsManager?.getString("key_currency_code","USD")
-            ?.let { dataConfig.setTransactionCurrency(it) } //**Required Currency **/
-
-        settingsManager?.getString("country_code_key","US")?.let { dataConfig.setCountryCode(it) } //**Required Country **/
-
-        //println("settings are"+settingsManager?.getSet("key_payment_networks"))
-
-//        val SUPPORTED_NETWORKS = mutableListOf<String>(
-//            "AMEX",
-//            "MASTERCARD",
-//            "VISA")
-
-        dataConfig.setAllowedCardNetworks(settingsManager?.getSet("key_payment_networks")?.toMutableList()) //**Required Payment Networks **/
     }
 
     private fun initializeSDK() {
         settingsManager?.getString("key_test_name", "sk_test_kovrMB0mupFJXfNZWx6Etg5y")?.let {
-            dataConfig.initSDK(this@MainActivity as Context, it,
+            tapDataConfig.initSDK(this@MainActivity as Context, it,
                 settingsManager?.getString("key_package_name", "company.tap.goSellSDKExample")!!
             )
         }
