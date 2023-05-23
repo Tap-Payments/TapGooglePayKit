@@ -51,9 +51,9 @@ object PaymentsUtil {
         var  jsonArray :JSONArray ?= null
         return JSONObject().apply {
             if(PaymentDataSource.getAllowedCardMethod().toString()==AllowedMethods.ALL.name){
-              jsonArray = JSONArray  (Arrays.asList("PAN_ONLY", "CRYPTOGRAM_3DS"))
+              jsonArray = JSONArray  (listOf("PAN_ONLY", "CRYPTOGRAM_3DS"))
             }else {
-                jsonArray = JSONArray  (Arrays.asList(PaymentDataSource.getAllowedCardMethod().name))
+                jsonArray = JSONArray  (listOf(PaymentDataSource.getAllowedCardMethod().name))
             }
           /*  val capCardBrandList: MutableList<String?> = ArrayList()
             capCardBrandList.add("VISA")
