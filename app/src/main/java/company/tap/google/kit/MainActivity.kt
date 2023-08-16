@@ -16,9 +16,10 @@ import company.tap.google.pay.open.TapDataConfiguration
 import company.tap.google.pay.open.GooglePayButton
 import company.tap.google.pay.open.SDKDelegate
 import company.tap.google.pay.open.enums.GooglePayEnviroment
+import company.tap.tapnetworkkit.interfaces.APILoggInterface
 import java.math.BigDecimal
 
-class MainActivity : AppCompatActivity() , SDKDelegate {
+class MainActivity : AppCompatActivity() , SDKDelegate ,APILoggInterface{
     var tapDataConfig: TapDataConfiguration = TapDataConfiguration //** Required**//
 
     lateinit var googlePayView: GooglePayButton
@@ -152,6 +153,10 @@ class MainActivity : AppCompatActivity() , SDKDelegate {
         val alertDialog = builder.create()
         // Show the Alert Dialog box
         alertDialog.show()
+    }
+
+    override fun onLoggingEvent(logs: String?) {
+
     }
 
 
