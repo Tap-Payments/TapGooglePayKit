@@ -5,6 +5,8 @@ import android.content.Context
 import android.os.Build
 import android.view.View
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
+import company.tap.google.pay.R
 import company.tap.google.pay.internal.PaymentDataSource
 import company.tap.google.pay.internal.api.ApiService
 import company.tap.google.pay.open.enums.AllowedMethods
@@ -96,7 +98,7 @@ object  DataConfiguration {
             packageID,
             ApiService.BASE_URL,
             //   sdkIdentifier,BuildConfig.EncryptAPIKEY)
-            "NATIVE",true)
+            "NATIVE",true,context.resources.getString(company.tap.tapnetworkkit_android.R.string.enryptkey),context as AppCompatActivity)
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
