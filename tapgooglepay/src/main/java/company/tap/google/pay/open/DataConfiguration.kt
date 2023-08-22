@@ -98,7 +98,7 @@ object  DataConfiguration {
             packageID,
             ApiService.BASE_URL,
             //   sdkIdentifier,BuildConfig.EncryptAPIKEY)
-            "NATIVE",true,context.resources.getString(company.tap.tapnetworkkit_android.R.string.enryptkey),context as AppCompatActivity)
+            "NATIVE",true,context.resources.getString(company.tap.tapnetworkkit_android.R.string.enryptkey),null)
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
