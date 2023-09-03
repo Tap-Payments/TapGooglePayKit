@@ -75,7 +75,7 @@ class GoogleApiActivity : Activity() {
                 setGooglePayAvailable(completedTask.getResult(ApiException::class.java))
             } catch (exception: ApiException) {
                 // Process error
-                Log.w("isReadyToPay failed", exception)
+                Log.w("isReadyToPay failed", exception.message.toString())
             }
         }
 

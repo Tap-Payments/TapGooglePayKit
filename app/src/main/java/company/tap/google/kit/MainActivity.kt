@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity() , SDKDelegate {
 
         settingsManager?.getString("country_code_key","US")?.let { dataConfig.setCountryCode(it) } //**Required Country **/
 
-        //println("settings are"+settingsManager?.getSet("key_payment_networks"))
+        println("settings are"+settingsManager?.getSet("key_payment_networks"))
 
 //        val SUPPORTED_NETWORKS = mutableListOf<String>(
 //            "AMEX",

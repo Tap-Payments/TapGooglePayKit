@@ -122,6 +122,7 @@ import company.tap.google.pay.open.enums.GooglePayButtonType
                 // Process error
                 Log.w("isReadyToPay failed", exception)
                 DataConfiguration.getListener()?.onFailed(exception.toString())
+
             }
         }
 

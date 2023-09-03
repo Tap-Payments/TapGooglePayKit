@@ -17,3 +17,4 @@ dependencyResolutionManagement {
 rootProject.name = "TapGooglePayKit"
 include ':app'
 include ':tapgooglepay'
+//include ':tapnetworkkit'
