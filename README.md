@@ -468,10 +468,10 @@ You might encounter the following errors at some point in your integration. This
 The Google Pay API requires a Google merchantId for sites that configure PaymentsClient for a PRODUCTION environment. A Google merchantId is associated with one or more fully qualified domains through the Google Pay and Wallet Console. Check the returned error details for more information.
 
 2. This merchant has not completed registration to use Google Pay API. Please go to console (https://pay.google.com/business/console) to verify.
-You haven't completed the process to register your websites for the Google Pay API. Review Request production access to register using the Google Pay and Wallet Console and request a review of your website's use of the Google Pay API.
+You haven't completed the process to register your apps for the Google Pay API. Review Request production access to register using the Google Pay and Wallet Console and request a review of your app's use of the Google Pay API.
 
 3. This merchant profile does not have access to this feature
-Google hasn't configured your website to use the Google Pay API. Review Request production access to request a review of your website's use of the Google Pay API via the Google Pay and Wallet Console.
+Google hasn't configured your app to use the Google Pay API. Review Request production access to request a review of your app's use of the Google Pay API via the Google Pay and Wallet Console.
 This Google Pay API integration is disabled. Please contact us for more information (https://developers.google.com/pay/api/faq#how-to-get-support).
 Contact us to learn more about the required steps to re-enable the Google Pay API for your Google Account.
 
