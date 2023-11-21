@@ -28,9 +28,9 @@ https://user-images.githubusercontent.com/57221514/217261036-33b3367c-2d60-49f2-
     2. [OnFailure Callback](#payment_failure_callback)
     3. [OnGooglePay_Token_Success Callback](#authorization_success_callback)
 
-6. [Additional_Configuration_ GooglePay](#additional_config_googlepay)
+6. [Additional Configuration Google Pay™](#additional_config_googlepay)
 
-7. [Trouble_Shooting_ GooglePay](#trouble_shoot_googlepay)  
+7. [Trouble Shoot_Google Pay™](#trouble_shoot_googlepay)  
 
 8. [Documentation](#docs)
 
