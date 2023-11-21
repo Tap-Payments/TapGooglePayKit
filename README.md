@@ -28,9 +28,11 @@ https://user-images.githubusercontent.com/57221514/217261036-33b3367c-2d60-49f2-
     2. [OnFailure Callback](#payment_failure_callback)
     3. [OnGooglePay_Token_Success Callback](#authorization_success_callback)
 
-6. [Additional_Configuration_ GooglePay](#additional_config_googlepay)  
+6. [Additional_Configuration_ GooglePay](#additional_config_googlepay)
 
-7. [Documentation](#docs)
+7. [Trouble_Shooting_ GooglePay](#trouble_shoot_googlepay)  
+
+8. [Documentation](#docs)
 
 <a name="requirements"></a>
 # Requirements
@@ -456,6 +458,23 @@ targetSdk 32
     android:value="true"
     />
 ```
+
+<a name="trouble_shoot_googlepay"></a>
+# Trouble shoot GooglePay
+
+You might encounter the following errors at some point in your integration. This list provides some helpful troubleshooting advice should these errors arise.
+
+1. This merchant is not enabled for Google Pay
+The Google Pay API requires a Google merchantId for sites that configure PaymentsClient for a PRODUCTION environment. A Google merchantId is associated with one or more fully qualified domains through the Google Pay and Wallet Console. Check the returned error details for more information.
+
+2. This merchant has not completed registration to use Google Pay API. Please go to console (https://pay.google.com/business/console) to verify.
+You haven't completed the process to register your websites for the Google Pay API. Review Request production access to register using the Google Pay and Wallet Console and request a review of your website's use of the Google Pay API.
+
+3. This merchant profile does not have access to this feature
+Google hasn't configured your website to use the Google Pay API. Review Request production access to request a review of your website's use of the Google Pay API via the Google Pay and Wallet Console.
+This Google Pay API integration is disabled. Please contact us for more information (https://developers.google.com/pay/api/faq#how-to-get-support).
+Contact us to learn more about the required steps to re-enable the Google Pay API for your Google Account.
+
 
 
 <a name="docs"></a>
