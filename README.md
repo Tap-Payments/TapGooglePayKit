@@ -39,10 +39,10 @@ https://user-images.githubusercontent.com/57221514/217261036-33b3367c-2d60-49f2-
 ---
 To use the SDK the following requirements must be met:
 
-1. **Android Studio 3.6** or newer
-2. **Android SDK Tools 31** or newer
-3. **Android Platform Version: API 31: Android 10  revision 7** or later
-4. **Android targetSdkVersion: 31
+1. **Android Studio 4.2.1** or newer
+2. **Android SDK Tools 33** or newer
+3. **Android Platform Version: API 33: Android 11  revision 7** or later
+4. **Android targetSdkVersion: 33
 
 <a name="installation"></a>
 <a name="include_library_to_code_locally"></a>
@@ -78,7 +78,7 @@ To integrate tapGooglePay™SDK into your project add it in your **root** `build
 Step 2. Add the dependency
 ```java
 	dependencies {
-	        implementation 'com.github.Tap-Payments:TapGooglePayKit:0.0.33'
+	        implementation 'com.github.Tap-Payments:TapGooglePayKit:0.0.35'
 	}
 ```
 <a name="setup"></a>
