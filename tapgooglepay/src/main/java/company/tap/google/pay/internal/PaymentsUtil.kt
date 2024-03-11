@@ -169,6 +169,6 @@ object PaymentsUtil {
      * @see [MerchantInfo](https://developers.google.com/pay/api/android/reference/object.MerchantInfo)
      */
     private val merchantInfo: JSONObject =
-        JSONObject().put("merchantName", PaymentDataSource?.getGatewayMerchantId())
+        JSONObject().put("merchantName", PaymentDataSource.getGatewayMerchantId())
 
 }

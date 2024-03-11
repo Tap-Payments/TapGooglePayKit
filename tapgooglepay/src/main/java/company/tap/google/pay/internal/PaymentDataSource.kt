@@ -78,7 +78,9 @@ object PaymentDataSource : company.tap.google.pay.internal.interfaces.PaymentDat
     }
 
     override fun getGatewayMerchantId(): String {
-       return gatewayMerchantId
+        return if(::gatewayMerchantId.isInitialized)
+            gatewayMerchantId
+        else ""
     }
 
     override fun getCountryCode(): String {
