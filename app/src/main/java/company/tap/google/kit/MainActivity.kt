@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity() , SDKDelegate {
         settingsManager?.getString("key_merchant_id", "1124340")
             ?.let { dataConfig.setGatewayMerchantID(it) } //**Required GATEWAY Merchant ID**/
 
-        settingsManager?.getString("key_amount_name", "23")?.let { BigDecimal(it) }?.let {
+        settingsManager?.getString("key_amount_name", "23.7")?.let { BigDecimal(it) }?.let {
             dataConfig.setAmount(
                       it
                 )

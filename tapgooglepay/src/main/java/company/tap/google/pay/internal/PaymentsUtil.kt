@@ -10,6 +10,7 @@ import company.tap.google.pay.open.enums.SDKMode
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
+import java.math.BigDecimal
 import java.util.*
 @RestrictTo(RestrictTo.Scope.LIBRARY)
 object PaymentsUtil {
@@ -148,7 +149,7 @@ object PaymentsUtil {
      * @return Payment data expected by your app.
      * @see [PaymentDataRequest](https://developers.google.com/pay/api/android/reference/object.PaymentDataRequest)
      */
-    fun getPaymentDataRequest(priceCemts: Long): JSONObject? {
+    fun getPaymentDataRequest(priceCemts: BigDecimal): JSONObject? {
         return try {
             baseRequest.apply {
                 put("allowedPaymentMethods", JSONArray().put(cardPaymentMethod()))

@@ -89,7 +89,8 @@ class GoogleApiActivity : Activity() {
 
         // isGooglePayClicked = true
         val paymentDataRequestJson: JSONObject? =
-            PaymentDataSource.getAmount()?.toLong()?.let { PaymentsUtil.getPaymentDataRequest(it) }
+            PaymentDataSource.getAmount()?.let { PaymentsUtil.getPaymentDataRequest(it) }
+
         if (paymentDataRequestJson == null) {
             Log.e("RequestPayment", "Can't fetch payment data request")
             return
