@@ -168,9 +168,11 @@ class SettingsActivity : AppCompatActivity() {
                 if(preference!=null)
                     sBindPreferenceSummaryToValueListener.onPreferenceChange(
                         preference,
-                        PreferenceManager
-                            .getDefaultSharedPreferences(preference?.context)
-                            .getString(preference?.key, "")
+                        preference?.context?.let {
+                            PreferenceManager
+                                .getDefaultSharedPreferences(it)
+                                .getString(preference?.key, "")
+                        }
                     )
             }
 
