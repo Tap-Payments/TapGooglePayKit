@@ -78,7 +78,7 @@ To integrate tapGooglePay™SDK into your project add it in your **root** `build
 Step 2. Add the dependency
 ```java
 	dependencies {
-	        implementation 'com.github.Tap-Payments:TapGooglePayKit:1.0.0'
+	        implementation 'com.github.Tap-Payments:TapGooglePayKit:1.0.2.1'
 	}
 ```
 <a name="setup"></a>
