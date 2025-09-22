@@ -1,15 +1,16 @@
 plugins {
     id 'com.android.library'
+    id 'maven-publish'
     id 'org.jetbrains.kotlin.android'
 }
 
 android {
-    compileSdk 35
+    compileSdk 36
 
     defaultConfig {
         namespace "company.tap.google.pay"
         minSdk 21
-        targetSdk 35
+        targetSdk 36
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -46,4 +47,39 @@ dependencies {
     api 'com.google.code.gson:gson:2.13.1'
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     api 'com.github.Tap-Payments:TapNetwrok-Android:0.2.2.44'
+}
+
+// Javadoc for Android (variant-aware)
+task releaseJavadoc(type: Jar) {
+    archiveClassifier.set('javadoc')
+    from android.sourceSets.main.java.srcDirs
+    // optional: include kotlin sources if you have Kotlin
+// from android.sourceSets.main.kotlin.srcDirs
+}
+afterEvaluate {
+    publishing {
+        publications {
+            create("release", MavenPublication) {
+                // Publish AAR
+                artifact("$buildDir/outputs/aar/${project.name}-release.aar") {
+                    builtBy tasks.named("assembleRelease")
+                }
+
+                // Group, artifact, version
+                groupId = "com.github.Tap-Payments"
+                artifactId = "tapgooglepay"
+                version = android.defaultConfig.versionName ?: "1.0.3"
+
+                // Attach sources and javadoc
+                artifact(tasks.named("releaseSourcesJar"))
+                artifact(tasks.named("releaseJavadoc"))
+            }
+        }
+    }
+
+    // Ensure metadata generation waits for sources/javadoc
+    tasks.named("generateMetadataFileForReleasePublication") {
+        dependsOn(tasks.named("releaseSourcesJar"))
+        dependsOn(tasks.named("releaseJavadoc"))
+    }
 }
