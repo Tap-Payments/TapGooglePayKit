@@ -8,3 +8,6 @@
 -keepclassmembers class ** {
     @kotlin.Metadata *;
 }
+-keep enum company.tap.google.pay.open.enums.AllowedMethods
+-keep enum company.tap.google.pay.open.enums.GooglePayButtonType
+-keep enum company.tap.google.pay.open.enums.SDKMode
