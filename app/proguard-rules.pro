@@ -19,3 +19,13 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+# Keep Kotlin enum helpers
+-keep class kotlin.enums.** { *; }
+
+# Keep Kotlin Intrinsics (avoid runtime crashes)
+-keep class kotlin.jvm.internal.** { *; }
+
+# Keep Kotlin Metadata (needed for reflection + serialization)
+-keepclassmembers class ** {
+    @kotlin.Metadata *;
+}
