@@ -28,11 +28,15 @@
 -keepattributes Signature, RuntimeVisibleAnnotations, RuntimeVisibleParameterAnnotations
 
 # ============================
-# OkHttp
+# OkHttp + Logging Interceptor
 # ============================
 -keep class okhttp3.** { *; }
+-keep interface okhttp3.** { *; }
+-keep class okhttp3.logging.** { *; }
 -dontwarn okhttp3.**
 -dontwarn okio.**
+-dontwarn javax.annotation.**
+
 
 # OkHttp internal (avoid warnings)
 -dontwarn javax.annotation.**

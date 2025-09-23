@@ -26,6 +26,8 @@
 
 # Keep Kotlin enum helpers
 -keep class kotlin.enums.** { *; }
+# Keep Kotlin enum helpers
+-keep class kotlin.enums.** { *; }
 
 # Keep Kotlin Intrinsics (avoid runtime crashes)
 -keep class kotlin.jvm.internal.** { *; }
@@ -34,3 +36,67 @@
 -keepclassmembers class ** {
     @kotlin.Metadata *;
 }
+-keep enum company.tap.google.pay.open.enums.AllowedMethods
+-keep enum company.tap.google.pay.open.enums.GooglePayButtonType
+-keep enum company.tap.google.pay.open.enums.SDKMode
+
+# Keep Kotlin runtime (especially enums)
+-keep class kotlin.** { *; }
+-keep class kotlin.enums.** { *; }
+-keep class kotlin.jvm.** { *; }
+-dontwarn kotlin.**
+# ============================
+# Retrofit
+# ============================
+-keep class retrofit2.** { *; }
+-keep interface retrofit2.** { *; }
+-dontwarn retrofit2.**
+
+# Keep Retrofit method annotations (e.g., @GET, @POST, etc.)
+-keepattributes Signature, RuntimeVisibleAnnotations, RuntimeVisibleParameterAnnotations
+
+# ============================
+# OkHttp + Logging Interceptor
+# ============================
+-keep class okhttp3.** { *; }
+-keep interface okhttp3.** { *; }
+-keep class okhttp3.logging.** { *; }
+-dontwarn okhttp3.**
+-dontwarn okio.**
+-dontwarn javax.annotation.**
+
+
+# OkHttp internal (avoid warnings)
+-dontwarn javax.annotation.**
+
+# ============================
+# Gson
+# ============================
+-keep class com.google.gson.** { *; }
+-keep class com.google.gson.annotations.** { *; }
+-keepattributes Signature
+-keepattributes *Annotation*
+
+# Keep fields marked with @SerializedName
+-keepclassmembers class * {
+    @com.google.gson.annotations.SerializedName <fields>;
+}
+
+# Prevent R8 from stripping interfaces used for custom TypeAdapters
+-keep class * implements com.google.gson.TypeAdapter
+-keep class * implements com.google.gson.TypeAdapterFactory
+-keep class * implements com.google.gson.JsonSerializer
+-keep class * implements com.google.gson.JsonDeserializer
+
+# ============================
+# General serialization safety
+# ============================
+-keepclassmembers class * implements java.io.Serializable {
+    static final long serialVersionUID;
+    private static final java.io.ObjectStreamField[] serialPersistentFields;
+    private void writeObject(java.io.ObjectOutputStream);
+    private void readObject(java.io.ObjectInputStream);
+    java.lang.Object readResolve();
+}
+
+-dontwarn javax.annotation.**
