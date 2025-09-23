@@ -55,14 +55,19 @@ dependencies {
     api 'com.squareup.okhttp3:logging-interceptor:4.9.0'
 
 }
+// Create sources and Javadoc JARs
+task releaseSourcesJar(type: Jar) {
+    archiveClassifier.set('sources')
+    from android.sourceSets.main.java.srcDirs
+    from android.sourceSets.main.kotlin.srcDirs
+}
 
-// Javadoc for Android (variant-aware)
 task releaseJavadoc(type: Jar) {
     archiveClassifier.set('javadoc')
     from android.sourceSets.main.java.srcDirs
-    // optional: include kotlin sources if you have Kotlin
-// from android.sourceSets.main.kotlin.srcDirs
+    from android.sourceSets.main.kotlin.srcDirs
 }
+
 afterEvaluate {
     publishing {
         publications {
@@ -72,19 +77,30 @@ afterEvaluate {
                     builtBy tasks.named("assembleRelease")
                 }
 
-                // Group, artifact, version
-                groupId = "com.github.Tap-Payments"
-                artifactId = "tapgooglepay"
-                version = android.defaultConfig.versionName ?: "1.0.2.11"
-
                 // Attach sources and javadoc
                 artifact(tasks.named("releaseSourcesJar"))
                 artifact(tasks.named("releaseJavadoc"))
+
+                groupId = "com.github.Tap-Payments"
+                artifactId = "TapGooglePayKit"
+                version = "1.0.2.12"
+
+                // Variant-aware: ensure dependencies are included in POM
+                pom.withXml {
+                    def dependenciesNode = asNode().appendNode('dependencies')
+                    configurations.api.allDependencies.each { dep ->
+                        def depNode = dependenciesNode.appendNode('dependency')
+                        depNode.appendNode('groupId', dep.group)
+                        depNode.appendNode('artifactId', dep.name)
+                        depNode.appendNode('version', dep.version)
+                        depNode.appendNode('scope', 'compile')
+                    }
+                }
             }
         }
     }
 
-    // Ensure metadata generation waits for sources/javadoc
+    // Ensure metadata waits for sources/javadoc
     tasks.named("generateMetadataFileForReleasePublication") {
         dependsOn(tasks.named("releaseSourcesJar"))
         dependsOn(tasks.named("releaseJavadoc"))
