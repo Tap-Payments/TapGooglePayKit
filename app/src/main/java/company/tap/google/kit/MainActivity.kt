@@ -16,7 +16,7 @@ import company.tap.google.pay.internal.api.responses.Token
 import company.tap.google.pay.open.SDKDelegate
 import company.tap.google.pay.open.DataConfiguration
 import company.tap.google.pay.open.GooglePayButton
-import company.tap.tapnetworkkit.interfaces.APILoggInterface
+
 import java.math.BigDecimal
 
 class MainActivity : AppCompatActivity() , SDKDelegate {

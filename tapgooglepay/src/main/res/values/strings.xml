@@ -14,4 +14,5 @@ GzszQNqt/wyqxpDC9q+97XdXwkWQFA72s76ud7eMXQlsWKsvgwhY+Ywzt0KlpNC3
 Hj+N6UWFOYK98Xi+sQIDAQAB
 -----END PUBLIC KEY-----
     </string>
+    <string name="internet_connectivity_message">Internet connection not available</string>
 </resources>

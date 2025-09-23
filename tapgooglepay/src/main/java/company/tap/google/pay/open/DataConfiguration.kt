@@ -9,10 +9,12 @@ import androidx.appcompat.app.AppCompatActivity
 import company.tap.google.pay.R
 import company.tap.google.pay.internal.PaymentDataSource
 import company.tap.google.pay.internal.api.ApiService
+import company.tap.google.pay.internal.tapnetworkkit.connection.NetworkApp
 import company.tap.google.pay.open.enums.AllowedMethods
 import company.tap.google.pay.open.enums.GooglePayButtonType
 import company.tap.google.pay.open.enums.SDKMode
-import company.tap.tapnetworkkit.connection.NetworkApp
+
+
 import java.math.BigDecimal
 
 
@@ -94,7 +96,7 @@ object  DataConfiguration {
     private fun initNetworkCallOfKit(context: Context,secretKeys: String,packageID: String) {
 
             val resId = context.resources.getIdentifier("enryptkeyTest", "string", context.packageName)
-          val  testEncKey = if (resId != 0) context.getString(resId) else null
+          val  testEncKey = context.resources.getString(R.string.enryptkey)
 
 
         NetworkApp.initNetwork(

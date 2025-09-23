@@ -7,14 +7,16 @@ import com.google.gson.Gson
 import com.google.gson.JsonElement
 import company.tap.google.pay.internal.api.requests.CreateTokenGPayRequest
 import company.tap.google.pay.internal.api.responses.Token
+import company.tap.google.pay.internal.tapnetworkkit.controller.NetworkController
+import company.tap.google.pay.internal.tapnetworkkit.enums.TapMethodType
+import company.tap.google.pay.internal.tapnetworkkit.exception.GoSellError
+import company.tap.google.pay.internal.tapnetworkkit.interfaces.APIRequestCallback
 import company.tap.google.pay.open.DataConfiguration
-import company.tap.tapnetworkkit.controller.NetworkController
-import company.tap.tapnetworkkit.enums.TapMethodType
-import company.tap.tapnetworkkit.exception.GoSellError
-import company.tap.tapnetworkkit.interfaces.APIRequestCallback
+
+
 import retrofit2.Response
 
-class ApiCallsKitRepository : APIRequestCallback{
+class ApiCallsKitRepository : APIRequestCallback {
     lateinit var tokenResponse: Token
     lateinit var activity: Activity
     @RequiresApi(Build.VERSION_CODES.N)
@@ -40,6 +42,7 @@ class ApiCallsKitRepository : APIRequestCallback{
         }
     }
 
+
     override fun onFailure(requestCode: Int, errorDetails: GoSellError?) {
         if (requestCode == CREATE_GPAY_TOKEN_CODE) {
             errorDetails?.errorBody.let {
@@ -49,6 +52,7 @@ class ApiCallsKitRepository : APIRequestCallback{
             }
         }
     }
+
 
     companion object {
 

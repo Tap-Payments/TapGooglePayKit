@@ -33,6 +33,9 @@ android {
     viewBinding {
         enabled = true
     }
+    buildFeatures {
+        buildConfig = true
+    }
 }
 
 dependencies {
@@ -46,8 +49,11 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     implementation "com.google.android.gms:play-services-wallet:19.4.0"
     api 'com.google.code.gson:gson:2.13.1'
+
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    api 'com.github.Tap-Payments:TapNetwrok-Android:0.2.2.44'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
+
 }
 
 // Javadoc for Android (variant-aware)
