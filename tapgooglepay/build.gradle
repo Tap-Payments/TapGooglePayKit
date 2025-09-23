@@ -75,7 +75,7 @@ afterEvaluate {
                 // Group, artifact, version
                 groupId = "com.github.Tap-Payments"
                 artifactId = "tapgooglepay"
-                version = android.defaultConfig.versionName ?: "1.0.3"
+                version = android.defaultConfig.versionName ?: "1.0.2.9"
 
                 // Attach sources and javadoc
                 artifact(tasks.named("releaseSourcesJar"))
