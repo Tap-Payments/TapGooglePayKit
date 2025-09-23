@@ -92,13 +92,18 @@ object  DataConfiguration {
     }
 
     private fun initNetworkCallOfKit(context: Context,secretKeys: String,packageID: String) {
+
+            val resId = context.resources.getIdentifier("enryptkeyTest", "string", context.packageName)
+          val  testEncKey = if (resId != 0) context.getString(resId) else null
+
+
         NetworkApp.initNetwork(
             context,
             secretKeys,
             packageID,
             ApiService.BASE_URL,
             //   sdkIdentifier,BuildConfig.EncryptAPIKEY)
-            "NATIVE",true,context.resources.getString(company.tap.tapnetworkkit_android.R.string.enryptkey),null)
+            "NATIVE",true,testEncKey,null)
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
