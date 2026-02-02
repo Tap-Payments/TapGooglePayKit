@@ -65,7 +65,7 @@
         android:summary="key_package_value"
         android:title="Enter the package ID" />
     <EditTextPreference
-        android:defaultValue="sk_test_kovrMB0mupFJXfNZWx6Etg5y"
+        android:defaultValue="XXXXXXXX"
         android:inputType="text"
         android:key="key_test_name"
         android:summary="key_test_value"
