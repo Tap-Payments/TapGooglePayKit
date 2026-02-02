@@ -99,7 +99,7 @@ To set it up, add the following line of code somewhere in your project and make 
 
 *Java:*
 ```java
- dataConfig.initSDK(this@MainActivity as Context,"sk_test_kXXXXXXXXXXXXXXXXXXXXXXXX","app_id");
+ dataConfig.initSDK(this@MainActivity as Context,"kXXXXXXXXXXXXXXXXXXXXXXXX","app_id");
 ```
 *Kotlin:*
 Here we need to make a Top level declaration
@@ -108,9 +108,9 @@ var dataConfig: DataConfiguration = DataConfiguration
 ```
 ```kotlin
 
-dataConfig.initSDK(this@MainActivity as Context,"sk_test_kXXXXXXXXXXXXXXXXXXXXXXXX","app_id")
+dataConfig.initSDK(this@MainActivity as Context,"kXXXXXXXXXXXXXXXXXXXXXXXX","app_id")
  ```    
-1. **`authToken`** - to authorize your requests.// Secret key (format: "sk_XXXXXXXXXXXXXXXXXXXXXXXX")
+1. **`authToken`** - to authorize your requests.// Secret key (format: "XXXXXXXXXXXXXXXXXXXXXXXX")
 2. **`app_id`** - replace it using your application ID "Application main package".
 
 <a name="setup_tapgoogle_pay_button"></a>
@@ -214,11 +214,11 @@ To set it up, add the following line of code somewhere in your project and make 
          * Configure SDK with your Secret API key and App Bundle name registered with tap company.
          */
         private fun initializeSDK(){
-           dataConfig.initSDK(this@MainActivity as Context,"sk_test_kXXXXXXXXXXXXXXXXXXXXXXXX","app_id")
+           dataConfig.initSDK(this@MainActivity as Context,"kXXXXXXXXXXXXXXXXXXXXXXXX","app_id")
 
         }
 ```
-1. **`authToken`** - to authorize your requests.// Secret key (format: "sk_XXXXXXXXXXXXXXXXXXXXXXXX")
+1. **`authToken`** - to authorize your requests.// Secret key (format: "XXXXXXXXXXXXXXXXXXXXXXXX")
 2. **`app_id`** - replace it using your application ID "Application main package".
 
 
