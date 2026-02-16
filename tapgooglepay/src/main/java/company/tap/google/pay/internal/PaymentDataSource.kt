@@ -11,7 +11,8 @@ object PaymentDataSource : company.tap.google.pay.internal.interfaces.PaymentDat
     private lateinit var gatewayMerchantId: String
     private lateinit var gatewayId: String
     private lateinit var sdkMode: SDKMode
-    private lateinit var allowedMethods: AllowedMethods
+    var allowedMethods: AllowedMethods = AllowedMethods.ALL
+
    // private lateinit var allowedCardNetworks: ArrayList<String>
     private var allowedCardNetworks: MutableList<String>? = java.util.ArrayList()
     private lateinit var countryCode: String

@@ -16,13 +16,13 @@ import company.tap.google.pay.internal.api.responses.Token
 import company.tap.google.pay.open.SDKDelegate
 import company.tap.google.pay.open.DataConfiguration
 import company.tap.google.pay.open.GooglePayButton
+import company.tap.google.pay.open.enums.Theme
 
 import java.math.BigDecimal
 
 class MainActivity : AppCompatActivity() , SDKDelegate {
     var dataConfig: DataConfiguration = DataConfiguration //** Required**//
     lateinit var googlePayView: GooglePayButton
-    lateinit var googlePayButton: View
     private  val TAG = "MainActivity"
     private var settingsManager: SettingsManager? = null
 
@@ -36,10 +36,9 @@ class MainActivity : AppCompatActivity() , SDKDelegate {
         settingsManager?.setPref(this)
         googlePayView = findViewById(R.id.googlePayView)
         val defaultPref=    settingsManager?.getString("token_type_key","GET GOOGLEPAY TOKEN")
-       // googlePayView.googlePayBuyWith?.visibility=View.VISIBLE
-        googlePayView.setGooglePayButtonType(settingsManager?.getGPAYButtonType("button_type_key"))
+        googlePayView.setGooglePayButtonType(settingsManager?.getGPAYButtonType("button_type_key"),Theme.LIGHT)
 
-        googlePayView.buttonView.setOnClickListener {
+        googlePayView.gpayButton.setOnClickListener {
             if(defaultPref.toString() == "GET GOOGLEPAY TOKEN"){
                 dataConfig.getGooglePayToken(this, googlePayView)
 

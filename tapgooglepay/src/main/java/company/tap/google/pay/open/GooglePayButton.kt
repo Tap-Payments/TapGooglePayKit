@@ -14,10 +14,15 @@ import androidx.annotation.RequiresApi
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.wallet.IsReadyToPayRequest
 import com.google.android.gms.wallet.PaymentsClient
+import com.google.android.gms.wallet.button.ButtonConstants
+import com.google.android.gms.wallet.button.ButtonOptions
+import com.google.android.gms.wallet.button.PayButton
 import company.tap.google.pay.R
 import company.tap.google.pay.internal.GoogleApiActivity
 import company.tap.google.pay.internal.PaymentsUtil
 import company.tap.google.pay.open.enums.GooglePayButtonType
+import company.tap.google.pay.open.enums.Theme
+import org.json.JSONArray
 
 
 @SuppressLint("ViewConstructor")
@@ -27,13 +32,12 @@ import company.tap.google.pay.open.enums.GooglePayButtonType
     lateinit var _activity: Activity
     val mainView by lazy { findViewById<LinearLayout>(R.id.mainLL) }
      lateinit var googlePayButton :View
-    lateinit var buttonView: View
+
+    lateinit var gpayButton : PayButton
   //  @JvmField var googlePayTokenRqd:Boolean= false
    // @JvmField var tapTokenRqd:Boolean= false
     @JvmField var googlePayButtonType:GooglePayButtonType?=GooglePayButtonType.NORMAL_GOOGLE_PAY
-   // val googlePayNormal by lazy { findViewById<View>(R.id.google_pay_normal) }
-   // val googlePayBuyWith by lazy { findViewById<View>(R.id.google_pay_buy_with) }
-  //  val googlePayWith by lazy { findViewById<View>(R.id.google_pay_pay_with) }
+
     /**
      * Simple constructor to use when creating a TapPayCardSwitch from code.
      *  @param context The Context the view is running in, through which it can
@@ -50,43 +54,45 @@ import company.tap.google.pay.open.enums.GooglePayButtonType
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
 
     init {
-        View.inflate(context, R.layout.google_pay_layout,this)
+        View.inflate(context, R.layout.generic_google_pay_button,this)
   }
 
-    fun setGooglePayButtonType(__googlePayButtonType: GooglePayButtonType?){
+    fun setGooglePayButtonType(__googlePayButtonType: GooglePayButtonType?,theme: Theme){
         this.googlePayButtonType= __googlePayButtonType
-        setButtonType(googlePayButtonType)
+        googlePayButtonType?.let { setButtonType(it,theme.theme,100) }
     }
-    private fun setButtonType(_googlePayButtonType:GooglePayButtonType?){
-        if(_googlePayButtonType?.name == GooglePayButtonType.NORMAL_GOOGLE_PAY.name){
-            buttonView  = LayoutInflater.from(context).inflate(R.layout.plain_googlepay_button, mainView, false)
-            mainView.addView(buttonView)
-        }else if(_googlePayButtonType?.name == GooglePayButtonType.BUY_WITH_GOOGLE_PAY.name){
-            buttonView = LayoutInflater.from(context).inflate(R.layout.buy_with_google_pay, mainView, false)
-            mainView.addView(buttonView)
-        }else if(_googlePayButtonType?.name == GooglePayButtonType.DONATE_WITH_GOOGLE_PAY.name){
-            buttonView = LayoutInflater.from(context).inflate(R.layout.donate_with_google_pay, mainView, false)
-            mainView.addView(buttonView)
-        }else if(_googlePayButtonType?.name == GooglePayButtonType.PAY_WITH_GOOGLE_PAY.name){
-            buttonView = LayoutInflater.from(context).inflate(R.layout.pay_with_google_pay, mainView, false)
-            mainView.addView(buttonView)
-        }else if(_googlePayButtonType?.name == GooglePayButtonType.SUBSCRIBE_WITH_GOOGLE_PAY.name){
-            buttonView = LayoutInflater.from(context).inflate(R.layout.subscribe_with_google_pay, mainView, false)
-            mainView.addView(buttonView)
-        }else if(_googlePayButtonType?.name == GooglePayButtonType.CHECKOUT_WITH_GOOGLE_PAY.name){
-            buttonView = LayoutInflater.from(context).inflate(R.layout.checkout_with_googlepay_button, mainView, false)
-            mainView.addView(buttonView)
-        }else if(_googlePayButtonType?.name == GooglePayButtonType.ORDER_WITH_GOOGLE_PAY.name){
-            buttonView = LayoutInflater.from(context).inflate(R.layout.order_with_googlepay_button, mainView, false)
-            mainView.addView(buttonView)
-        }else if(_googlePayButtonType?.name == GooglePayButtonType.BOOK_WITH_GOOGLE_PAY.name){
-            buttonView = LayoutInflater.from(context).inflate(R.layout.book_with_googlepay_button, mainView, false)
-            mainView.addView(buttonView)
-        }
 
-        mainView.isFocusable= true
-        mainView.isEnabled= true
+
+    private fun setButtonType(
+        type: GooglePayButtonType,
+        theme: Int = ButtonConstants.ButtonTheme.DARK,
+        cornerRadius: Int = 100,
+
+    ) {
+
+      //  mainView.removeAllViews()
+
+     /*   val buttonView = LayoutInflater.from(context)
+            .inflate(R.layout.generic_google_pay_button, mainView, false)*/
+
+        gpayButton =
+            findViewById<PayButton>(R.id.googlePayPaymentButton)
+        val paymentMethods: JSONArray = JSONArray().put(PaymentsUtil.baseCardPaymentMethod())
+        gpayButton.initialize(
+            ButtonOptions.newBuilder()
+                .setButtonTheme(theme)
+                .setButtonType(type.googleType)
+                .setCornerRadius(cornerRadius)
+                .setAllowedPaymentMethods(paymentMethods.toString())
+                .build()
+        )
+
+       // mainView.addView(buttonView)
+
+     //   mainView.isFocusable = true
+       // mainView.isEnabled = true
     }
+
     /**
      * Determine the viewer's ability to pay with a payment method supported by your app and display a
      * Google Pay payment button.

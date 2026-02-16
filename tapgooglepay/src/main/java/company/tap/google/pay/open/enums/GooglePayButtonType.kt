@@ -1,19 +1,15 @@
 package company.tap.google.pay.open.enums
 
-enum class GooglePayButtonType {
-    BUY_WITH_GOOGLE_PAY,
+import com.google.android.gms.wallet.button.ButtonConstants
 
-    DONATE_WITH_GOOGLE_PAY,
+enum class GooglePayButtonType(val googleType: Int) {
 
-    NORMAL_GOOGLE_PAY,
-
-    PAY_WITH_GOOGLE_PAY,
-
-    SUBSCRIBE_WITH_GOOGLE_PAY,
-
-    CHECKOUT_WITH_GOOGLE_PAY,
-
-    ORDER_WITH_GOOGLE_PAY,
-
-    BOOK_WITH_GOOGLE_PAY
+    NORMAL_GOOGLE_PAY(ButtonConstants.ButtonType.PLAIN),
+    BUY_WITH_GOOGLE_PAY(ButtonConstants.ButtonType.BUY),
+    DONATE_WITH_GOOGLE_PAY(ButtonConstants.ButtonType.DONATE),
+    PAY_WITH_GOOGLE_PAY(ButtonConstants.ButtonType.PAY),
+    SUBSCRIBE_WITH_GOOGLE_PAY(ButtonConstants.ButtonType.SUBSCRIBE),
+    CHECKOUT_WITH_GOOGLE_PAY(ButtonConstants.ButtonType.CHECKOUT),
+    ORDER_WITH_GOOGLE_PAY(ButtonConstants.ButtonType.ORDER),
+    BOOK_WITH_GOOGLE_PAY(ButtonConstants.ButtonType.BOOK)
 }

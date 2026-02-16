@@ -48,7 +48,7 @@ object PaymentsUtil {
         }
     }
 
-    private fun baseCardPaymentMethod(): JSONObject {
+    public fun baseCardPaymentMethod(): JSONObject {
         var  jsonArray :JSONArray ?= null
         return JSONObject().apply {
             if(PaymentDataSource.getAllowedCardMethod().toString()==AllowedMethods.ALL.name){
