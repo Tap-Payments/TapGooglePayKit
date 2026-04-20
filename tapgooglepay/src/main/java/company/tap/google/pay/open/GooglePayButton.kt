@@ -57,15 +57,21 @@ import org.json.JSONArray
         View.inflate(context, R.layout.generic_google_pay_button,this)
   }
 
-    fun setGooglePayButtonType(__googlePayButtonType: GooglePayButtonType?,theme: Theme){
-        this.googlePayButtonType= __googlePayButtonType
-        googlePayButtonType?.let { setButtonType(it,theme.theme,100) }
+    fun setGooglePayButtonType(
+        __googlePayButtonType: GooglePayButtonType?,
+        theme: Theme = Theme.LIGHT,
+        radius: Int = 100
+    ) {
+        this.googlePayButtonType = __googlePayButtonType
+        googlePayButtonType?.let {
+            setButtonType(it, theme.theme, radius)
+        }
     }
 
 
     private fun setButtonType(
         type: GooglePayButtonType,
-        theme: Int = ButtonConstants.ButtonTheme.DARK,
+        theme: Int = ButtonConstants.ButtonTheme.LIGHT,
         cornerRadius: Int = 100,
 
     ) {

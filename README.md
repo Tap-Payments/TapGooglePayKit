@@ -121,13 +121,15 @@ Include the Google Pay™ button view inside the xml file as below
 *Kotlin*
 
 ```kotlin
-        <company.tap.google.pay.open.GooglePayButton
-         android:id="@+id/googlePayView"
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:layout_alignParentBottom="true"
-        android:enabled="true"
-        android:focusable="true"
+    <company.tap.google.pay.open.GooglePayButton
+android:layout_marginStart="5dp"
+android:layout_marginEnd="5dp"
+android:id="@+id/googlePayView"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:layout_alignParentBottom="true"
+android:enabled="true"
+android:focusable="true"
 />
 ```
 Then declare it in the class as follows:
@@ -145,7 +147,7 @@ Then declare it in the class as follows:
   
    ```kotlin
     googlePayView = findViewById(R.id.googlePayView)
-    googlePayView.setGooglePayButtonType(GooglePayButtonType.CHECKOUT_WITH_GOOGLE_PAY)
+googlePayView.setGooglePayButtonType(settingsManager?.getGPAYButtonType("button_type_key"),Theme.DARK,100)
    ```
 
 3. Set The click event for the Google Pay™ view as below:
@@ -153,7 +155,7 @@ Then declare it in the class as follows:
 *Kotlin*
    
 ```kotlin
-    googlePayView.buttonView.setOnClickListener {
+     googlePayView.gpayButton.setOnClickListener {
    Here you choose what you prefer to call getGooglePayToken or getTapToken
             if(defaultPref.toString() == "GET GOOGLEPAY TOKEN"){
                 dataConfig.getGooglePayToken(this, googlePayView)
