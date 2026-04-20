@@ -449,7 +449,7 @@ implementation "com.google.android.gms:play-services-wallet:18.1.3"
 2. Ensure your min sdk is 21
 ```kotlin
 minSdk 21
-targetSdk 32
+targetSdk 36
 ```
 
 3. In Manifest file , Inside the <application tag do the below:
