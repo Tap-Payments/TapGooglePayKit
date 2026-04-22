@@ -141,7 +141,7 @@ Then declare it in the class as follows:
    lateinit var googlePayView: GooglePayButton
    ```
 
-2. Set the Button Type you prefer from the list of enums we have
+2. Set the Button Type you prefer from the list of enums we have , And also set the theme and the corner radius for the button as below:
 
 *Kotlin*
   
@@ -385,6 +385,15 @@ enum class GooglePayButtonType {
    BOOK_WITH_GOOGLE_PAY
 }
 ```
+4. Theme
+Choose the theme of the button you wish to use in your app
+
+```kotlin
+enum class Theme {
+   DARK,
+   LIGHT
+}
+```   
 
 
 ## SDK Delegate

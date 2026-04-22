@@ -88,6 +88,15 @@
             android:key="button_type_key"
             android:summary="Choose your preferred GPAY Button"
             android:title="GPAY Button Prefered"/>
+
+     <ListPreference
+         android:defaultValue="DARK"
+         android:dialogTitle="Theme"
+         android:entries="@array/pref_array_theme_value"
+         android:entryValues="@array/pref_array_theme_entries"
+         android:key="theme_type_key"
+         android:summary="Choose your preferred Theme"
+         android:title="Theme Preferred"/>
     </PreferenceCategory>
 
     <PreferenceCategory android:title="Testing Preference">
