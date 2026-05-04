@@ -38,6 +38,7 @@ object  DataConfiguration {
     private var paymentDataSource: PaymentDataSource? = null
     private var testEncKey: String? = null
     private var prodEncKey: String? = null
+    var hasGooglePay = false
     init {
         initPaymentDataSource()
 
@@ -223,19 +224,19 @@ object  DataConfiguration {
     @RequiresApi(Build.VERSION_CODES.N)
    // fun startGooglePay(activity: Activity, googlePayButton: View,googleButtonType: GooglePayButtonType?){
     fun startGooglePay(activity: Activity, googlePayButton: GooglePayButton){
-        googlePayButton.possiblyShowGooglePayButton(activity,googlePayButton,false)
+        googlePayButton.possiblyShowGooglePayButton(activity,googlePayButton,false,null, hasGooglePay)
 
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
     fun getGooglePayToken(activity: Activity,googlePayButton: GooglePayButton){
-        googlePayButton.possiblyShowGooglePayButton(activity,googlePayButton,true)
+        googlePayButton.possiblyShowGooglePayButton(activity,googlePayButton,true,null, hasGooglePay)
 
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
     fun getTapToken(activity: Activity,googlePayButton: GooglePayButton){
-        googlePayButton.possiblyShowGooglePayButton(activity,googlePayButton,false)
+        googlePayButton.possiblyShowGooglePayButton(activity,googlePayButton,false,null, hasGooglePay)
 
     }
     private fun callCheckOutProfileAPI(configuraton: java.util.HashMap<String, Any>, isTestMode: Boolean = true , context: Context ,publicKey: String) {
@@ -294,6 +295,30 @@ object  DataConfiguration {
 
                         if (!jsonResponse.toString().contains("errors")) {
 
+
+                            // ✅ Check Google Pay inside payment_options
+                            val paymentOptions = jsonResponse.optJSONObject("payment_options")
+                            val paymentMethods = paymentOptions?.optJSONArray("payment_methods")
+
+
+
+                            if (paymentMethods != null) {
+                                for (i in 0 until paymentMethods.length()) {
+                                    val method = paymentMethods.optJSONObject(i)
+
+                                    val paymentType = method?.optString("payment_type", "")
+                                    val name = method?.optString("name", "")
+
+                                    if (paymentType.equals("google_pay", true) ||
+                                        name.equals("GOOGLE_PAY", true)
+                                    ) {
+                                        hasGooglePay = true
+                                        break
+                                    }
+                                }
+                            }
+
+                            println("Google Pay Available: $hasGooglePay")
                             // Safe session extraction
                             val session = jsonResponse.optString("session", "")
 

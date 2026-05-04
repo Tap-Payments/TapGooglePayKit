@@ -107,12 +107,17 @@ import org.json.JSONArray
     PaymentsClient.html.isReadyToPay
     ) */
     @RequiresApi(api = Build.VERSION_CODES.N)
-    fun possiblyShowGooglePayButton(activity: Activity, _googlePayButton: View ,googlePayToken :Boolean ,googlePayButtonType: GooglePayButtonType?=null) {
+    fun possiblyShowGooglePayButton(activity: Activity, _googlePayButton: View ,googlePayToken :Boolean ,googlePayButtonType: GooglePayButtonType?=null , hasGooglePay:Boolean) {
      //   _googlePayButton.visibility = VISIBLE
        this.googlePayButtonType = googlePayButtonType
        // setVisibilityOfButtons(googlePayButtonType)
         //this.googlePayTokenRqd = googlePayToken
        // this.tapTokenRqd = tapToken
+       if(!hasGooglePay) {
+           _googlePayButton.visibility= View.GONE
+           DataConfiguration.getListener()?.onFailed("Google Pay Not Supported")
+           return
+       }else{
 
         googlePayButton = _googlePayButton
         _googlePayButton.isEnabled= true
@@ -138,7 +143,7 @@ import org.json.JSONArray
             }
         }
 
-    }
+    }}
 
 
 
