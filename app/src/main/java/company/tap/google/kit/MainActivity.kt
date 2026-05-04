@@ -7,18 +7,16 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import company.tap.google.pay.internal.api.responses.Token
-import company.tap.google.pay.open.SDKDelegate
 import company.tap.google.pay.open.DataConfiguration
 import company.tap.google.pay.open.GooglePayButton
+import company.tap.google.pay.open.SDKDelegate
 import company.tap.google.pay.open.enums.Theme
-
 import java.math.BigDecimal
+
 
 class MainActivity : AppCompatActivity() , SDKDelegate {
     var dataConfig: DataConfiguration = DataConfiguration //** Required**//
@@ -56,7 +54,7 @@ class MainActivity : AppCompatActivity() , SDKDelegate {
             }
 
         }
-        initializeSDK()
+
         configureSDKData()
     }
 
@@ -96,16 +94,14 @@ class MainActivity : AppCompatActivity() , SDKDelegate {
 //            "VISA")
 
         dataConfig.setAllowedCardNetworks(settingsManager?.getSet("key_payment_networks")?.toMutableList()) //**Required Payment Networks **/
+
+        dataConfig.initSDK(
+            this@MainActivity,
+            "pk_test_Vlk842B1EA7tDN5QbrfGjYzh"
+        )
     }
 
-    private fun initializeSDK() {
-        settingsManager?.getString("key_test_name", "XXXXXX")?.let {
-            dataConfig.initSDK(this@MainActivity as Context, it,
-                settingsManager?.getString("key_package_name", "company.tap.goSellSDKExample")!!
-            )
-        }
 
-    }
 
     override fun onGooglePayToken(token: String) {
         customAlertBox("onGooglePayToken",token)
