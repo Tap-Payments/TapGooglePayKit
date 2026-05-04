@@ -78,7 +78,7 @@ To integrate tapGooglePay™SDK into your project add it in your **root** `build
 Step 2. Add the dependency
 ```java
 	dependencies {
-	        implementation 'com.github.Tap-Payments:TapGooglePayKit:1.0.3'
+	        implementation 'com.github.Tap-Payments:TapGooglePayKit:1.0.4'
 	}
 ```
 <a name="setup"></a>
@@ -190,17 +190,19 @@ SDK Mode is automatically identified in the backend based on the secrete key you
 
      
 
-        /**
-         * Required step.
-         * Configure SDK with your choice from the given list.
-         */   
-            initializeSDK()
+      
             
          /**
          * Required step.
          * Configure SDK Session with all required data.
          */
         configureSDKData()
+
+         /**
+          * Required step.
+          * Configure SDK with your choice from the given list.
+          */
+         initializeSDK()
             
  ```           
         
@@ -216,7 +218,7 @@ To set it up, add the following line of code somewhere in your project and make 
          * Configure SDK with your Secret API key and App Bundle name registered with tap company.
          */
         private fun initializeSDK(){
-           dataConfig.initSDK(this@MainActivity as Context,"XXXXXXXXXXXXXXXXXXXXXXXX","app_id")
+           dataConfig.initSDK(this@MainActivity as Context,"XXXXXXXXXXXXXXXXXXXXXXXX")
 
         }
 ```
