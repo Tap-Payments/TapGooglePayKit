@@ -323,7 +323,7 @@ object  DataConfiguration {
                             val session = jsonResponse.optString("session", "")
 
                             if (session.isNotEmpty()) {
-                                println("Session Value: $session")
+                               // println("Session Value: $session")
                                 NetworkApp.initNetworkToken(session,
                                     context,
                                     ApiService.BASE_URL,
