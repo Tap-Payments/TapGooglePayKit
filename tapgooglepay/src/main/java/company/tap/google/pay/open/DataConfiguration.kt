@@ -38,7 +38,7 @@ object  DataConfiguration {
     private var paymentDataSource: PaymentDataSource? = null
     private var testEncKey: String? = null
     private var prodEncKey: String? = null
-    var hasGooglePay = false
+  //  var hasGooglePay = false
     init {
         initPaymentDataSource()
 
@@ -224,19 +224,19 @@ object  DataConfiguration {
     @RequiresApi(Build.VERSION_CODES.N)
    // fun startGooglePay(activity: Activity, googlePayButton: View,googleButtonType: GooglePayButtonType?){
     fun startGooglePay(activity: Activity, googlePayButton: GooglePayButton){
-        googlePayButton.possiblyShowGooglePayButton(activity,googlePayButton,false,null, hasGooglePay)
+        googlePayButton.possiblyShowGooglePayButton(activity,googlePayButton,false,null)
 
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
     fun getGooglePayToken(activity: Activity,googlePayButton: GooglePayButton){
-        googlePayButton.possiblyShowGooglePayButton(activity,googlePayButton,true,null, hasGooglePay)
+        googlePayButton.possiblyShowGooglePayButton(activity,googlePayButton,true,null)
 
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
     fun getTapToken(activity: Activity,googlePayButton: GooglePayButton){
-        googlePayButton.possiblyShowGooglePayButton(activity,googlePayButton,false,null, hasGooglePay)
+        googlePayButton.possiblyShowGooglePayButton(activity,googlePayButton,false,null)
 
     }
     private fun callCheckOutProfileAPI(configuraton: java.util.HashMap<String, Any>, isTestMode: Boolean = true , context: Context ,publicKey: String) {
@@ -302,7 +302,7 @@ object  DataConfiguration {
 
 
 
-                            if (paymentMethods != null) {
+           /*                 if (paymentMethods != null) {
                                 for (i in 0 until paymentMethods.length()) {
                                     val method = paymentMethods.optJSONObject(i)
 
@@ -318,7 +318,7 @@ object  DataConfiguration {
                                 }
                             }
 
-                            println("Google Pay Available: $hasGooglePay")
+                            println("Google Pay Available: $hasGooglePay")*/
                             // Safe session extraction
                             val session = jsonResponse.optString("session", "")
 
