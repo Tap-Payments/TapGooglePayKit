@@ -302,7 +302,7 @@ To set it up, add the following line of code somewhere in your project and make 
 
    dataConfig.setGatewayId("tappayments")  //**Required GATEWAY ID**/
 
-   dataConfig.setGatewayMerchantID("1124340") //**Required GATEWAY Merchant ID**/
+   dataConfig.setGatewayMerchantID("XXXXXX") //**Required GATEWAY Merchant ID**/
    
     dataConfig.setAmount(BigDecimal.valueOf(23))  //**Required Amount**/
 
